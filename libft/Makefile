@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 15:03:07 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/07 11:08:55 by fluchten         ###   ########.fr        #
+#    Updated: 2023/02/07 11:17:01 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ INC_DIR = includes
 SRCS_DIR = srcs
 OBJS_DIR = objs
 
-SRCS = ft_atoi.c \
+SRCS = 	get_next_line/get_next_line.c \
+		get_next_line/get_next_line_utils.c \
+		ft_atoi.c \
 		ft_bzero.c \
 		ft_calloc.c \
 		ft_isalnum.c \
@@ -54,38 +56,31 @@ SRCS = ft_atoi.c \
 		ft_substr.c \
 		ft_tolower.c \
 		ft_toupper.c \
-		ft_lstadd_back_bonus.c \
-		ft_lstadd_front_bonus.c \
-		ft_lstclear_bonus.c \
-		ft_lstdelone_bonus.c \
-		ft_lstiter_bonus.c \
-		ft_lstlast_bonus.c \
-		ft_lstmap_bonus.c \
-		ft_lstnew_bonus.c \
-		ft_lstsize_bonus.c
+		ft_lstadd_back.c \
+		ft_lstadd_front.c \
+		ft_lstclear.c \
+		ft_lstdelone.c \
+		ft_lstiter.c \
+		ft_lstlast.c \
+		ft_lstmap.c \
+		ft_lstnew.c \
+		ft_lstsize.c
 
 OBJS = $(addprefix ${OBJS_DIR}/, ${SRCS:%.c=%.o})
-
-GNL_PATH = ${SRCS_DIR}/get_next_line
-GNL_LIB = ${GNL_PATH}/libftgnl.a
-GNL_INC = ${GNL_PATH}/includes
 
 all: ${NAME}
 
 ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c
 	@mkdir -p ${@D}
-	${CC} ${CFLAGS} -I ${INC_DIR} -I ${GNL_INC} -c $< -o $@
+	${CC} ${CFLAGS} -I ${INC_DIR} -c $< -o $@
 
 ${NAME}: ${OBJS}
-	@make -C ${GNL_PATH}
-	ar -rcs ${NAME} ${OBJS} ${GNL_LIB}
+	ar -rcs ${NAME} ${OBJS}
 
 clean:
-	@make clean -C ${GNL_PATH}
 	${RM} ${OBJS_DIR}
 
 fclean: clean
-	@make fclean -C ${GNL_PATH}
 	${RM} ${NAME}
 
 re: fclean all
