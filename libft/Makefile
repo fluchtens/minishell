@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 15:03:07 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/01 15:16:06 by fluchten         ###   ########.fr        #
+#    Updated: 2023/02/07 11:08:55 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,39 +53,41 @@ SRCS = ft_atoi.c \
 		ft_strtrim.c \
 		ft_substr.c \
 		ft_tolower.c \
-		ft_toupper.c
-
-SRCS_BONUS = ft_lstadd_back_bonus.c \
-			ft_lstadd_front_bonus.c \
-			ft_lstclear_bonus.c \
-			ft_lstdelone_bonus.c \
-			ft_lstiter_bonus.c \
-			ft_lstlast_bonus.c \
-			ft_lstmap_bonus.c \
-			ft_lstnew_bonus.c \
-			ft_lstsize_bonus.c
+		ft_toupper.c \
+		ft_lstadd_back_bonus.c \
+		ft_lstadd_front_bonus.c \
+		ft_lstclear_bonus.c \
+		ft_lstdelone_bonus.c \
+		ft_lstiter_bonus.c \
+		ft_lstlast_bonus.c \
+		ft_lstmap_bonus.c \
+		ft_lstnew_bonus.c \
+		ft_lstsize_bonus.c
 
 OBJS = $(addprefix ${OBJS_DIR}/, ${SRCS:%.c=%.o})
-OBJS_BONUS = $(addprefix ${OBJS_DIR}/, ${SRCS_BONUS:%.c=%.o})
+
+GNL_PATH = ${SRCS_DIR}/get_next_line
+GNL_LIB = ${GNL_PATH}/libftgnl.a
+GNL_INC = ${GNL_PATH}/includes
 
 all: ${NAME}
 
 ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c
 	@mkdir -p ${@D}
-	${CC} ${CFLAGS} -I ${INC_DIR} -c $< -o $@
+	${CC} ${CFLAGS} -I ${INC_DIR} -I ${GNL_INC} -c $< -o $@
 
 ${NAME}: ${OBJS}
-	ar -rcs ${NAME} ${OBJS}
-
-bonus: ${OBJS} ${OBJS_BONUS}
-	ar -rcs ${NAME} ${OBJS} ${OBJS_BONUS}
+	@make -C ${GNL_PATH}
+	ar -rcs ${NAME} ${OBJS} ${GNL_LIB}
 
 clean:
+	@make clean -C ${GNL_PATH}
 	${RM} ${OBJS_DIR}
 
 fclean: clean
+	@make fclean -C ${GNL_PATH}
 	${RM} ${NAME}
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
