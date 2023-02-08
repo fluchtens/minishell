@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/08 10:51:26 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/08 11:15:45 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ typedef struct s_data
 
 typedef enum s_tokens
 {
-	R,
-	L,
-	RR,
-	LL,
-	LR
+	R, // > = 0
+	L, // < = 1
+	RR, // >> = 2
+	LL, // < = 3
+	P // | = 4
 }			t_tokens;
 
 typedef struct s_lexer
