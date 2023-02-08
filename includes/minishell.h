@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/08 08:55:31 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/08 09:51:01 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,23 @@ typedef struct s_data
 {
 	char	*line;
 }			t_data;
+
+typedef enum s_tokens
+{
+	R,
+	L,
+	RR,
+	LL,
+	LR
+}	t_enum;
+
+typedef struct s_lexer
+{
+	char			*str;
+	t_tokens		token;
+	int				i;
+	struct s_lexer *next;
+}	t_lexer;
 
 /* utils */
 int		print_error(char *str);

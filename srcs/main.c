@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/08 09:01:17 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/08 09:14:19 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,15 @@ int	main(int ac, char **av)
 	(void)ac;
 	(void)av;
 	int i = 0;
-	while (i < 1)
+	while (i < 8)
 	{
-		printf("in progress\n");
 		data.line = readline("minishell$ ");
+		if (ft_strncmp(data.line, "hello", 5) == 0)
+		{
+			printf("hello44\n");
+			continue;
+			printf("nothere\n");
+		}
 		if (!data.line)
 		{
 			printf("exit\n");
