@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/07 10:13:25 by fluchten         ###   ########.fr        #
+#    Updated: 2023/02/08 08:59:29 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ LIBFT_PATH = libft
 LIBFT_LIB = ${LIBFT_PATH}/libft.a
 LIBFT_INC = ${LIBFT_PATH}/includes
 
+READLINE = -lreadline -L /Users/$(USER)/.brew/Opt/readline/lib -I /Users/$(USER)/.brew/Opt/readline/include
+
 all: ${NAME}
 
 ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c
@@ -37,7 +39,7 @@ ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c
 
 ${NAME}: ${OBJS}
 	@make -C ${LIBFT_PATH}
-	${CC} ${CFLAGS} ${OBJS} ${LIBFT_LIB} -o ${NAME}
+	${CC} ${CFLAGS} ${OBJS} ${LIBFT_LIB} ${READLINE} -o ${NAME}
 
 clean:
 	@make clean -C ${LIBFT_PATH}
