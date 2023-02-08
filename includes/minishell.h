@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/08 09:51:01 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/02/08 10:51:26 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,19 @@ typedef enum s_tokens
 	RR,
 	LL,
 	LR
-}	t_enum;
+}			t_tokens;
 
 typedef struct s_lexer
 {
 	char			*str;
 	t_tokens		token;
 	int				i;
-	struct s_lexer *next;
-}	t_lexer;
+	struct s_lexer	*next;
+}					t_lexer;
 
+/* parsing */
+t_lexer	*parser(char **line);
+void	print_list(t_lexer *list);
 /* utils */
 int		print_error(char *str);
 
