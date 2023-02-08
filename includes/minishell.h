@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/08 11:15:45 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/08 11:25:36 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_lexer
 {
 	char			*str;
 	t_tokens		token;
-	int				i;
+	int				i; // str = 0, token = 1;
 	struct s_lexer	*next;
 }					t_lexer;
 
