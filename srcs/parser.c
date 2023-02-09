@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:14:49 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/08 11:37:43 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/09 11:54:50 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 int	ft_is_token(char c)
 {
 	if (c == '<')
-		return (1);
+		return (R);
+	else if (c == '>')
+		return (L);
+	else if (c == '|')
+		return (P);
 	return (0);
 }
 
@@ -42,6 +46,7 @@ static t_lexer	*new_element(char *line)
 		return (NULL);
 	element->str = line;
 	element->i = ft_check_index(line);
+	element->token = ft_is_token(line[0]);
 	element->next = NULL;
 	return (element);
 }
@@ -68,6 +73,60 @@ t_lexer	*parser(char **line)
 	return (list);
 }
 
+int	ft_quote_check(t_data *data, char c)
+{
+	if (c == '"' && data->quote.sing == 0 && data->quote.doub == 0)
+		data->quote.doub = 1;
+	else if (c == '"' && data->quote.doub == 1)
+		data->quote.doub = 0;
+	if (c == '\'' && data->quote.sing == 0 && data->quote.doub == 0)
+		data->quote.sing = 1;
+	else if (c == '\'' && data->quote.sing == 1)
+		data->quote.sing = 0;
+	if (data->quote.doub == 1 || data->quote.sing == 1)
+		return (1);
+	return (0);
+}
+
+char	*cmd_get_command(t_data *data, char *line)
+{
+	int		i;
+	char	*temp;
+
+	i = 0;
+	while (line[i] && ((ft_quote_check(data, line[i]) && line[i] == '|') || line[i] != '|'))
+		i++;
+	temp = NULL;
+	temp = ft_memmove(temp, line, i);
+	printf("toute la commande= %s\n", temp);
+	exit(0);
+	return (temp);
+}
+
+void	cmd_creation(t_data *data, int i)
+{
+	char	*cmd;
+	data->line = data->line + i;
+	cmd = cmd_get_command(data, data->line);
+}
+
+void	parsing(t_data *data)
+{
+	int	i;
+
+	if (!data->line)
+		return ;
+	i = 0;
+	cmd_creation(data, i);
+	while (data->line[i])
+	{
+		if (!ft_quote_check(data, data->line[i]) && data->line[i] == '|')
+			cmd_creation(data, i + 1);
+		i++;
+	}
+	printf("fin\n");
+}
+
 void	print_list(t_lexer *list)
 {
 	if (!list)
@@ -77,7 +136,7 @@ void	print_list(t_lexer *list)
 	}
 	while (list)
 	{
-		printf("[%s][%d]\n", list->str, list->i);
+		printf("[%s][%d]\n", list->str, list->token);
 		list = list->next;
 	}
 }
