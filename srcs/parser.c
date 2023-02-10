@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:14:49 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/09 11:54:50 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/02/10 08:41:57 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,8 @@ char	*cmd_get_command(t_data *data, char *line)
 	while (line[i] && ((ft_quote_check(data, line[i]) && line[i] == '|') || line[i] != '|'))
 		i++;
 	temp = NULL;
-	temp = ft_memmove(temp, line, i);
+	temp = ft_strdup_size(line, i);
 	printf("toute la commande= %s\n", temp);
-	exit(0);
 	return (temp);
 }
 
