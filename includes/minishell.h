@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/10 12:02:12 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/13 07:56:26 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_data
 	char	*line;
 }			t_data;
 
+/* init */
+int		init_everything(t_data *data);
 /* parsing */
 int		parse_envp(t_data *data);
 /* utils */

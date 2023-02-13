@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 09:33:52 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/10 12:02:11 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/13 08:10:01 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,14 @@ static char	*find_path(char **envp)
 			return (ft_substr(envp[i], 5, ft_strlen(envp[i]) - 5));
 		i++;
 	}
-	return (ft_strdup("\0"));
+	return (NULL);
 }
+
+/* static void	print_paths(t_data *data)
+{
+	for (int i = 0; data->paths[i]; i++)
+		printf("paths[%d] = %s\n", i, data->paths[i]);
+} */
 
 int	parse_envp(t_data *data)
 {
@@ -34,6 +40,8 @@ int	parse_envp(t_data *data)
 	int		i;
 
 	path = find_path(data->envp);
+	if (!path)
+		return (0);
 	data->paths = ft_split(path, ':');
 	free(path);
 	i = 0;
@@ -48,5 +56,6 @@ int	parse_envp(t_data *data)
 		}
 		i++;
 	}
-	return (0);
+	// print_paths(data);
+	return (1);
 }
