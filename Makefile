@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/13 08:10:37 by fluchten         ###   ########.fr        #
+#    Updated: 2023/02/13 11:54:37 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SRCS_DIR = srcs
 OBJS_DIR = objs
 
 SRCS =	parsing/parse_envp.c \
+		utils/error.c \
+		utils/exit.c \
 		utils/utils.c \
 		initialization.c \
 		main.c
