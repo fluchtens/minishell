@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 07:49:45 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/13 12:07:13 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:58:10 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	reset_datas(t_data *data)
 	if (data->line)
 		free(data->line);
 	if (data->paths)
-		free_arr(data->paths);
+		free_array(data->paths);
 }
 
 static void	init_minishell(t_data *data)
@@ -29,17 +29,14 @@ static void	init_minishell(t_data *data)
 	free(data->line);
 	data->line = temp;
 	if (!data->line)
-		exit_error(data, "exit", 0);
+		exit_and_free(data, "exit", 0);
 	add_history(data->line);
 	reset_datas(data);
 }
 
 void	init_everything(t_data *data)
 {
-	if (!parse_envp(data))
-	{
-		ft_putstr_fd("An error has occurred.\n", 2);
-		exit(EXIT_FAILURE);
-	}
+	if (!parse_paths(data))
+		exit_and_free(data, "Error: An error has occurred.", 1);
 	init_minishell(data);
 }

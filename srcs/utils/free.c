@@ -1,52 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 10:09:53 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/13 11:37:14 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/14 11:48:34 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/14 11:52:12 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_arr(char **arr)
+void	free_everything(t_data *data)
+{
+	if (data->line)
+		free(data->line);
+	if (data->envp)
+		free_array(data->envp);
+	if (data->paths)
+		free_array(data->paths);
+}
+
+void	free_array(char **array)
 {
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	while (array[i])
 	{
-		free(arr[i]);
+		free(array[i]);
 		i++;
 	}
-	free(arr);
-}
-
-char	**ft_arrdup(char **arr)
-{
-	char	**final;
-	size_t	len;
-	size_t	i;
-
-	len = 0;
-	while (arr[len])
-		len++;
-	final = malloc(sizeof(char *) * (len + 1));
-	if (!final)
-		return (NULL);
-	i = 0;
-	while (arr[i])
-	{
-		final[i] = ft_strdup(arr[i]);
-		if (!final[i])
-		{
-			free_arr(final);
-			return (NULL);
-		}
-		i++;
-	}
-	return (final);
+	free(array);
 }

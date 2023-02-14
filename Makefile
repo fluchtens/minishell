@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/13 11:54:37 by fluchten         ###   ########.fr        #
+#    Updated: 2023/02/14 11:54:38 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ SRCS_DIR = srcs
 OBJS_DIR = objs
 
 SRCS =	parsing/parse_envp.c \
+		parsing/parse_paths.c \
 		utils/error.c \
-		utils/exit.c \
-		utils/utils.c \
+		utils/free.c \
 		initialization.c \
 		main.c
 
@@ -33,7 +33,8 @@ LIBFT_PATH = libft
 LIBFT_LIB = ${LIBFT_PATH}/libft.a
 LIBFT_INC = ${LIBFT_PATH}/includes
 
-READLINE = -lreadline -L /Users/$(USER)/.brew/Opt/readline/lib -I /Users/$(USER)/.brew/Opt/readline/include
+# READLINE = -lreadline -L /Users/$(USER)/.brew/Opt/readline/lib -I /Users/$(USER)/.brew/Opt/readline/include
+READLINE = -lreadline -L /usr/local/opt/readline/lib -I /usr/local/opt/readline/include
 
 all: ${NAME}
 
