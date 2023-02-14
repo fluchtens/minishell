@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:36:55 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/14 11:50:46 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:03:58 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	exit_and_free(t_data *data, char *str, int error)
 		ft_putendl_fd(str, 2);
 		exit(EXIT_FAILURE);
 	}
-	else if (error == 0)
+	else
 	{
 		ft_putendl_fd(str, 1);
 		exit(EXIT_SUCCESS);
