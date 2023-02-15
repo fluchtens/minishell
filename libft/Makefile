@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+         #
+#    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 15:03:07 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/10 08:39:43 by mgomes-d         ###   ########.fr        #
+#    Updated: 2023/02/15 08:38:52 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,8 @@ SRCS = 	get_next_line/get_next_line.c \
 		ft_lstmap.c \
 		ft_lstnew.c \
 		ft_lstsize.c \
-		ft_strdup_size.c
+		ft_strdup_size.c \
+		is_white_space.c
 
 OBJS = $(addprefix ${OBJS_DIR}/, ${SRCS:%.c=%.o})
 

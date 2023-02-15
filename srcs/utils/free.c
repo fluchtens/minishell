@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup_size.c                                   :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:36:44 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/02/15 08:35:27 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/14 11:48:34 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/15 07:48:46 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strdup_size(const char *s1, size_t len)
+void	free_everything(t_data *data)
 {
-	char	*str;
-	size_t	i;
+	if (data->envp)
+		free_array(data->envp);
+	if (data->paths)
+		free_array(data->paths);
+	if (data->line)
+		free(data->line);
+	if (data->pwd)
+		free(data->pwd);
+	if (data->old_pwd)
+		free(data->old_pwd);
+}
 
-	if (!s1 || !len)
-		return (NULL);
-	str = malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
+void	free_array(char **array)
+{
+	int	i;
+
 	i = 0;
-	while (i < len)
+	while (array[i])
 	{
-		str[i] = s1[i];
+		free(array[i]);
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	free(array);
 }

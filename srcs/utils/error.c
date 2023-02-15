@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup_size.c                                   :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:36:44 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/02/15 08:35:27 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/13 11:36:55 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/14 12:03:58 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strdup_size(const char *s1, size_t len)
+int	print_error(char *str)
 {
-	char	*str;
-	size_t	i;
+	printf("Error: %s\n", str);
+	return (1);
+}
 
-	if (!s1 || !len)
-		return (NULL);
-	str = malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (i < len)
+void	exit_and_free(t_data *data, char *str, int error)
+{
+	free_everything(data);
+	if (error == 1)
 	{
-		str[i] = s1[i];
-		i++;
+		ft_putendl_fd(str, 2);
+		exit(EXIT_FAILURE);
 	}
-	str[i] = '\0';
-	return (str);
+	else
+	{
+		ft_putendl_fd(str, 1);
+		exit(EXIT_SUCCESS);
+	}
 }

@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup_size.c                                   :+:      :+:    :+:   */
+/*   parse_pwd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:36:44 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/02/15 08:35:27 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/15 07:39:02 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/15 07:42:28 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strdup_size(const char *s1, size_t len)
+int	parse_pwd(t_data *data)
 {
-	char	*str;
-	size_t	i;
+	int	i;
 
-	if (!s1 || !len)
-		return (NULL);
-	str = malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
 	i = 0;
-	while (i < len)
+	while (data->envp[i])
 	{
-		str[i] = s1[i];
+		if (!ft_strncmp(data->envp[i], "PWD=", 4))
+			data->pwd = ft_substr(data->envp[i], 4, ft_strlen(data->envp[i]) - 4);
+		if (!ft_strncmp(data->envp[i], "OLDPWD=", 7))
+			data->old_pwd = ft_substr(data->envp[i], 7, ft_strlen(data->envp[i]) - 7);
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	return (1);
 }
