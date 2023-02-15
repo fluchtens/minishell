@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 07:49:45 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/14 11:58:10 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/15 07:47:56 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static void	init_minishell(t_data *data)
 void	init_everything(t_data *data)
 {
 	if (!parse_paths(data))
-		exit_and_free(data, "Error: An error has occurred.", 1);
+		exit_and_free(data, "Error: paths parsing failed.", 1);
+	if (!parse_pwd(data))
+		exit_and_free(data, "Error: pwd parsing failed.", 1);
 	init_minishell(data);
 }
