@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_white_space.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/15 08:42:01 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/14 09:11:53 by mgomes-d          #+#    #+#             */
+/*   Updated: 2023/02/15 08:35:25 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int ac, char **av, char **envp)
+bool	is_white_space(char c)
 {
-	t_data	data;
-
-	if (ac != 1 || av[1])
-		return (print_error("This program does not accept arguments."));
-	data.envp = parse_envp(envp);
-	while (1)
-		init_everything(&data);
-	return (0);
+	return (c == '\t' || c == '\n' || c == '\v'
+		|| c == '\f' || c == '\r' || c == ' ');
 }

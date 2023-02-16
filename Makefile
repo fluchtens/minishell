@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/15 07:49:00 by fluchten         ###   ########.fr        #
+#    Updated: 2023/02/15 08:45:55 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,14 @@ INC_DIR = includes
 SRCS_DIR = srcs
 OBJS_DIR = objs
 
-SRCS =	parsing/parse_envp.c \
+SRCS =	parser/parser.c \
+		parsing/parse_envp.c \
 		parsing/parse_paths.c \
 		parsing/parse_pwd.c \
 		utils/error.c \
 		utils/free.c \
+		utils/ft_split_space.c \
+		utils/utils.c \
 		initialization.c \
 		main.c
 
