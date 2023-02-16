@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/15 08:48:57 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/16 08:15:46 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,23 @@
 # include <readline/history.h>
 # include "libft.h"
 # include "get_next_line.h"
+
+typedef enum s_tokens
+{
+	PIPE = 1,
+	GREAT,
+	GREAT_GREAT,
+	LESS,
+	LESS_LESS,
+}	t_tokens;
+
+typedef struct s_lexer
+{
+	char			*str;
+	t_tokens		token;
+	int				i;
+	struct s_lexer	*next;
+}	t_lexer;
 
 typedef struct s_cmd
 {
@@ -50,23 +67,6 @@ typedef struct s_data
 	t_cmd	*commands;
 	t_quote	quote;
 }	t_data;
-
-typedef enum s_tokens
-{
-	R = 1, // > = 1
-	L, // < = 2
-	RR, // >> = 3
-	LL, // < = 4
-	P // | = 5
-}	t_tokens;
-
-typedef struct s_lexer
-{
-	char			*str;
-	t_tokens		token;
-	int				i; // str = 0, token = 1;
-	struct s_lexer	*next;
-}	t_lexer;
 
 /* init */
 void	init_everything(t_data *data);
