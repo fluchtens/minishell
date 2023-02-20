@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_pwd.c                                        :+:      :+:    :+:   */
+/*   lexer_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 07:39:02 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/20 08:10:58 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/19 13:23:52 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/19 16:09:56 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	parse_pwd(t_data *data)
+int	init_lexer(t_data *data)
 {
-	int	i;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (data->envp[i])
+	while (data->line[i])
 	{
-		if (!ft_strncmp(data->envp[i], "PWD=", 4))
-			data->pwd = ft_substr(data->envp[i], 4, ft_strlen(data->envp[i]) - 4);
-		if (!ft_strncmp(data->envp[i], "OLDPWD=", 7))
-			data->old_pwd = ft_substr(data->envp[i], 7, ft_strlen(data->envp[i]) - 7);
-		i++;
+		j = 0;
+		if (ft_iswhitespace(data->line[i]))
+			i++;
+		if (is_token(data->line[i]))
+			j = read_token(data->line, i, &data->lexer);
+		else
+			j = read_string(data->line, i, &data->lexer);
+		if (j < 0)
+			return (0);
+		i += j;
 	}
 	return (1);
 }

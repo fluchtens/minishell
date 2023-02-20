@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:36:55 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/14 12:03:58 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/20 08:30:28 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,11 @@ int	print_error(char *str)
 	return (1);
 }
 
-void	exit_and_free(t_data *data, char *str, int error)
+int	print_shell_error(char *str, t_data *data)
 {
-	free_everything(data);
-	if (error == 1)
-	{
-		ft_putendl_fd(str, 2);
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		ft_putendl_fd(str, 1);
-		exit(EXIT_SUCCESS);
-	}
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(str, 2);
+	reset_data(data);
+	return (1);
 }
+
