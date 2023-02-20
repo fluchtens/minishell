@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_printf_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 07:41:39 by fluchten          #+#    #+#             */
-/*   Updated: 2023/01/09 11:31:26 by fluchten         ###   ########.fr       */
+/*   Created: 2023/01/09 09:14:34 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/19 11:20:14 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "ft_printf.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+int	print_nbr_base(unsigned long nb, char *base)
+{
+	int	res;
 
-# include <unistd.h>
-# include <stdlib.h>
+	res = 0;
+	if (nb >= 16)
+		res += print_nbr_base(nb / 16, base);
+	res += print_char(base[nb % 16]);
+	return (res);
+}
 
-char	*get_next_line(int fd);
-int		ft_is_newline(char *stash);
-char	*ft_strjoin_gnl(char *stash, char *buffer);
-char	*ft_free_stash(char **stash);
+int	print_ptr(unsigned long nb)
+{
+	int	res;
 
-#endif
+	write(1, "0x", 2);
+	res = print_nbr_base(nb, HEXA_LOWER);
+	return (res + 2);
+}

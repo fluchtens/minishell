@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 07:41:43 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/07 11:13:51 by fluchten         ###   ########.fr       */
+/*   Updated: 2022/11/17 10:31:35 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,15 @@ static char	*ft_clean_stash(char *stash)
 /* The main function used to get the next line string of a file descriptor */
 char	*get_next_line(int fd)
 {
-	static char	*stash[OPEN_MAX];
+	static char	*stash;
 	char		*line;
 
-	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	stash[fd] = ft_read_and_stash(fd, stash[fd]);
-	line = ft_extract_in_line(stash[fd]);
+	stash = ft_read_and_stash(fd, stash);
+	line = ft_extract_in_line(stash);
 	if (!line)
-		return (ft_free_stash(&stash[fd]));
-	stash[fd] = ft_clean_stash(stash[fd]);
+		return (ft_free_stash(&stash));
+	stash = ft_clean_stash(stash);
 	return (line);
 }

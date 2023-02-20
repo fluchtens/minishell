@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 07:41:39 by fluchten          #+#    #+#             */
-/*   Updated: 2023/01/09 11:31:26 by fluchten         ###   ########.fr       */
+/*   Created: 2022/10/13 13:22:15 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/18 15:34:10 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*last;
 
-# include <unistd.h>
-# include <stdlib.h>
-
-char	*get_next_line(int fd);
-int		ft_is_newline(char *stash);
-char	*ft_strjoin_gnl(char *stash, char *buffer);
-char	*ft_free_stash(char **stash);
-
-#endif
+	if (!lst || !new)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	last = ft_lstlast(*lst);
+	last->next = new;
+}

@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 07:41:39 by fluchten          #+#    #+#             */
-/*   Updated: 2023/01/09 11:31:26 by fluchten         ###   ########.fr       */
+/*   Created: 2022/10/06 11:29:14 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/18 15:43:16 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
 
-# include <unistd.h>
-# include <stdlib.h>
-
-char	*get_next_line(int fd);
-int		ft_is_newline(char *stash);
-char	*ft_strjoin_gnl(char *stash, char *buffer);
-char	*ft_free_stash(char **stash);
-
-#endif
+	i = 0;
+	while ((s1[i] == s2[i]) && (s1[i]) && i < n)
+		i++;
+	if (i == n)
+		return (0);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}

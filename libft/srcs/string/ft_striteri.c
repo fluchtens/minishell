@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 07:41:39 by fluchten          #+#    #+#             */
-/*   Updated: 2023/01/09 11:31:26 by fluchten         ###   ########.fr       */
+/*   Created: 2022/10/10 09:26:40 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/18 15:42:48 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	size_t	i;
 
-# include <unistd.h>
-# include <stdlib.h>
-
-char	*get_next_line(int fd);
-int		ft_is_newline(char *stash);
-char	*ft_strjoin_gnl(char *stash, char *buffer);
-char	*ft_free_stash(char **stash);
-
-#endif
+	if (!s || !f)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
+}

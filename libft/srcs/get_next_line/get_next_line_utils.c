@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 07:41:48 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/07 11:13:55 by fluchten         ###   ########.fr       */
+/*   Updated: 2022/11/17 10:21:56 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,25 @@ char	*ft_strjoin_gnl(char *stash, char *buffer)
 	size_t	i;
 	size_t	j;
 	size_t	size;
-	char	*join;
+	char	*final;
 
 	size = ft_strlen(stash) + ft_strlen(buffer);
 	if (!size)
 		return (ft_free_stash(&stash));
-	join = malloc(sizeof(char) * (size + 1));
-	if (!join)
+	final = malloc(sizeof(char) * (size + 1));
+	if (!final)
 		return (ft_free_stash(&stash));
 	i = 0;
 	j = 0;
 	if (stash)
 	{
 		while (stash[i] && j < size)
-			join[j++] = stash[i++];
+			final[j++] = stash[i++];
 	}
 	i = 0;
 	while (buffer[i] && j < size)
-		join[j++] = buffer[i++];
-	join[j] = '\0';
+		final[j++] = buffer[i++];
+	final[j] = '\0';
 	free(stash);
-	return (join);
+	return (final);
 }

@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 07:41:39 by fluchten          #+#    #+#             */
-/*   Updated: 2023/01/09 11:31:26 by fluchten         ###   ########.fr       */
+/*   Created: 2022/10/10 09:26:37 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/18 15:42:50 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*final;
+	size_t	len;
 
-# include <unistd.h>
-# include <stdlib.h>
-
-char	*get_next_line(int fd);
-int		ft_is_newline(char *stash);
-char	*ft_strjoin_gnl(char *stash, char *buffer);
-char	*ft_free_stash(char **stash);
-
-#endif
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	final = malloc(sizeof(char) * (len + 1));
+	if (!final)
+		return (NULL);
+	ft_strlcpy(final, s1, len + 1);
+	ft_strlcat(final, s2, len + 1);
+	return (final);
+}
