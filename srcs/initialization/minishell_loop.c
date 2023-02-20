@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:06:58 by fpolycar          #+#    #+#             */
-/*   Updated: 2023/02/20 08:30:26 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/20 08:57:51 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	reset_data(t_data *data)
 {
-
 	free(data->line);
 	free_array(data->paths);
 	initialization(data);
@@ -39,11 +38,10 @@ int	minishell_loop(t_data *data)
 		return (reset_data(data));
 	add_history(data->line);
 	if (!ft_is_closed_quotes(data->line))
-		return (print_shell_error("syntax error: quotes are not closed\n", data));
+		return (print_shell_error("quotes are not closed\n", data));
 	if (!init_lexer(data))
 		return (print_shell_error("lexer allocation failure\n", data));
-	// parser(data);
-	// prepare_executor(data);
+	print_lexer(data);
 	reset_data(data);
 	return (1);
 }

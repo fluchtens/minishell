@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/20 08:30:21 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/20 08:33:12 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,7 @@ typedef struct s_data
 	char					*line;
 	char					*pwd;
 	char					*old_pwd;
-	struct s_simple_cmds	*simple_cmds;
 	t_lexer					*lexer;
-	int						pipes;
-	int						*pid;
-	bool					heredoc;
-	bool					reset;
 }	t_data;
 
 /* init */

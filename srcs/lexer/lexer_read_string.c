@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 15:28:11 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/19 16:09:56 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/20 08:59:49 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	str_quotes_len(char *str, int i, char c)
 		j++;
 		while (str[i + j] && str[i + j] != c)
 			j++;
-		if (str[i + j] == c) 
+		if (str[i + j] == c)
 			j++;
 	}
 	return (j);

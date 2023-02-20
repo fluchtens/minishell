@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:23:38 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/19 16:11:45 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/20 09:00:03 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_lexer	*lexer_new(char *str, int token)
 	element->i = i++;
 	element->next = NULL;
 	element->prev = NULL;
-	return (element);	
+	return (element);
 }
 
 t_lexer	*lexer_last(t_lexer *lexer)
