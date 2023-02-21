@@ -1,25 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_arrdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 11:29:14 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/20 08:51:29 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/18 12:51:32 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/20 16:27:11 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+static void	free_arrdup(char **array)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while ((s1[i] == s2[i]) && (s1[i]) && i < n)
+	while (array[i])
+	{
+		free(array[i]);
 		i++;
-	if (i == n)
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	}
+	free(array);
+}
+
+char	**ft_arrdup(char **array)
+{
+	char	**final;
+	size_t	len;
+	size_t	i;
+
+	len = 0;
+	while (array[len])
+		len++;
+	final = ft_calloc(sizeof(char *), (len + 1));
+	if (!final)
+		return (NULL);
+	i = 0;
+	while (array[i])
+	{
+		final[i] = ft_strdup(array[i]);
+		if (!final[i])
+		{
+			free_arrdup(final);
+			return (NULL);
+		}
+		i++;
+	}
+	return (final);
 }

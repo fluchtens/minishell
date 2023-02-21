@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   expanders_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 16:23:59 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/18 16:24:10 by fluchten         ###   ########.fr       */
+/*   Created: 2022/04/18 16:20:01 by fpolycar          #+#    #+#             */
+/*   Updated: 2023/02/18 12:06:37 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_putchar(char c)
+int	question_mark(char **tmp)
 {
-	write(1, &c, 1);
+	free(*tmp);
+	*tmp = ft_itoa(g_global.error_num);
+	return (ft_strlen(*tmp) + 1);
 }

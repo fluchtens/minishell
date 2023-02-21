@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 16:27:39 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/18 16:30:42 by fluchten         ###   ########.fr       */
+/*   Created: 2022/10/06 11:29:14 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/18 15:43:16 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	long	nb;
+	size_t	i;
 
-	nb = (long)n;
-	if (nb == -2147483648)
-		write(1, "-2147483648", 11);
-	else if (nb < 0)
-	{
-		ft_putchar('-');
-		ft_putnbr(-nb);
-	}	
-	else if (nb > 9)
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
-	else
-		ft_putchar(nb + 48);
+	i = 0;
+	while ((s1[i] == s2[i]) && (s1[i]) && i < n)
+		i++;
+	if (i == n)
+		return (0);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

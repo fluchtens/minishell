@@ -6,15 +6,14 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/20 08:40:44 by fluchten         ###   ########.fr        #
+#    Updated: 2023/02/21 09:54:58 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-MKDIR = mkdir
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror ${SANIFLAG}
+CFLAGS = -Wall -Wextra -Werror #${SANIFLAG}
 SANIFLAG = -fsanitize=address -g
 RM = rm -rf
 
@@ -22,12 +21,38 @@ INC_DIR = includes
 SRCS_DIR = srcs
 OBJS_DIR = objs
 
-SRCS =	initialization/initialization.c \
+SRCS =	temp/builtins/builtins.c \
+		temp/builtins/mini_cd.c \
+		temp/builtins/mini_echo.c \
+		temp/builtins/mini_env.c \
+		temp/builtins/mini_exit.c \
+		temp/builtins/mini_export.c \
+		temp/builtins/mini_pwd.c \
+		temp/builtins/mini_unset.c \
+		temp/builtins/utils_builtins.c \
+		temp/error/error_handling.c \
+		temp/error/ft_error.c \
+		temp/executor/check_redirections.c \
+		temp/executor/executor.c \
+		temp/executor/handle_cmd.c \
+		temp/executor/heredoc.c \
+		temp/executor/executor_utils.c \
+		temp/executor/prepare_executor.c \
+		temp/expander/expander.c \
+		temp/expander/expanders_utils.c \
+		temp/expander/expanders_utils2.c \
+		temp/signals.c \
+		initialization/initialization.c \
 		initialization/minishell_loop.c \
 		lexer/lexer_init.c \
 		lexer/lexer_read_string.c \
 		lexer/lexer_read_token.c \
-		lexer/lexer_utils.c \
+		lexer/lexer_utils_add.c \
+		lexer/lexer_utils_clear.c \
+		parser/cmds_utils.c \
+		parser/parser_init.c \
+		parser/parser_utils.c \
+		parser/redirections.c \
 		parsing/parse_paths.c \
 		parsing/parse_pwd.c \
 		utils/error.c \
