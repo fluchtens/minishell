@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_cmd.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/21 12:17:39 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/21 12:17:39 by fluchten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*join_split_str(char **split_str, char *new_str);
 char	**resplit_str(char **double_arr);
 
-int	find_cmd(t_simple_cmds *cmd, t_data *data)
+int	find_cmd(t_cmds *cmd, t_data *data)
 {
 	int		i;
 	char	*mycmd;
@@ -23,7 +35,7 @@ int	find_cmd(t_simple_cmds *cmd, t_data *data)
 	return (cmd_not_found(cmd->str[0]));
 }
 
-void	handle_cmd(t_simple_cmds *cmd, t_data *data)
+void	handle_cmd(t_cmds *cmd, t_data *data)
 {
 	int	exit_code;
 
@@ -41,7 +53,7 @@ void	handle_cmd(t_simple_cmds *cmd, t_data *data)
 	exit(exit_code);
 }
 
-void	dup_cmd(t_simple_cmds *cmd, t_data *data, int end[2], int fd_in)
+void	dup_cmd(t_cmds *cmd, t_data *data, int end[2], int fd_in)
 {
 	if (cmd->prev && dup2(fd_in, STDIN_FILENO) < 0)
 		ft_error(4, data);
@@ -54,12 +66,12 @@ void	dup_cmd(t_simple_cmds *cmd, t_data *data, int end[2], int fd_in)
 	handle_cmd(cmd, data);
 }
 
-void	single_cmd(t_simple_cmds *cmd, t_data *data)
+void	single_cmd(t_cmds *cmd, t_data *data)
 {
 	int	pid;
 	int	status;
 
-	data->simple_cmds = call_expander(data, data->simple_cmds);
+	data->cmds = call_expander(data, data->cmds);
 	if (cmd->builtin == mini_cd || cmd->builtin == mini_exit
 		|| cmd->builtin == mini_export || cmd->builtin == mini_unset)
 	{

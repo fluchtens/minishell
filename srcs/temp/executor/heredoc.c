@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/21 12:17:41 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/21 12:17:42 by fluchten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	create_heredoc(t_lexer *heredoc, bool quotes, t_data *data, char *file_name)
@@ -59,7 +71,7 @@ char	*generate_heredoc_filename(void)
 	return (file_name);
 }
 
-int	send_heredoc(t_data *data, t_simple_cmds *cmd)
+int	send_heredoc(t_data *data, t_cmds *cmd)
 {
 	t_lexer	*start;
 	int		sl;

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtins.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/21 12:16:34 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/21 12:21:47 by fluchten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int	(*builtin_arr(char *str))(t_data *data, t_simple_cmds *simple_cmd)
+int	(*builtin_arr(char *str))(t_data *data, t_cmds *cmds)
 {
 	static void	*builtins[7][2] = {
 	{"echo", mini_echo},

@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:21:44 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 10:03:59 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/22 07:50:25 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,6 @@ int	lexer_count_pipes(t_lexer *lexer)
 		temp = temp->next;
 	}
 	return (count);
-}
-
-void	init_parser_data(t_data *data, t_lexer *lexer, t_parser *parser)
-{
-	parser->data = data;
-	parser->lexer = lexer;
-	parser->redirections = NULL;
-	parser->num_redirections = 0;
 }
 
 int	lexer_count_args(t_lexer *lexer)

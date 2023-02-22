@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_unset.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/21 12:16:53 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/21 12:22:44 by fluchten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	**whileloop_del_var(char **arr, char **rtn, char *str)
@@ -41,27 +53,27 @@ char	**del_var(char **arr, char *str)
 	return (rtn);
 }
 
-int	unset_error(t_simple_cmds *simple_cmd)
+int	unset_error(t_cmds *cmds)
 {
 	int		i;
 
 	i = 0;
-	if (!simple_cmd->str[1])
+	if (!cmds->str[1])
 	{
 		ft_putendl_fd("minishell: unset: not enough arguments", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	while (simple_cmd->str[1][i])
+	while (cmds->str[1][i])
 	{
-		if (simple_cmd->str[1][i++] == '/')
+		if (cmds->str[1][i++] == '/')
 		{
 			ft_putstr_fd("minishell: unset: `", STDERR_FILENO);
-			ft_putstr_fd(simple_cmd->str[1], STDERR_FILENO);
+			ft_putstr_fd(cmds->str[1], STDERR_FILENO);
 			ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
 			return (EXIT_FAILURE);
 		}
 	}
-	if (equal_sign(simple_cmd->str[1]) != 0)
+	if (equal_sign(cmds->str[1]) != 0)
 	{
 		ft_putendl_fd("minishell: unset: not a valid identifier",
 			STDERR_FILENO);
@@ -70,15 +82,15 @@ int	unset_error(t_simple_cmds *simple_cmd)
 	return (EXIT_SUCCESS);
 }
 
-int	mini_unset(t_data *data, t_simple_cmds *simple_cmd)
+int	mini_unset(t_data *data, t_cmds *cmds)
 {
 	char	**tmp;
 
-	if (unset_error(simple_cmd) == 1)
+	if (unset_error(cmds) == 1)
 		return (EXIT_FAILURE);
 	else
 	{
-		tmp = del_var(data->envp, simple_cmd->str[1]);
+		tmp = del_var(data->envp, cmds->str[1]);
 		free_array(data->envp);
 		data->envp = tmp;
 	}

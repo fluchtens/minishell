@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   executor.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/21 12:17:36 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/21 12:17:36 by fluchten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-t_simple_cmds	*call_expander(t_data *data, t_simple_cmds *cmd)
+t_cmds	*call_expander(t_data *data, t_cmds *cmd)
 {
 	t_lexer	*start;
 
@@ -34,7 +46,7 @@ int	pipe_wait(int *pid, int amount)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_fork(t_data *data, int end[2], int fd_in, t_simple_cmds *cmd)
+int	ft_fork(t_data *data, int end[2], int fd_in, t_cmds *cmd)
 {
 	static int	i = 0;
 
@@ -52,7 +64,7 @@ int	ft_fork(t_data *data, int end[2], int fd_in, t_simple_cmds *cmd)
 	return (EXIT_SUCCESS);
 }
 
-int	check_fd_heredoc(t_data *data, int end[2], t_simple_cmds *cmd)
+int	check_fd_heredoc(t_data *data, int end[2], t_cmds *cmd)
 {
 	int	fd_in;
 
@@ -72,23 +84,23 @@ int	executor(t_data *data)
 	int		fd_in;
 
 	fd_in = STDIN_FILENO;
-	while (data->simple_cmds)
+	while (data->cmds)
 	{
-		data->simple_cmds = call_expander(data, data->simple_cmds);
-		if (data->simple_cmds->next)
+		data->cmds = call_expander(data, data->cmds);
+		if (data->cmds->next)
 			pipe(end);
-		send_heredoc(data, data->simple_cmds);
-		ft_fork(data, end, fd_in, data->simple_cmds);
+		send_heredoc(data, data->cmds);
+		ft_fork(data, end, fd_in, data->cmds);
 		close(end[1]);
-		if (data->simple_cmds->prev)
+		if (data->cmds->prev)
 			close(fd_in);
-		fd_in = check_fd_heredoc(data, end, data->simple_cmds);
-		if (data->simple_cmds->next)
-			data->simple_cmds = data->simple_cmds->next;
+		fd_in = check_fd_heredoc(data, end, data->cmds);
+		if (data->cmds->next)
+			data->cmds = data->cmds->next;
 		else
 			break ;
 	}
 	pipe_wait(data->pid, data->pipes_count);
-	data->simple_cmds = ft_simple_cmdsfirst(data->simple_cmds);
+	data->cmds = cmds_first(data->cmds);
 	return (0);
 }

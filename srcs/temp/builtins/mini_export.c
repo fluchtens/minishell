@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 16:07:21 by fpolycar          #+#    #+#             */
-/*   Updated: 2023/02/18 12:32:09 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/21 12:17:15 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/21 12:22:28 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,24 +99,24 @@ char	**add_var(char **arr, char *str)
 	return (rtn);
 }
 
-int	mini_export(t_data *data, t_simple_cmds *simple_cmd)
+int	mini_export(t_data *data, t_cmds *cmds)
 {
 	char	**tmp;
 	int		i;
 
 	i = 1;
-	if (!simple_cmd->str[1] || simple_cmd->str[1][0] == '\0')
-		mini_env(data, simple_cmd);
+	if (!cmds->str[1] || cmds->str[1][0] == '\0')
+		mini_env(data, cmds);
 	else
 	{
-		while (simple_cmd->str[i])
+		while (cmds->str[i])
 		{
-			if (check_parameter(simple_cmd->str[i]) == 0
-				&& variable_exist(data, simple_cmd->str[i]) == 0)
+			if (check_parameter(cmds->str[i]) == 0
+				&& variable_exist(data, cmds->str[i]) == 0)
 			{
-				if (simple_cmd->str[i])
+				if (cmds->str[i])
 				{
-					tmp = add_var(data->envp, simple_cmd->str[i]);
+					tmp = add_var(data->envp, cmds->str[i]);
 					free_array(data->envp);
 					data->envp = tmp;
 				}

@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:36:55 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 07:57:04 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/22 07:56:10 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	print_error(char *str, t_data *data)
 
 int	print_token_error(t_data *data, t_lexer *lexer, t_tokens token)
 {
-	ft_putstr_fd("minishell: syntax error near unexpected token ", 2);
+	ft_putstr_fd("minishell: parse error near ", 2);
 	if (token == GREAT)
 		ft_putstr_fd("'>'", 2);
 	else if (token == GREAT_GREAT)
@@ -42,6 +42,5 @@ int	print_token_error(t_data *data, t_lexer *lexer, t_tokens token)
 int	print_parser_error(char *str, t_data *data, t_lexer *lexer)
 {
 	lexer_clear(&lexer);
-	print_error(str, data);
-	return (1);
+	return (print_error(str, data));
 }

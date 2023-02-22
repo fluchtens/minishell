@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_redirections.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/21 12:17:31 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/21 12:17:32 by fluchten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	check_append_outfile(t_lexer *redirections)
@@ -54,7 +66,7 @@ int	handle_outfile(t_lexer *redirection)
 	return (EXIT_SUCCESS);
 }
 
-int	check_redirections(t_simple_cmds *cmd)
+int	check_redirections(t_cmds *cmd)
 {
 	t_lexer	*start;
 

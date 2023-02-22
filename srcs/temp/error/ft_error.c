@@ -1,16 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/21 12:17:28 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/21 12:18:35 by fluchten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-/**
- * @brief 
- * Finds corresponding error and frees args;
- * @param error 
- * Number of related error:
- * 0 = If there is no string following a redirection or a pipe.
- * @param data 
- */
 int	ft_error(int error, t_data *data)
 {
-	// ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	if (error == 0)
 		ft_putstr_fd("syntax error near unexpected token 'newline'\n",
 			STDERR_FILENO);

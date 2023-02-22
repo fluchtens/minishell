@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 07:49:45 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/20 08:17:27 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/21 12:11:25 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	initialization(t_data *data)
 {
-	data->simple_cmds = NULL;
+	data->cmds = NULL;
 	data->lexer = NULL;
 	data->reset = false;
 	data->pid = NULL;

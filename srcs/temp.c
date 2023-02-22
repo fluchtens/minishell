@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 15:32:40 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 10:04:35 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/22 08:16:34 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,49 @@
 
 void	print_lexer(t_data *data)
 {
-	t_lexer	*current;
+	t_lexer	*temp;
 
-	current = data->lexer;
-	if (!current)
+	temp = data->lexer;
+	if (!temp)
 		printf("Lexer list is null!\n");
-	while (current)
+	while (temp)
 	{
-		printf("[%d] = %s -> [%d]\n", current->i, current->str, current->token);
-		current = current->next;
+		printf("[%d] = %s -> [%d]\n", temp->i, temp->str, temp->token);
+		temp = temp->next;
 	}
 }
 
 void	print_cmds(t_data *data)
 {
-	t_simple_cmds	*current;
-	int	i;
+	t_cmds	*temp;
+	int		i;
 
-	current = data->simple_cmds;
-	if (!current)
+	temp = data->cmds;
+	if (!temp)
 		printf("Cmds list is null!\n");
-	while (current)
+	while (temp)
 	{
 		i = 0;
-		while (current->str[i])
+		while (temp->str[i])
 		{
-			printf("[%s] ", current->str[i]);
+			printf("[%s] ", temp->str[i]);
 			i++;
 		}
 		printf("\n");
-		current = current->next;
+		temp = temp->next;
+	}
+}
+
+void	print_redirections(t_parser *parser)
+{
+	t_lexer	*temp;
+
+	temp = parser->redirections;
+	if (!temp)
+		printf("Lexer list is null!\n");
+	while (temp)
+	{
+		printf("[%d] = %s -> [%d]\n", temp->i, temp->str, temp->token);
+		temp = temp->next;
 	}
 }
