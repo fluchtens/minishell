@@ -6,14 +6,14 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:16:42 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 12:22:18 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:28:11 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <signal.h>
 
-void	free_tools(t_data *data)
+static void	free_tools(t_data *data)
 {
 	free_array(data->paths);
 	free_array(data->envp);
@@ -25,7 +25,7 @@ void	free_tools(t_data *data)
 		free(data->pid);
 }
 
-int	is_str_digit(char *str)
+static int	is_str_digit(char *str)
 {
 	int	i;
 
@@ -39,7 +39,7 @@ int	is_str_digit(char *str)
 	return (1);
 }
 
-void	determine_exit_code(char **str)
+static void	determine_exit_code(char **str)
 {
 	int	exit_code;
 

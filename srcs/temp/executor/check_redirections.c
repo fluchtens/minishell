@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:17:31 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 12:17:32 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:35:10 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_append_outfile(t_lexer *redirections)
+static int	check_append_outfile(t_lexer *redirections)
 {
 	int	fd;
 
@@ -25,7 +25,7 @@ int	check_append_outfile(t_lexer *redirections)
 	return (fd);
 }
 
-int	handle_infile(char *file)
+static int	handle_infile(char *file)
 {
 	int	fd;
 
@@ -46,7 +46,7 @@ int	handle_infile(char *file)
 	return (EXIT_SUCCESS);
 }
 
-int	handle_outfile(t_lexer *redirection)
+static int	handle_outfile(t_lexer *redirection)
 {
 	int	fd;
 

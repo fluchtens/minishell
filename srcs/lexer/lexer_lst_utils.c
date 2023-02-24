@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexer_lst_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 07:41:09 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/24 07:35:43 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/24 07:53:23 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **envp)
+t_lexer	*lexer_last(t_lexer *lexer)
 {
-	t_data	data;
+	t_lexer	*last;
 
-	(void)ac;
-	(void)av;
-	data.envp = ft_arrdup(envp);
-	parse_pwd(&data);
-	initialization(&data);
-	while (1)
-		minishell_loop(&data);
-	return (0);
+	if (!lexer)
+		return (NULL);
+	last = lexer;
+	while (last->next)
+		last = last->next;
+	return (last);
 }

@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:17:36 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 12:17:36 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/24 07:59:12 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	pipe_wait(int *pid, int amount)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_fork(t_data *data, int end[2], int fd_in, t_cmds *cmd)
+static int	ft_fork(t_data *data, int end[2], int fd_in, t_cmds *cmd)
 {
 	static int	i = 0;
 
@@ -57,14 +57,14 @@ int	ft_fork(t_data *data, int end[2], int fd_in, t_cmds *cmd)
 	}
 	data->pid[i] = fork();
 	if (data->pid[i] < 0)
-		ft_error(5, data);
+		print_error(MSG_FORK_ERR, data);
 	if (data->pid[i] == 0)
 		dup_cmd(cmd, data, end, fd_in);
 	i++;
 	return (EXIT_SUCCESS);
 }
 
-int	check_fd_heredoc(t_data *data, int end[2], t_cmds *cmd)
+static int	check_fd_heredoc(t_data *data, int end[2], t_cmds *cmd)
 {
 	int	fd_in;
 

@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:17:51 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 12:17:52 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:36:28 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	loop_if_dollar_sign(t_data *data, char *str, char **tmp, int j)
+static int	loop_if_dollar_sign(t_data *data, char *str, char **tmp, int j)
 {
 	int		k;
 	int		ret;
@@ -41,7 +41,7 @@ int	loop_if_dollar_sign(t_data *data, char *str, char **tmp, int j)
 	return (ret);
 }
 
-int	handle_digit_after_dollar(int j, char *str)
+static int	handle_digit_after_dollar(int j, char *str)
 {
 	int	i;
 
@@ -56,7 +56,7 @@ int	handle_digit_after_dollar(int j, char *str)
 	return (j - i);
 }
 
-char	*detect_dollar_sign(t_data *data, char *str)
+static char	*detect_dollar_sign(t_data *data, char *str)
 {
 	int		j;
 	char	*tmp;

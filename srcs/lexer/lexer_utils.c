@@ -1,51 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_read_token.c                                 :+:      :+:    :+:   */
+/*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 15:25:44 by fluchten          #+#    #+#             */
+/*   Created: 2023/02/20 17:21:44 by fluchten          #+#    #+#             */
 /*   Updated: 2023/02/23 15:06:26 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_tokens	is_token(char c)
+int	lexer_add_element(char *line, t_tokens token, t_lexer **lexer)
 {
-	if (c == '|')
-		return (PIPE);
-	else if (c == '>')
-		return (GREAT);
-	else if (c == '<')
-		return (LESS);
-	else
+	t_lexer	*new;
+
+	new = lexer_new(line, token);
+	if (!lexer)
 		return (0);
+	lexer_add_back(lexer, new);
+	return (1);
 }
 
-int	read_token(char *line, int i, t_lexer **lexer)
+int	lexer_count_pipes(t_lexer *lexer)
 {
-	t_tokens	token;
+	t_lexer	*temp;
+	int		count;
 
-	token = is_token(line[i]);
-	if (token == GREAT && is_token(line[i + 1]) == GREAT)
+	temp = lexer;
+	count = 0;
+	while (temp)
 	{
-		if (!lexer_add_element(NULL, GREAT_GREAT, lexer))
-			return (-1);
-		return (2);
+		if (temp->token == PIPE)
+			count++;
+		temp = temp->next;
 	}
-	else if (token == LESS && is_token(line[i + 1]) == LESS)
+	return (count);
+}
+
+int	lexer_count_args(t_lexer *lexer)
+{
+	t_lexer	*temp;
+	int		count;
+
+	temp = lexer;
+	count = 0;
+	while (temp && temp->token != PIPE)
 	{
-		if (!lexer_add_element(NULL, LESS_LESS, lexer))
-			return (-1);
-		return (2);
+		count++;
+		temp = temp->next;
 	}
-	else if (token)
-	{
-		if (!lexer_add_element(NULL, token, lexer))
-			return (-1);
-		return (1);
-	}	
-	return (0);
+	return (count);
 }

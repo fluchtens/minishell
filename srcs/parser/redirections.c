@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 07:33:47 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/22 08:18:42 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/24 07:56:41 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	redirection_add(t_parser *parser, t_lexer *temp)
 
 	new = lexer_new(ft_strdup(temp->next->str), temp->token);
 	if (!new)
-		print_parser_error(MSG_MALLOC, parser->data, parser->lexer);
+		print_parser_error(MSG_MALLOC_ERR, parser->data, parser->lexer);
 	lexer_add_back(&parser->redirections, new);
 	lexer_delone(&parser->lexer, temp->i);
 	lexer_delone(&parser->lexer, temp->next->i);
@@ -36,7 +36,7 @@ void	remove_redirections(t_parser *parser)
 	if (!temp || temp->token == PIPE)
 		return ;
 	if (!temp->next)
-		print_parser_error(MSG_PARSER, parser->data, parser->lexer);
+		print_parser_error(MSG_PARSER_ERR, parser->data, parser->lexer);
 	if (temp->next->token)
 		print_token_error(parser->data, parser->lexer, temp->next->token);
 	if ((temp->token >= GREAT && temp->token <= LESS_LESS))

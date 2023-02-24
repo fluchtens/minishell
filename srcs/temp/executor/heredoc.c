@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:17:41 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 12:17:42 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:35:38 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	create_heredoc(t_lexer *heredoc, bool quotes, t_data *data, char *file_name)
+static int	create_heredoc(t_lexer *heredoc, bool quotes, t_data *data, char *file_name)
 {
 	int		fd;
 	char	*line;
@@ -36,7 +36,7 @@ int	create_heredoc(t_lexer *heredoc, bool quotes, t_data *data, char *file_name)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_heredoc(t_data *data, t_lexer *heredoc, char *file_name)
+static int	ft_heredoc(t_data *data, t_lexer *heredoc, char *file_name)
 {
 	bool	quotes;
 	int		sl;
@@ -59,7 +59,7 @@ int	ft_heredoc(t_data *data, t_lexer *heredoc, char *file_name)
 	return (sl);
 }
 
-char	*generate_heredoc_filename(void)
+static char	*generate_heredoc_filename(void)
 {
 	static int	i = 0;
 	char		*num;

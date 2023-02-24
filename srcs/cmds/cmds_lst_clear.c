@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cmds_lst_clear.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 07:41:09 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/23 14:46:53 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/24 07:24:40 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **envp)
+void	cmds_clear(t_cmds **cmds)
 {
-	t_data	data;
+	t_cmds	*current;
+	t_cmds	*temp;
+	t_lexer	*redirections;
 
-	(void)ac;
-	(void)av;
-	data.envp = ft_arrdup(envp);
-	parse_pwd(&data);
-	initialization(&data);
-	while (1)
-		minishell_loop(&data);
-	return (0);
+	if (!*cmds)
+		return ;
+	current = *cmds;
+	while (current)
+	{
+		temp = current->next;
+		redirections = current->redirections;
+		lexer_clear(&redirections);
+		if (current->str)
+			free_array(current->str);
+		if (current->hd_file_name)
+			free(current->hd_file_name);
+		free(current);
+		current = temp;
+	}
+	*cmds = NULL;
 }

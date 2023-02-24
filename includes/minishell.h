@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/22 07:59:23 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/24 08:00:40 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@
 # include "libft.h"
 
 # define MSG_READLINE "\033[1;36mminishell$ \033[0m"
-# define MSG_QUOTES "syntax error: quotes are not closed\n"
-# define MSG_MALLOC "malloc error: allocation failure\n"
-# define MSG_PARSER "parse error near `\\n'\n"
+# define MSG_MALLOC_ERR "malloc error: allocation failure\n"
+# define MSG_QUOTES_ERR "syntax error: quotes are not closed\n"
+# define MSG_PARSER_ERR "syntax error near unexpected token `newline'\n"
+# define MSG_PIPE_ERR "Failed to create pipe\n"
+# define MSG_FORK_ERR "Failed to fork\n"
 
 typedef enum s_tokens
 {
@@ -89,87 +91,81 @@ typedef struct s_global
 
 t_global	g_global;
 
-void		init_stri(int i, int j, t_data *data);
-char		**expander(t_data *data, char **str);
-char		*expander_str(t_data *data, char *str);
-size_t		dollar_sign(char *str);
-char		*char_to_str(char c);
-int			after_dol_lenght(char *str, int j);
-void		free_things(char *tmp2, t_data *data, int i);
-char		*delete_quotes_value(char *str);
-void		sigint_handler(int sig);
-void		sigquit_handler(int sig);
-void		init_signals(void);
-char		*delete_quotes(char *str, char c);
-char		*delete_quotes_export(char *str, char c);
-int			question_mark(char **tmp);
-
 /* builtins */
 int			(*builtin_arr(char *str))(t_data *data, t_cmds *cmds);
-void		change_path(t_data *data);
-int			mini_echo(t_data *data, t_cmds *cmds);
 int			mini_cd(t_data *data, t_cmds *cmds);
-int			mini_pwd(t_data *data, t_cmds *cmds);
-int			mini_export(t_data *data, t_cmds *cmds);
-int			mini_unset(t_data *data, t_cmds *cmds);
+int			mini_echo(t_data *data, t_cmds *cmds);
 int			mini_env(t_data *data, t_cmds *cmds);
 int			mini_exit(t_data *data, t_cmds *cmds);
-int			mini_continue(t_data *data, t_cmds *cmds);
+int			mini_export(t_data *data, t_cmds *cmds);
+int			mini_pwd(t_data *data, t_cmds *cmds);
+int			mini_unset(t_data *data, t_cmds *cmds);
+void		change_path(t_data *data);
 size_t		equal_sign(char *str);
+char		*delete_quotes_value(char *str);
 int			check_valid_identifier(char c);
-/* errors */
-void		parser_error(int error, t_data *data, t_lexer *lexer);
-void		lexer_error(int error, t_data *data);
-int			cmd_not_found(char *str);
-int			export_error(char *c);
-int			ft_error(int error, t_data *data);
 /* executor */
 int			check_redirections(t_cmds *cmd);
-int			executor(t_data *data);
+char		*join_split_str(char **split_str, char *new_str);
+char		**resplit_str(char **double_arr);
 t_cmds		*call_expander(t_data *data, t_cmds *cmd);
 int			pipe_wait(int *pid, int amount);
+int			executor(t_data *data);
 int			find_cmd(t_cmds *cmd, t_data *data);
 void		handle_cmd(t_cmds *cmd, t_data *data);
 void		dup_cmd(t_cmds *cmd, t_data *data, int end[2], int fd_in);
 void		single_cmd(t_cmds *cmd, t_data *data);
 int			send_heredoc(t_data *data, t_cmds *cmd);
 int			prepare_executor(t_data *data);
-/* parser */
-int			handle_heredoc(t_parser *parser, t_lexer *tmp);
+/* expender */
+char		**expander(t_data *data, char **str);
+char		*expander_str(t_data *data, char *str);
+size_t		dollar_sign(char *str);
+char		*char_to_str(char c);
+int			after_dol_lenght(char *str, int j);
+char		*delete_quotes(char *str, char c);
+int			question_mark(char **tmp);
 
-/* init */
-int			initialization(t_data *data);
-int			reset_data(t_data *data);
-int			minishell_loop(t_data *data);
-/* lexer */
-int			init_lexer(t_data *data);
-int			read_string(char *str, int i, t_lexer **lexer);
-t_tokens	is_token(char c);
-int			read_token(char *line, int i, t_lexer **lexer);
-t_lexer		*lexer_new(char *str, int token);
-t_lexer		*lexer_last(t_lexer *lexer);
-void		lexer_add_back(t_lexer **lexer, t_lexer *new);
-int			add_element(char *line, t_tokens token, t_lexer **lexer);
-void		lexer_delone(t_lexer **lst, int i);
-void		lexer_clear(t_lexer **lst);
-/* parser */
-int			parser(t_data *data);
-int			lexer_count_pipes(t_lexer *lexer);
-int			lexer_count_args(t_lexer *lexer);
-void		remove_redirections(t_parser *parser);
-t_cmds		*parse_cmds(t_parser *parser);
+/* cmds */
+t_cmds		*init_cmds(t_parser *parser);
 t_cmds		*cmds_new(char **str, int num_redirections, t_lexer *redirections);
 void		cmds_add_back(t_cmds **lst, t_cmds *new);
 void		cmds_clear(t_cmds **lst);
-t_cmds		*cmds_first(t_cmds *map);
+t_cmds		*cmds_first(t_cmds *cmds);
+t_cmds		*cmds_last(t_cmds *cmds);
+/* init */
+int			initialization(t_data *data);
+int			minishell_loop(t_data *data);
+/* lexer */
+int			init_lexer(t_data *data);
+t_lexer		*lexer_new(char *str, int token);
+void		lexer_add_back(t_lexer **lexer, t_lexer *new);
+void		lexer_delone(t_lexer **lst, int i);
+void		lexer_clear(t_lexer **lexer);
+t_lexer		*lexer_last(t_lexer *lexer);
+int			read_string(char *str, int i, t_lexer **lexer);
+t_tokens	is_token(char c);
+int			read_token(char *line, int i, t_lexer **lexer);
+int			lexer_add_element(char *line, t_tokens token, t_lexer **lexer);
+int			lexer_count_pipes(t_lexer *lexer);
+int			lexer_count_args(t_lexer *lexer);
+/* parser */
+int			parser(t_data *data);
+void		remove_redirections(t_parser *parser);
 /* parsing */
 int			parse_paths(t_data *data);
 int			parse_pwd(t_data *data);
+/* signals */
+void		init_signals(void);
+void		sigquit_handler(int sig);
 /* utils */
 int			print_error(char *str, t_data *data);
 int			print_token_error(t_data *data, t_lexer *lexer, t_tokens token);
 int			print_parser_error(char *str, t_data *data, t_lexer *lexer);
+int			print_unknown_cmd_error(char *str);
+int			print_export_error(char *c);
 void		free_array(char **array);
+int			reset_data(t_data *data);
 /* temp */
 void		print_lexer(t_data *data);
 void		print_cmds(t_data *data);

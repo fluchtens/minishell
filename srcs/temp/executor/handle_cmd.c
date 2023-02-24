@@ -6,14 +6,11 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:17:39 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 12:17:39 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/24 08:00:06 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*join_split_str(char **split_str, char *new_str);
-char	**resplit_str(char **double_arr);
 
 int	find_cmd(t_cmds *cmd, t_data *data)
 {
@@ -32,7 +29,7 @@ int	find_cmd(t_cmds *cmd, t_data *data)
 		free(mycmd);
 		i++;
 	}
-	return (cmd_not_found(cmd->str[0]));
+	return (print_unknown_cmd_error(cmd->str[0]));
 }
 
 void	handle_cmd(t_cmds *cmd, t_data *data)
@@ -56,10 +53,10 @@ void	handle_cmd(t_cmds *cmd, t_data *data)
 void	dup_cmd(t_cmds *cmd, t_data *data, int end[2], int fd_in)
 {
 	if (cmd->prev && dup2(fd_in, STDIN_FILENO) < 0)
-		ft_error(4, data);
+		print_error(MSG_PIPE_ERR, data);
 	close(end[0]);
 	if (cmd->next && dup2(end[1], STDOUT_FILENO) < 0)
-		ft_error(4, data);
+		print_error(MSG_PIPE_ERR, data);
 	close(end[1]);
 	if (cmd->prev)
 		close(fd_in);
@@ -81,7 +78,7 @@ void	single_cmd(t_cmds *cmd, t_data *data)
 	send_heredoc(data, cmd);
 	pid = fork();
 	if (pid < 0)
-		ft_error(5, data);
+		print_error(MSG_FORK_ERR, data);
 	if (pid == 0)
 		handle_cmd(cmd, data);
 	waitpid(pid, &status, 0);

@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 15:28:11 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/20 16:38:06 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:06:26 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	read_string(char *str, int i, t_lexer **lexer)
 			break ;
 		j++;
 	}
-	if (!add_element(ft_substr(str, i, j), 0, lexer))
+	if (!lexer_add_element(ft_substr(str, i, j), 0, lexer))
 		return (-1);
 	return (j);
 }

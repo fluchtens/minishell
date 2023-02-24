@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/21 09:54:58 by fluchten         ###   ########.fr        #
+#    Updated: 2023/02/24 08:02:45 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,6 @@ SRCS =	temp/builtins/builtins.c \
 		temp/builtins/mini_pwd.c \
 		temp/builtins/mini_unset.c \
 		temp/builtins/utils_builtins.c \
-		temp/error/error_handling.c \
-		temp/error/ft_error.c \
 		temp/executor/check_redirections.c \
 		temp/executor/executor.c \
 		temp/executor/handle_cmd.c \
@@ -41,20 +39,24 @@ SRCS =	temp/builtins/builtins.c \
 		temp/expander/expander.c \
 		temp/expander/expanders_utils.c \
 		temp/expander/expanders_utils2.c \
-		temp/signals.c \
+		cmds/cmds_init.c \
+		cmds/cmds_lst_add.c \
+		cmds/cmds_lst_clear.c \
+		cmds/cmds_lst_utils.c \
 		initialization/initialization.c \
 		initialization/minishell_loop.c \
 		lexer/lexer_init.c \
+		lexer/lexer_lst_add.c \
+		lexer/lexer_lst_clear.c \
+		lexer/lexer_lst_utils.c \
 		lexer/lexer_read_string.c \
 		lexer/lexer_read_token.c \
-		lexer/lexer_utils_add.c \
-		lexer/lexer_utils_clear.c \
-		parser/cmds_utils.c \
+		lexer/lexer_utils.c \
 		parser/parser_init.c \
-		parser/parser_utils.c \
 		parser/redirections.c \
 		parsing/parse_paths.c \
 		parsing/parse_pwd.c \
+		signals/signals.c \
 		utils/error.c \
 		utils/free.c \
 		main.c \

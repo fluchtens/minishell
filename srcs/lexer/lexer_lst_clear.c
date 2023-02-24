@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_utils_clear.c                                :+:      :+:    :+:   */
+/*   lexer_lst_clear.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:52:43 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/20 18:55:54 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:24:18 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,21 @@ void	lexer_delone(t_lexer **lst, int key)
 	*lst = start;
 }
 
-void	lexer_clear(t_lexer **lst)
+void	lexer_clear(t_lexer **lexer)
 {
-	t_lexer	*tmp;
+	t_lexer	*current;
+	t_lexer	*temp;
 
-	if (!*lst)
+	if (!*lexer)
 		return ;
-	while (*lst)
+	current = *lexer;
+	while (current)
 	{
-		tmp = (*lst)->next;
-		if ((*lst)->str)
-			free((*lst)->str);
-		free(*lst);
-		*lst = tmp;
+		temp = current->next;
+		if (current->str)
+			free(current->str);
+		free(current);
+		current = temp;
 	}
-	*lst = NULL;
+	*lexer = NULL;
 }

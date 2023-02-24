@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:16:36 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 22:15:45 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:26:36 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*find_path_ret(char *str, t_data *data)
+static char	*find_path_ret(char *str, t_data *data)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ char	*find_path_ret(char *str, t_data *data)
 	return (NULL);
 }
 
-int	specific_path(t_data *data, char *str)
+static int	specific_path(t_data *data, char *str)
 {
 	char	*tmp;
 	int		ret;
@@ -45,7 +45,7 @@ int	specific_path(t_data *data, char *str)
 	return (ret);
 }
 
-void	add_path_to_env(t_data *data)
+static void	add_path_to_env(t_data *data)
 {
 	int		i;
 	char	*tmp;

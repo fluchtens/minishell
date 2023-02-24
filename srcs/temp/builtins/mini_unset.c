@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:16:53 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 12:22:44 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:29:47 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**whileloop_del_var(char **arr, char **rtn, char *str)
+static char	**whileloop_del_var(char **arr, char **rtn, char *str)
 {
 	int	i;
 	int	j;
@@ -38,7 +38,7 @@ char	**whileloop_del_var(char **arr, char **rtn, char *str)
 	return (rtn);
 }
 
-char	**del_var(char **arr, char *str)
+static char	**del_var(char **arr, char *str)
 {
 	char	**rtn;
 	size_t	i;
@@ -53,7 +53,7 @@ char	**del_var(char **arr, char *str)
 	return (rtn);
 }
 
-int	unset_error(t_cmds *cmds)
+static int	unset_error(t_cmds *cmds)
 {
 	int		i;
 

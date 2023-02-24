@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:17:59 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 12:18:00 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:38:07 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,6 @@ int	after_dol_lenght(char *str, int j)
 		&& str[i] != ':')
 		i++;
 	return (i);
-}
-
-size_t	quotes_lenght(char *str)
-{
-	int		i;
-	size_t	ret;
-
-	i = 0;
-	ret = 0;
-	while (str[i])
-	{
-		if (str[i] == '\'' || str[i] == '\"')
-		{
-			ret++;
-		}
-		i++;
-	}
-	return (ret);
 }
 
 char	*delete_quotes(char *str, char c)

@@ -1,44 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*   cmds_lst_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 17:21:44 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/22 07:50:25 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/24 07:33:28 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/24 07:34:00 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	lexer_count_pipes(t_lexer *lexer)
+t_cmds	*cmds_first(t_cmds *cmds)
 {
-	t_lexer	*temp;
-	int		count;
+	t_cmds	*temp;
+	int		i;
 
-	temp = lexer;
-	count = 0;
-	while (temp)
+	i = 0;
+	if (!cmds)
+		return (NULL);
+	temp = cmds;
+	while (temp->prev)
 	{
-		if (temp->token == PIPE)
-			count++;
-		temp = temp->next;
+		temp = temp->prev;
+		i++;
 	}
-	return (count);
+	return (temp);
 }
 
-int	lexer_count_args(t_lexer *lexer)
+t_cmds	*cmds_last(t_cmds *cmds)
 {
-	t_lexer	*temp;
-	int		count;
+	t_cmds	*last;
 
-	temp = lexer;
-	count = 0;
-	while (temp && temp->token != PIPE)
-	{
-		count++;
-		temp = temp->next;
-	}
-	return (count);
+	if (!cmds)
+		return (NULL);
+	last = cmds;
+	while (last->next)
+		last = last->next;
+	return (last);
 }

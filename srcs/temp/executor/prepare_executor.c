@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 16:06:58 by fpolycar          #+#    #+#             */
-/*   Updated: 2023/02/21 12:17:44 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/24 08:02:16 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/24 08:02:17 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	prepare_executor(t_data *data)
 	{
 		data->pid = ft_calloc(sizeof(int), data->pipes_count + 2);
 		if (!data->pid)
-			return (ft_error(1, data));
+			return (print_error(MSG_MALLOC_ERR, data));
 		executor(data);
 	}
 	g_global.in_cmd = 0;

@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:16:38 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 12:22:09 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:26:49 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_lines(int i, char **str, int out)
+static void	print_lines(int i, char **str, int out)
 {
 	while (str[i])
 	{
