@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:16:42 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/23 15:28:11 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/24 09:44:36 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	mini_exit(t_data *data, t_cmds *cmds)
 		ft_putstr_fd("minishell: exit: too many arguments\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	str = ft_arrdup(cmds->str);
+	str = ft_array_dup(cmds->str);
 	free_tools(data);
 	determine_exit_code(str);
 	return (EXIT_SUCCESS);

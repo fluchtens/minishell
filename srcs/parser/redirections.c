@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 07:33:47 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 07:56:41 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:21:33 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	redirection_add(t_parser *parser, t_lexer *temp)
+static void	redirection_add(t_parser *parser, t_lexer *temp)
 {
 	t_lexer	*new;
 
@@ -23,7 +23,6 @@ static int	redirection_add(t_parser *parser, t_lexer *temp)
 	lexer_delone(&parser->lexer, temp->i);
 	lexer_delone(&parser->lexer, temp->next->i);
 	parser->num_redirections++;
-	return (0);
 }
 
 void	remove_redirections(t_parser *parser)

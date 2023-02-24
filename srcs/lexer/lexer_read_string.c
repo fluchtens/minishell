@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 15:28:11 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/23 15:06:26 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/24 12:20:50 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static int	str_quotes_len(char *str, int i, char c)
 {
-	int	j;
+	int	len;
 
-	j = 0;
+	len = 0;
 	if (str[i] == c)
 	{
-		j++;
-		while (str[i + j] && str[i + j] != c)
-			j++;
-		if (str[i + j] == c)
-			j++;
+		len++;
+		while (str[i + len] && str[i + len] != c)
+			len++;
 	}
-	return (j);
+	if (str[i + len] == c)
+		len++;
+	return (len);
 }
 
 int	read_string(char *str, int i, t_lexer **lexer)
@@ -35,8 +35,11 @@ int	read_string(char *str, int i, t_lexer **lexer)
 	j = 0;
 	while (str[i + j] && !is_token(str[i + j]))
 	{
-		j += str_quotes_len(str, i + j, 34);
-		j += str_quotes_len(str, i + j, 39);
+		if (str[i + j] == 34 || str[i + j] == 39)
+		{
+			j += str_quotes_len(str, i + j, str[i + j]);
+			continue ;
+		}
 		if (ft_iswhitespace(str[i + j]))
 			break ;
 		j++;

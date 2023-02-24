@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/24 08:02:45 by fluchten         ###   ########.fr        #
+#    Updated: 2023/02/24 09:51:42 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,6 @@ SRCS =	temp/builtins/builtins.c \
 		cmds/cmds_lst_add.c \
 		cmds/cmds_lst_clear.c \
 		cmds/cmds_lst_utils.c \
-		initialization/initialization.c \
-		initialization/minishell_loop.c \
 		lexer/lexer_init.c \
 		lexer/lexer_lst_add.c \
 		lexer/lexer_lst_clear.c \
@@ -54,11 +52,13 @@ SRCS =	temp/builtins/builtins.c \
 		lexer/lexer_utils.c \
 		parser/parser_init.c \
 		parser/redirections.c \
+		parsing/parse_envp.c \
 		parsing/parse_paths.c \
 		parsing/parse_pwd.c \
 		signals/signals.c \
 		utils/error.c \
 		utils/free.c \
+		utils/utils.c \
 		main.c \
 		temp.c
 

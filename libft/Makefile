@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 15:03:07 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/20 16:15:47 by fluchten         ###   ########.fr        #
+#    Updated: 2023/02/24 09:44:36 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS =	ft_printf/ft_printf_utils1.c \
 		ft_printf/ft_printf.c \
 		get_next_line/get_next_line_utils.c \
 		get_next_line/get_next_line.c \
-		ft_arrdup.c \
+		ft_array_dup.c \
 		ft_atoi.c \
 		ft_bzero.c \
 		ft_calloc.c \

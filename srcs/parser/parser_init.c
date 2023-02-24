@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:11:45 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 07:56:16 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:14:07 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static void	init_parser_table(t_data *data, t_lexer *lexer, t_parser *parser)
 	parser->num_redirections = 0;
 }
 
-int	parser(t_data *data)
+void	parser(t_data *data)
 {
 	t_cmds		*temp;
 	t_parser	parser;
 
 	data->pipes_count = lexer_count_pipes(data->lexer);
 	if (data->lexer->token == PIPE)
-		return (print_token_error(data, data->lexer, data->lexer->token));
+		print_token_error(data, data->lexer, data->lexer->token);
 	while (data->lexer)
 	{
 		if (data->lexer && data->lexer->token == PIPE)
@@ -35,9 +35,8 @@ int	parser(t_data *data)
 		init_parser_table(data, data->lexer, &parser);
 		temp = init_cmds(&parser);
 		if (!temp)
-			return (print_parser_error(MSG_MALLOC_ERR, parser.data, parser.lexer));
+			print_parser_error(MSG_MALLOC_ERR, parser.data, parser.lexer);
 		cmds_add_back(&data->cmds, temp);
 		data->lexer = parser.lexer;
 	}
-	return (0);
 }

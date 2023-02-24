@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 08:00:40 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:11:04 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define MSG_READLINE "\033[1;36mminishell$ \033[0m"
 # define MSG_MALLOC_ERR "malloc error: allocation failure\n"
-# define MSG_QUOTES_ERR "syntax error: quotes are not closed\n"
+# define MSG_QUOTES_ERR "syntax error: near unexpected token `quote'\n"
 # define MSG_PARSER_ERR "syntax error near unexpected token `newline'\n"
 # define MSG_PIPE_ERR "Failed to create pipe\n"
 # define MSG_FORK_ERR "Failed to fork\n"
@@ -126,6 +126,8 @@ int			after_dol_lenght(char *str, int j);
 char		*delete_quotes(char *str, char c);
 int			question_mark(char **tmp);
 
+/* main */
+int			loop(t_data *data);
 /* cmds */
 t_cmds		*init_cmds(t_parser *parser);
 t_cmds		*cmds_new(char **str, int num_redirections, t_lexer *redirections);
@@ -133,9 +135,6 @@ void		cmds_add_back(t_cmds **lst, t_cmds *new);
 void		cmds_clear(t_cmds **lst);
 t_cmds		*cmds_first(t_cmds *cmds);
 t_cmds		*cmds_last(t_cmds *cmds);
-/* init */
-int			initialization(t_data *data);
-int			minishell_loop(t_data *data);
 /* lexer */
 int			init_lexer(t_data *data);
 t_lexer		*lexer_new(char *str, int token);
@@ -150,9 +149,10 @@ int			lexer_add_element(char *line, t_tokens token, t_lexer **lexer);
 int			lexer_count_pipes(t_lexer *lexer);
 int			lexer_count_args(t_lexer *lexer);
 /* parser */
-int			parser(t_data *data);
+void		parser(t_data *data);
 void		remove_redirections(t_parser *parser);
 /* parsing */
+int			parse_envp(t_data *data, char **envp);
 int			parse_paths(t_data *data);
 int			parse_pwd(t_data *data);
 /* signals */
@@ -165,7 +165,9 @@ int			print_parser_error(char *str, t_data *data, t_lexer *lexer);
 int			print_unknown_cmd_error(char *str);
 int			print_export_error(char *c);
 void		free_array(char **array);
-int			reset_data(t_data *data);
+int			initialization(t_data *data);
+void		reset_data(t_data *data);
+void		exit_minishell(t_data *data);
 /* temp */
 void		print_lexer(t_data *data);
 void		print_cmds(t_data *data);

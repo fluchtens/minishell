@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arrdup.c                                        :+:      :+:    :+:   */
+/*   ft_array_dup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 12:51:32 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/20 16:27:11 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/24 09:57:27 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	free_arrdup(char **array)
 	free(array);
 }
 
-char	**ft_arrdup(char **array)
+char	**ft_array_dup(char **array)
 {
 	char	**final;
 	size_t	len;

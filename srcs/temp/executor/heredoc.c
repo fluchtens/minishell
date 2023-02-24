@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:17:41 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/23 15:35:38 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/24 10:12:07 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ int	send_heredoc(t_data *data, t_cmds *cmd)
 			if (sl)
 			{
 				g_global.error_num = 1;
-				return (reset_data(data));
+				reset_data(data);
+				loop(data);
+				return (1);
 			}
 		}
 		cmd->redirections = cmd->redirections->next;
