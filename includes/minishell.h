@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 13:11:04 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:35:20 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ char		*delete_quotes(char *str, char c);
 int			question_mark(char **tmp);
 
 /* main */
-int			loop(t_data *data);
+void		loop(t_data *data);
 /* cmds */
 t_cmds		*init_cmds(t_parser *parser);
 t_cmds		*cmds_new(char **str, int num_redirections, t_lexer *redirections);

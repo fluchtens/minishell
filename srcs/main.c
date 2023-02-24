@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 12:21:04 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:35:40 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	loop(t_data *data)
+void	loop(t_data *data)
 {
 	char	*temp;
 
@@ -25,19 +25,15 @@ int	loop(t_data *data)
 		if (!data->line)
 			exit_minishell(data);
 		if (!data->line[0])
-		{
 			reset_data(data);
-			return (1);
-		}
 		if (!ft_is_closed_quotes(data->line))
-			return (print_error(MSG_QUOTES_ERR, data));
+			print_error(MSG_QUOTES_ERR, data);
 		if (!init_lexer(data))
-			return (print_error(MSG_MALLOC_ERR, data));
+			print_error(MSG_MALLOC_ERR, data);
 		parser(data);
 		prepare_executor(data);
 		reset_data(data);
 	}
-	return (0);
 }
 
 int	main(int ac, char **av, char **envp)
