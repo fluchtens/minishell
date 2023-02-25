@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 12:51:32 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 09:57:27 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/25 10:25:17 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	free_arrdup(char **array)
+static void	free_array_dup(char **array)
 {
 	int	i;
 
@@ -43,7 +43,7 @@ char	**ft_array_dup(char **array)
 		final[i] = ft_strdup(array[i]);
 		if (!final[i])
 		{
-			free_arrdup(final);
+			free_array_dup(final);
 			return (NULL);
 		}
 		i++;

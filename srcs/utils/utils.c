@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 08:47:43 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 10:11:27 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/25 10:19:39 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	initialization(t_data *data)
+void	initialization(t_data *data)
 {
 	data->lexer = NULL;
 	data->cmds = NULL;
@@ -24,7 +24,6 @@ int	initialization(t_data *data)
 	g_global.in_heredoc = 0;
 	parse_paths(data);
 	init_signals();
-	return (1);
 }
 
 void	reset_data(t_data *data)

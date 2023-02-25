@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 15:03:07 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/24 09:44:36 by fluchten         ###   ########.fr        #
+#    Updated: 2023/02/25 10:27:24 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRCS =	ft_printf/ft_printf_utils1.c \
 		ft_memcpy.c \
 		ft_memmove.c \
 		ft_memset.c \
+		ft_print_error.c \
 		ft_putchar_fd.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
