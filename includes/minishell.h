@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/25 10:19:47 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/25 12:10:35 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void		handle_cmd(t_cmds *cmd, t_data *data);
 void		dup_cmd(t_cmds *cmd, t_data *data, int end[2], int fd_in);
 void		single_cmd(t_cmds *cmd, t_data *data);
 int			send_heredoc(t_data *data, t_cmds *cmd);
-int			prepare_executor(t_data *data);
 /* expender */
 char		**expander(t_data *data, char **str);
 char		*expander_str(t_data *data, char *str);
@@ -135,6 +134,8 @@ void		cmds_add_back(t_cmds **lst, t_cmds *new);
 void		cmds_clear(t_cmds **lst);
 t_cmds		*cmds_first(t_cmds *cmds);
 t_cmds		*cmds_last(t_cmds *cmds);
+/* executor */
+void		init_executor(t_data *data);
 /* lexer */
 int			init_lexer(t_data *data);
 t_lexer		*lexer_new(char *str, int token);

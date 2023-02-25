@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/25 11:46:11 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/25 12:08:43 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	loop(t_data *data)
 		if (!init_lexer(data))
 			print_error(MSG_MALLOC_ERR, data);
 		parser(data);
-		prepare_executor(data);
+		init_executor(data);
 		reset_data(data);
 	}
 }
