@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/25 10:37:34 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/25 11:44:40 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int ac, char **av, char **envp)
 		return (ft_print_error("error: envp parsing error"));
 	if (!parse_pwd(&data))
 	{
-		free(data.envp);
+		free_array(data->envp);
 		return (ft_print_error("error: pwd parsing error"));
 	}
 	initialization(&data);
