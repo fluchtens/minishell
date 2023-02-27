@@ -6,25 +6,11 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:58:46 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 18:06:34 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:14:11 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static bool	str_is_digits(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (false);
-		i++;
-	}
-	return (true);
-}
 
 static int	exit_code(char **str)
 {
@@ -33,9 +19,9 @@ static int	exit_code(char **str)
 	code = 0;
 	if (!str[1])
 		code = 0;
-	else if (str_is_digits(str[1]))
+	else if (ft_str_isdigits(str[1]))
 		code = ft_atoi(str[1]);
-	else if (!str_is_digits(str[1]))
+	else if (!ft_str_isdigits(str[1]))
 	{
 		ft_putstr_fd("minishell: exit: ", 2);
 		ft_putstr_fd(str[1], 2);
