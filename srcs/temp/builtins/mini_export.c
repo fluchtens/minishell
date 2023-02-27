@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:17:15 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 09:12:03 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:22:44 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	mini_export(t_data *data, t_cmds *cmds)
 
 	i = 1;
 	if (!cmds->str[1] || cmds->str[1][0] == '\0')
-		env(data, cmds);
+		ft_env(data, cmds);
 	else
 	{
 		while (cmds->str[i])

@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 09:15:50 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 09:16:35 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:24:52 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	pwd(t_data *data, t_cmds *cmds)
+void	ft_pwd(t_data *data, t_cmds *cmds)
 {
 	(void) cmds;
 	printf("%s\n", data->pwd);

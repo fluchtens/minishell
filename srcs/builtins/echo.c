@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 08:09:45 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 09:26:48 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:20:49 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	echo(t_data *data, t_cmds *cmds)
+void	ft_echo(t_data *data, t_cmds *cmds)
 {
 	int		is_n_flag;
 	int		i;
