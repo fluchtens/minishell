@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 12:35:09 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:16:33 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,9 +167,10 @@ int			print_parser_error(char *str, t_data *data, t_lexer *lexer);
 int			print_unknown_cmd_error(char *str);
 int			print_export_error(char *c);
 void		free_array(char **array);
-void		initialization(t_data *data);
+void		free_everythings(t_data *data);
 void		reset_data(t_data *data);
-void		exit_minishell(t_data *data);
+void		initialization(t_data *data);
+void		exit_loop(t_data *data);
 /* temp */
 void		print_lexer(t_data *data);
 void		print_cmds(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 08:47:43 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/25 10:19:39 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:16:33 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,7 @@ void	initialization(t_data *data)
 	init_signals();
 }
 
-void	reset_data(t_data *data)
-{
-	cmds_clear(&data->cmds);
-	free(data->line);
-	free_array(data->paths);
-	if (data->pid)
-		free(data->pid);
-	initialization(data);
-	data->reset = true;
-}
-
-void	exit_minishell(t_data *data)
+void	exit_loop(t_data *data)
 {
 	ft_putstr_fd("exit\n", 0);
 	free_array(data->envp);

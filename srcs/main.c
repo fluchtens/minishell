@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/25 12:08:43 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:16:33 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	loop(t_data *data)
 		free(data->line);
 		data->line = temp;
 		if (!data->line)
-			exit_minishell(data);
+			exit_loop(data);
 		if (!data->line[0])
 		{
 			reset_data(data);
