@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.c                                         :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 12:16:34 by fluchten          #+#    #+#             */
+/*   Created: 2023/02/27 08:09:45 by fluchten          #+#    #+#             */
 /*   Updated: 2023/02/27 08:40:26 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	(*builtin_arr(char *str))(t_data *data, t_cmds *cmds)
+int	echo(t_data *data, t_cmds *cmds)
 {
-	static void	*builtins[7][2] = {
-	{"echo", echo},
-	{"cd", mini_cd},
-	{"pwd", mini_pwd},
-	{"export", mini_export},
-	{"unset", mini_unset},
-	{"env", mini_env},
-	{"exit", mini_exit}
-	};
-	int			i;
+	int		n_flag;
+	int		i;
 
-	i = 0;
-	while (i < 7)
+	i = 1;
+	n_flag = 0;
+	(void) data;
+	if (cmds->str[1][0] == '-' && cmds->str[1][1] == 'n')
 	{
-		if (str)
-		{
-			if (!ft_strncmp(builtins[i][0], str, ft_strlen((builtins[i][0]))))
-				return (builtins[i][1]);
-		}
+		n_flag = 1;
+		i = 2;
+	}
+	while (cmds->str[i])
+	{
+		printf("%s", cmds->str[i]);
+		if (cmds->str[i + 1])
+			printf(" ");
 		i++;
 	}
-	return (NULL);
+	if (!n_flag)
+		printf("\n");
+	return (0);
 }
