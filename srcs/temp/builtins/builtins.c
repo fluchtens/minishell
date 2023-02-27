@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:16:34 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 08:40:26 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 09:12:03 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	(*builtin_arr(char *str))(t_data *data, t_cmds *cmds)
 	{"pwd", mini_pwd},
 	{"export", mini_export},
 	{"unset", mini_unset},
-	{"env", mini_env},
+	{"env", env},
 	{"exit", mini_exit}
 	};
 	int			i;

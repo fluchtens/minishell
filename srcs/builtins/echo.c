@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 08:09:45 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 08:40:26 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 09:13:10 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	echo(t_data *data, t_cmds *cmds)
+void	echo(t_data *data, t_cmds *cmds)
 {
 	int		n_flag;
 	int		i;
@@ -34,5 +34,4 @@ int	echo(t_data *data, t_cmds *cmds)
 	}
 	if (!n_flag)
 		printf("\n");
-	return (0);
 }

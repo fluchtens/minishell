@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 08:40:28 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 09:13:16 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ t_global	g_global;
 /* builtins */
 int			(*builtin_arr(char *str))(t_data *data, t_cmds *cmds);
 int			mini_cd(t_data *data, t_cmds *cmds);
-int			mini_env(t_data *data, t_cmds *cmds);
 int			mini_exit(t_data *data, t_cmds *cmds);
 int			mini_export(t_data *data, t_cmds *cmds);
 int			mini_pwd(t_data *data, t_cmds *cmds);
@@ -127,7 +126,8 @@ int			question_mark(char **tmp);
 /* main */
 void		loop(t_data *data);
 /* builtins */
-int			echo(t_data *data, t_cmds *cmds);
+void		echo(t_data *data, t_cmds *cmds);
+void		env(t_data *data, t_cmds *cmds);
 /* cmds */
 t_cmds		*init_cmds(t_parser *parser);
 t_cmds		*cmds_new(char **str, int num_redirections, t_lexer *redirections);
