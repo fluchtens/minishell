@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:32:01 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 18:11:08 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:34:00 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
 /* Extra Part */
 char	**ft_array_dup(char **array);
+int		ft_array_len(char **array);
 bool	ft_is_closed_quotes(char *str);
 bool	ft_iswhitespace(char c);
 int		ft_print_error(char *str);
