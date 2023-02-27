@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:58:46 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 18:14:11 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:37:58 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ int	ft_exit(t_data *data, t_cmds *cmds)
 	int		code;
 	int		args;
 
-	args = 0;
-	while (cmds->str[args])
-		args++;
+	args = ft_array_len(cmds->str);
 	ft_putendl_fd("exit", 2);
 	if (args > 2)
 	{
