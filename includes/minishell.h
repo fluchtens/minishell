@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 09:13:16 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 09:16:59 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int			(*builtin_arr(char *str))(t_data *data, t_cmds *cmds);
 int			mini_cd(t_data *data, t_cmds *cmds);
 int			mini_exit(t_data *data, t_cmds *cmds);
 int			mini_export(t_data *data, t_cmds *cmds);
-int			mini_pwd(t_data *data, t_cmds *cmds);
 int			mini_unset(t_data *data, t_cmds *cmds);
 void		change_path(t_data *data);
 size_t		equal_sign(char *str);
@@ -128,6 +127,7 @@ void		loop(t_data *data);
 /* builtins */
 void		echo(t_data *data, t_cmds *cmds);
 void		env(t_data *data, t_cmds *cmds);
+void		pwd(t_data *data, t_cmds *cmds);
 /* cmds */
 t_cmds		*init_cmds(t_parser *parser);
 t_cmds		*cmds_new(char **str, int num_redirections, t_lexer *redirections);

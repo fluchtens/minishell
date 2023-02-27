@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_pwd.c                                         :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 12:16:48 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/21 12:22:32 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/27 09:15:50 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/27 09:16:35 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	mini_pwd(t_data *data, t_cmds *cmds)
+void	pwd(t_data *data, t_cmds *cmds)
 {
 	(void) cmds;
-	ft_putendl_fd(data->pwd, STDOUT_FILENO);
-	return (EXIT_SUCCESS);
+	printf("%s\n", data->pwd);
 }
