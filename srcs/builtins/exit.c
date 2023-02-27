@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:58:46 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 12:53:59 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:11:14 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	free_everythings(t_data *data)
 	cmds_clear(&data->cmds);
 }
 
-static int	str_is_digits(char *str)
+static bool	str_is_digits(char *str)
 {
 	int	i;
 
@@ -32,13 +32,13 @@ static int	str_is_digits(char *str)
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			return (0);
+			return (false);
 		i++;
 	}
-	return (1);
+	return (true);
 }
 
-static void	exit_code(char **array)
+static int	exit_code(char **array)
 {
 	int	code;
 
@@ -53,26 +53,28 @@ static void	exit_code(char **array)
 		ft_putstr_fd(": numeric argument required\n", 2);
 		code = 255;
 	}
-	free_array(array);
-	exit(code);
+	return (code);
 }
 
 int	ft_exit(t_data *data, t_cmds *cmds)
 {
-	char	**array;
-	int		i;
+	int		code;
+	int		args;
 
-	i = 0;
-	while (cmds->str[i])
-		i++;
+	args = 0;
+	while (cmds->str[args])
+		args++;
 	ft_putendl_fd("exit", 2);
-	if (i > 2)
+	if (args > 2)
 	{
 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 		return (1);
 	}
-	array = ft_array_dup(cmds->str);
-	free_everythings(data);
-	exit_code(array);
+	else
+	{
+		code = exit_code(cmds->str);
+		free_everythings(data);
+		exit(code);
+	}
 	return (0);
 }
