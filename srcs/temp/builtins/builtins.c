@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:16:34 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 12:35:09 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/28 11:33:01 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	(*builtin_arr(char *str))(t_data *data, t_cmds *cmds)
 {
 	static void	*builtins[7][2] = {
 	{"echo", ft_echo},
-	{"cd", mini_cd},
+	{"cd", ft_cd},
 	{"pwd", ft_pwd},
 	{"export", mini_export},
 	{"unset", mini_unset},

@@ -6,22 +6,11 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:17:00 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/23 15:31:06 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/28 11:41:57 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	change_path(t_data *data)
-{
-	char	*tmp;
-
-	tmp = ft_strdup(data->pwd);
-	free(data->old_pwd);
-	data->old_pwd = tmp;
-	free(data->pwd);
-	data->pwd = getcwd(NULL, sizeof(NULL));
-}
 
 size_t	equal_sign(char *str)
 {
