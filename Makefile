@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/28 13:19:12 by fluchten         ###   ########.fr        #
+#    Updated: 2023/02/28 20:46:18 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,7 @@ INC_DIR = includes
 SRCS_DIR = srcs
 OBJS_DIR = objs
 
-SRCS =	temp/builtins/builtins.c \
-		temp/builtins/mini_export.c \
-		temp/builtins/utils_builtins.c \
-		temp/executor/check_redirections.c \
+SRCS =	temp/executor/check_redirections.c \
 		temp/executor/executor.c \
 		temp/executor/handle_cmd.c \
 		temp/executor/heredoc.c \
@@ -32,10 +29,12 @@ SRCS =	temp/builtins/builtins.c \
 		temp/expander/expander.c \
 		temp/expander/expanders_utils.c \
 		temp/expander/expanders_utils2.c \
+		builtins/builtins.c \
 		builtins/cd.c \
 		builtins/echo.c \
 		builtins/env.c \
 		builtins/exit.c \
+		builtins/export.c \
 		builtins/pwd.c \
 		builtins/unset.c \
 		cmds/cmds_init.c \

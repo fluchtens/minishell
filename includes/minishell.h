@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/28 13:20:00 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/28 20:50:48 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,6 @@ typedef struct s_global
 
 t_global	g_global;
 
-/* builtins */
-int			(*builtin_arr(char *str))(t_data *data, t_cmds *cmds);
-int			mini_export(t_data *data, t_cmds *cmds);
-size_t		equal_sign(char *str);
-char		*delete_quotes_value(char *str);
-int			check_valid_identifier(char c);
 /* executor */
 int			check_redirections(t_cmds *cmd);
 char		*join_split_str(char **split_str, char *new_str);
@@ -121,10 +115,12 @@ int			question_mark(char **tmp);
 /* main */
 void		loop(t_data *data);
 /* builtins */
+int			(*builtin_arr(char *str))(t_data *data, t_cmds *cmds);
 int			ft_cd(t_data *data, t_cmds *cmds);
 void		ft_echo(t_data *data, t_cmds *cmds);
 void		ft_env(t_data *data, t_cmds *cmds);
 int			ft_exit(t_data *data, t_cmds *cmds);
+int			ft_export(t_data *data, t_cmds *cmds);
 void		ft_pwd(t_data *data, t_cmds *cmds);
 int			ft_unset(t_data *data, t_cmds *cmds);
 /* cmds */
@@ -171,6 +167,7 @@ void		reset_data(t_data *data);
 void		initialization(t_data *data);
 void		exit_loop(t_data *data);
 char		*find_path(t_data *data, char *envp);
+size_t		equal_sign(char *str);
 /* temp */
 void		print_lexer(t_data *data);
 void		print_cmds(t_data *data);
