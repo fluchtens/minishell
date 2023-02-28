@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:16:36 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/23 15:26:36 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/28 07:54:46 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 static char	*find_path_ret(char *str, t_data *data)
 {
+	int len;
+	int new_len;
 	int	i;
 
 	i = 0;
 	while (data->envp[i])
 	{
-		if (!ft_strncmp(data->envp[i], str, ft_strlen(str)))
-			return (ft_substr(data->envp[i], ft_strlen(str),
-					ft_strlen(data->envp[i]) - ft_strlen(str)));
+		len = ft_strlen(str);
+		new_len = ft_strlen(data->envp[i]) - len;
+		if (!ft_strncmp(data->envp[i], str, len))
+			return (ft_substr(data->envp[i], len, new_len));
 		i++;
 	}
 	return (NULL);

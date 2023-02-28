@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 08:47:43 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 17:16:33 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/28 08:05:34 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,22 @@ void	exit_loop(t_data *data)
 	free(data->pwd);
 	free(data->old_pwd);
 	exit(0);
+}
+
+char	*find_path(t_data *data, char *envp)
+{
+	int len;
+	int new_len;
+	int	i;
+
+	i = 0;
+	while (data->envp[i])
+	{
+		len = ft_strlen(envp);
+		new_len = ft_strlen(data->envp[i]) - len;
+		if (!ft_strncmp(data->envp[i], envp, len))
+			return (ft_substr(data->envp[i], len, new_len));
+		i++;
+	}
+	return (NULL);
 }
