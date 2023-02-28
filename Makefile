@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/27 12:12:34 by fluchten         ###   ########.fr        #
+#    Updated: 2023/02/28 08:07:30 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ SRCS_DIR = srcs
 OBJS_DIR = objs
 
 SRCS =	temp/builtins/builtins.c \
-		temp/builtins/mini_cd.c \
 		temp/builtins/mini_export.c \
 		temp/builtins/mini_unset.c \
 		temp/builtins/utils_builtins.c \
@@ -34,6 +33,7 @@ SRCS =	temp/builtins/builtins.c \
 		temp/expander/expander.c \
 		temp/expander/expanders_utils.c \
 		temp/expander/expanders_utils2.c \
+		builtins/cd.c \
 		builtins/echo.c \
 		builtins/env.c \
 		builtins/exit.c \

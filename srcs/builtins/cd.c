@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_cd.c                                          :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 12:16:36 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/28 07:54:46 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/28 08:06:58 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/28 08:09:14 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static char	*find_path_ret(char *str, t_data *data)
-{
-	int len;
-	int new_len;
-	int	i;
-
-	i = 0;
-	while (data->envp[i])
-	{
-		len = ft_strlen(str);
-		new_len = ft_strlen(data->envp[i]) - len;
-		if (!ft_strncmp(data->envp[i], str, len))
-			return (ft_substr(data->envp[i], len, new_len));
-		i++;
-	}
-	return (NULL);
-}
 
 static int	specific_path(t_data *data, char *str)
 {
 	char	*tmp;
 	int		ret;
 
-	tmp = find_path_ret(str, data);
+	tmp = find_path(data, str);
 	ret = chdir(tmp);
 	free(tmp);
 	if (ret != 0)
