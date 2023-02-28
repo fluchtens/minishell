@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:17:39 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/28 11:33:01 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:20:00 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	single_cmd(t_cmds *cmd, t_data *data)
 	int	status;
 
 	data->cmds = call_expander(data, data->cmds);
-	if (cmd->builtin == ft_cd || cmd->builtin == ft_exit || cmd->builtin == mini_export || cmd->builtin == mini_unset)
+	if (cmd->builtin == ft_cd || cmd->builtin == ft_exit || cmd->builtin == mini_export || cmd->builtin == ft_unset)
 	{
 		g_global.error_num = cmd->builtin(data, cmd);
 		return ;

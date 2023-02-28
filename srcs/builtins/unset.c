@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_unset.c                                       :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 12:16:53 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/23 15:29:47 by fluchten         ###   ########.fr       */
+/*   Created: 2023/02/28 13:18:22 by fluchten          #+#    #+#             */
+/*   Updated: 2023/02/28 15:04:01 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,46 +53,54 @@ static char	**del_var(char **arr, char *str)
 	return (rtn);
 }
 
-static int	unset_error(t_cmds *cmds)
+static int	is_valid_var_name(char *str)
 {
-	int		i;
+	int	i;
 
-	i = 0;
-	if (!cmds->str[1])
+	i = 1;
+	if (!ft_isalpha(str[0]) && str[0] != 95)
+		return (0);
+	while (str[i])
 	{
-		ft_putendl_fd("minishell: unset: not enough arguments", STDERR_FILENO);
-		return (EXIT_FAILURE);
+		if (!ft_isalpha(str[i]) && !ft_isdigit(str[i]) && str[i] != 95)
+			return (0);
+		i++;
 	}
-	while (cmds->str[1][i])
-	{
-		if (cmds->str[1][i++] == '/')
-		{
-			ft_putstr_fd("minishell: unset: `", STDERR_FILENO);
-			ft_putstr_fd(cmds->str[1], STDERR_FILENO);
-			ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
-			return (EXIT_FAILURE);
-		}
-	}
-	if (equal_sign(cmds->str[1]) != 0)
-	{
-		ft_putendl_fd("minishell: unset: not a valid identifier",
-			STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+	return (1);
 }
 
-int	mini_unset(t_data *data, t_cmds *cmds)
+static int	check_unset(t_cmds *cmds)
+{
+	int	i;
+
+	if (!cmds->str[1])
+		return (0);
+	i = 0;
+	while (cmds->str[1][i])
+	{
+		if (!is_valid_var_name(&cmds->str[1][i]))
+		{
+			ft_putstr_fd("minishell: unset: `", 2);
+			ft_putstr_fd(cmds->str[1], 2);
+			ft_putendl_fd("': not a valid identifier", 2);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	ft_unset(t_data *data, t_cmds *cmds)
 {
 	char	**tmp;
 
-	if (unset_error(cmds) == 1)
-		return (EXIT_FAILURE);
+	if (!check_unset(cmds))
+		return (1);
 	else
 	{
 		tmp = del_var(data->envp, cmds->str[1]);
 		free_array(data->envp);
 		data->envp = tmp;
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/28 11:41:53 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:20:00 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ t_global	g_global;
 /* builtins */
 int			(*builtin_arr(char *str))(t_data *data, t_cmds *cmds);
 int			mini_export(t_data *data, t_cmds *cmds);
-int			mini_unset(t_data *data, t_cmds *cmds);
 size_t		equal_sign(char *str);
 char		*delete_quotes_value(char *str);
 int			check_valid_identifier(char c);
@@ -127,6 +126,7 @@ void		ft_echo(t_data *data, t_cmds *cmds);
 void		ft_env(t_data *data, t_cmds *cmds);
 int			ft_exit(t_data *data, t_cmds *cmds);
 void		ft_pwd(t_data *data, t_cmds *cmds);
+int			ft_unset(t_data *data, t_cmds *cmds);
 /* cmds */
 t_cmds		*init_cmds(t_parser *parser);
 t_cmds		*cmds_new(char **str, int num_redirections, t_lexer *redirections);
