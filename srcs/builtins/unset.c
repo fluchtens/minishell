@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 13:18:22 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/28 20:30:48 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/02/28 20:33:23 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ static int	check_unset_args(t_cmds *cmds)
 
 int	ft_unset(t_data *data, t_cmds *cmds)
 {
-	char	**temp;
-
+	(void) data;
 	if (!cmds->str[1])
 		return (0);
 	if (!check_unset_args(cmds))
