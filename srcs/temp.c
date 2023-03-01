@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 15:32:40 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/22 08:16:34 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/01 10:30:51 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	print_redirections(t_parser *parser)
 
 	temp = parser->redirections;
 	if (!temp)
-		printf("Lexer list is null!\n");
+		printf("Redirections list is null!\n");
 	while (temp)
 	{
 		printf("[%d] = %s -> [%d]\n", temp->i, temp->str, temp->token);
