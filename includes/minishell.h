@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/28 20:50:48 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/01 07:35:42 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,27 @@ typedef struct s_global
 
 t_global	g_global;
 
+/* main */
+void		loop(t_data *data);
+/* builtins */
+int			(*builtin_arr(char *str))(t_data *data, t_cmds *cmds);
+int			ft_cd(t_data *data, t_cmds *cmds);
+void		ft_echo(t_data *data, t_cmds *cmds);
+void		ft_env(t_data *data, t_cmds *cmds);
+int			ft_exit(t_data *data, t_cmds *cmds);
+int			ft_export(t_data *data, t_cmds *cmds);
+void		ft_pwd(t_data *data, t_cmds *cmds);
+int			ft_unset(t_data *data, t_cmds *cmds);
+bool		is_valid_var_name(char *str);
+/* cmds */
+t_cmds		*init_cmds(t_parser *parser);
+t_cmds		*cmds_new(char **str, int num_redirections, t_lexer *redirections);
+void		cmds_add_back(t_cmds **lst, t_cmds *new);
+void		cmds_clear(t_cmds **lst);
+t_cmds		*cmds_first(t_cmds *cmds);
+t_cmds		*cmds_last(t_cmds *cmds);
 /* executor */
+void		init_executor(t_data *data);
 int			check_redirections(t_cmds *cmd);
 char		*join_split_str(char **split_str, char *new_str);
 char		**resplit_str(char **double_arr);
@@ -111,27 +131,6 @@ char		*char_to_str(char c);
 int			after_dol_lenght(char *str, int j);
 char		*delete_quotes(char *str, char c);
 int			question_mark(char **tmp);
-
-/* main */
-void		loop(t_data *data);
-/* builtins */
-int			(*builtin_arr(char *str))(t_data *data, t_cmds *cmds);
-int			ft_cd(t_data *data, t_cmds *cmds);
-void		ft_echo(t_data *data, t_cmds *cmds);
-void		ft_env(t_data *data, t_cmds *cmds);
-int			ft_exit(t_data *data, t_cmds *cmds);
-int			ft_export(t_data *data, t_cmds *cmds);
-void		ft_pwd(t_data *data, t_cmds *cmds);
-int			ft_unset(t_data *data, t_cmds *cmds);
-/* cmds */
-t_cmds		*init_cmds(t_parser *parser);
-t_cmds		*cmds_new(char **str, int num_redirections, t_lexer *redirections);
-void		cmds_add_back(t_cmds **lst, t_cmds *new);
-void		cmds_clear(t_cmds **lst);
-t_cmds		*cmds_first(t_cmds *cmds);
-t_cmds		*cmds_last(t_cmds *cmds);
-/* executor */
-void		init_executor(t_data *data);
 /* lexer */
 int			init_lexer(t_data *data);
 t_lexer		*lexer_new(char *str, int token);

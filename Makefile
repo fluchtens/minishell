@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/02/28 20:46:18 by fluchten         ###   ########.fr        #
+#    Updated: 2023/03/01 07:36:04 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS =	temp/executor/check_redirections.c \
 		builtins/export.c \
 		builtins/pwd.c \
 		builtins/unset.c \
+		builtins/utils.c \
 		cmds/cmds_init.c \
 		cmds/cmds_lst_add.c \
 		cmds/cmds_lst_clear.c \

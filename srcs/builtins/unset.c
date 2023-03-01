@@ -6,27 +6,11 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 13:18:22 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/28 20:33:23 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/01 07:51:05 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	is_valid_var_name(char *str)
-{
-	int	i;
-
-	i = 1;
-	if (!ft_isalpha(str[0]) && str[0] != 95)
-		return (0);
-	while (str[i])
-	{
-		if (!ft_isalpha(str[i]) && !ft_isdigit(str[i]) && str[i] != 95)
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 static int	check_unset_args(t_cmds *cmds)
 {
