@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 13:18:22 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/01 14:03:26 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:03:47 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,50 +19,38 @@ static bool	is_equal_sign(char *str)
 	return (false);
 }
 
-static char **remove_var_envp(t_data *data, char *str)
+static char **remove_var_envp(char **envp, char *var)
 {
-	char **final;
-	int	array_len;
-	int	str_len;
-	int	i;
-	int	j;
-	int	k;
+	char	**final;
+	int		array_len;
+	int		var_len;
+	int		i;
+	int		j;
 
-	final = NULL;
-	array_len = ft_array_len(data->envp);
-	str_len = ft_strlen(str);
 	i = 0;
-	while (i < array_len)
+	j = 0;
+	var_len = ft_strlen(var);
+	array_len = ft_array_len(envp);
+	final = ft_calloc(sizeof(char *), array_len + 1);
+	if (!final)
+		return (NULL);
+	while (envp[i])
 	{
-		if (ft_strncmp(data->envp[i], str, str_len) == 0 && is_equal_sign(data->envp[i] + str_len))
+		if (ft_strncmp(envp[i], var, var_len) && !is_equal_sign(envp[i] + var_len))
 		{
-			j = i;
-			while (j < array_len - 1)
+			final[j] = ft_strdup(envp[i]);
+			if (!final[j])
 			{
-				data->envp[i] = data->envp[j + 1];
-				j++;
-			}
-			final = malloc(sizeof(char *) * (array_len - 1));
-			if (!final)
+				free_array(final);
 				return (NULL);
-			k = 0;
-			while (k < i)
-			{
-				final[k] = data->envp[k];
-				k++;
 			}
-			j = i;
-			while (j < array_len - 1)
-			{
-				final[j] = data->envp[i + i];
-				j++;
-			}
-			array_len--;
-			i--;
+			j++;
 		}
+		free(envp[i]);
 		i++;
 	}
-	print_envp(data);
+	free(envp);
+	final[i] = NULL;
 	return (final);
 }
 
@@ -98,9 +86,11 @@ int	ft_unset(t_data *data, t_cmds *cmds)
 	if (!check_unset_args(cmds))
 		return (1);
 	printf("ARRAY LEN BEFORE = %d\n", ft_array_len(data->envp));
-	char **temp = remove_var_envp(data, cmds->str[1]);
-	free_array(data->envp);
-	data->envp = temp;
+
+	// free_array(data->envp);
+	data->envp = remove_var_envp(data->envp, cmds->str[1]);;
+
 	printf("ARRAY LEN AFTER = %d\n", ft_array_len(data->envp));
+	print_envp(data);
 	return (0);
 }
