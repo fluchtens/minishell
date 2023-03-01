@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:30:17 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/19 16:30:49 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/01 13:35:02 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 bool	ft_is_closed_quotes(char *str)
 {
-	int		count;
-	int		i;
+	int	s_quotes_count;
+	int	d_quotes_count;
+	int	i;
 
-	count = 0;
+	s_quotes_count = 0;
+	d_quotes_count = 0;
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == 34)
-			count++;
 		if (str[i] == 39)
-			count++;
+			s_quotes_count++;
+		if (str[i] == 34)
+			d_quotes_count++;
 		i++;
 	}
-	return (count % 2 == 0);
+	return ((s_quotes_count % 2 == 0) && (d_quotes_count % 2 == 0));
 }
