@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:06:58 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/02 12:27:20 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/02 13:29:43 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	update_pwd_envp(t_data *data)
 	}
 }
 
-static char	*get_path(t_data *data, t_cmds *cmds, int *err_code, char **err_msg)
+static char	*get_path(t_data *data, t_cmds *cmds, char **err_msg, int *err_code)
 {
 	char	*path;
 
@@ -74,13 +74,12 @@ int	ft_cd(t_data *data, t_cmds *cmds)
 {
 	char	*path;
 	char	*err_msg;
-	int		ret;
 	int		err_code;
 
 	err_code = 0;
 	err_msg = NULL;
-	path = get_path(data, cmds, &err_code, &err_msg);
-	if (err_code)
+	path = get_path(data, cmds, &err_msg, &err_code);
+	if (err_code == 1)
 	{
 		ft_putstr_fd("minishell: cd: ", 2);
 		ft_putstr_fd(err_msg, 2);
@@ -88,8 +87,7 @@ int	ft_cd(t_data *data, t_cmds *cmds)
 		free(err_msg);
 		return (1);
 	}
-	ret = chdir(path);
-	if (ret == -1)
+	if (chdir(path) == -1)
 	{
 		ft_putstr_fd("minishell: cd: ", 2);
 		perror(path);
