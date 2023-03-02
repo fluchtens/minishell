@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:26:37 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/18 15:42:50 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/02 10:30:50 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*final;
 	size_t	len;
 
-	if (!s1 || !s2)
+	if (!s1)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
 	final = malloc(sizeof(char) * (len + 1));
