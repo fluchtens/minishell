@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/01 14:03:43 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:40:33 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void		cmds_clear(t_cmds **lst);
 t_cmds		*cmds_first(t_cmds *cmds);
 t_cmds		*cmds_last(t_cmds *cmds);
 /* executor */
-void		init_executor(t_data *data);
+int			init_executor(t_data *data);
 int			check_redirections(t_cmds *cmd);
 char		*join_split_str(char **split_str, char *new_str);
 char		**resplit_str(char **double_arr);
