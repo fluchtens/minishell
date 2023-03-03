@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 20:45:11 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/03 12:10:30 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/03 17:56:48 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	is_exist_var(t_data *data, char *var)
 	i = 0;
 	while (data->envp[i])
 	{
-		len = equal_sign(data->envp[i]);
+		len = equal_pos(data->envp[i]) + 1;
 		if (ft_strncmp(data->envp[i], var, len) == 0)
 		{
 			free(data->envp[i]);
