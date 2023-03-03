@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 07:39:02 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/02 19:25:40 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/03 07:39:19 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	parse_pwd(t_data *data)
 			len = ft_strlen(data->envp[i]) - 7;
 			data->old_pwd = ft_substr(data->envp[i], 7, len);
 		}
-		
 		i++;
 	}
 	if (!data->pwd || !data->old_pwd)
