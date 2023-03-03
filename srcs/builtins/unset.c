@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 13:18:22 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/02 10:30:06 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/03 11:30:04 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	allocate_size(char **envp, char *var)
 	return (size);
 }
 
-static char	**fill_envp(char **final, char **envp, char *var)
+static char	**fill_unset_envp(char **final, char **envp, char *var)
 {
 	int	i;
 	int	j;
@@ -55,34 +55,15 @@ static char	**fill_envp(char **final, char **envp, char *var)
 	return (final);
 }
 
-static char	**update_envp(char **envp, char *var)
+static char	**remove_var_envp(char **envp, char *var)
 {
 	char	**final;
 
 	final = malloc(sizeof(char *) * (allocate_size(envp, var) + 1));
 	if (!final)
 		return (NULL);
-	final = fill_envp(final, envp, var);
+	final = fill_unset_envp(final, envp, var);
 	return (final);
-}
-
-static int	check_unset_args(t_cmds *cmds)
-{
-	int	i;
-
-	i = 1;
-	while (cmds->str[i])
-	{
-		if (is_valid_var_name(cmds->str[i]) == false)
-		{
-			ft_putstr_fd("minishell: unset: `", 2);
-			ft_putstr_fd(cmds->str[i], 2);
-			ft_putendl_fd("': not a valid identifier", 2);
-			return (0);
-		}
-		i++;
-	}
-	return (1);
 }
 
 int	ft_unset(t_data *data, t_cmds *cmds)
@@ -92,13 +73,13 @@ int	ft_unset(t_data *data, t_cmds *cmds)
 
 	if (!cmds->str[1])
 		return (0);
-	if (!check_unset_args(cmds))
+	if (!is_correct_unset_var(cmds))
 		return (1);
 	i = 1;
 	while (cmds->str[i])
 	{
 		temp = ft_strjoin(cmds->str[i], "=");
-		data->envp = update_envp(data->envp, temp);
+		data->envp = remove_var_envp(data->envp, temp);
 		free(temp);
 		i++;
 	}

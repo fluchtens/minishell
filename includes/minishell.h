@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/03 07:37:47 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/03 11:31:18 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,12 @@ int			ft_cd(t_data *data, t_cmds *cmds);
 void		ft_echo(t_data *data, t_cmds *cmds);
 void		ft_env(t_data *data, t_cmds *cmds);
 int			ft_exit(t_data *data, t_cmds *cmds);
+bool		var_have_equal(t_cmds *cmds);
+int			is_correct_export_var(t_cmds *cmds);
 int			ft_export(t_data *data, t_cmds *cmds);
 void		ft_pwd(t_data *data, t_cmds *cmds);
+int			is_correct_unset_var(t_cmds *cmds);
 int			ft_unset(t_data *data, t_cmds *cmds);
-bool		is_valid_var_name(char *str);
 /* cmds */
 t_cmds		*init_cmds(t_parser *parser);
 t_cmds		*cmds_new(char **str, int num_redirections, t_lexer *redirections);
@@ -165,6 +167,7 @@ void		free_everythings(t_data *data);
 void		reset_data(t_data *data);
 void		initialization(t_data *data);
 void		exit_loop(t_data *data);
+char		*ft_remove_quotes(char *str);
 char		*find_path(t_data *data, char *envp);
 size_t		equal_sign(char *str);
 /* temp */

@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_isquote.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 09:26:37 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/03 11:00:35 by fluchten         ###   ########.fr       */
+/*   Created: 2023/03/03 11:01:02 by fluchten          #+#    #+#             */
+/*   Updated: 2023/03/03 11:01:19 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_isquote(int c)
 {
-	char	*final;
-	size_t	len;
-
-	if (!s1)
-		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	final = malloc(sizeof(char) * (len + 1));
-	if (!final)
-		return (NULL);
-	if (s1)
-		ft_strlcpy(final, s1, len + 1);
-	if (s2)
-		ft_strlcat(final, s2, len + 1);
-	return (final);
+	return (c == 39 || c == 34);
 }

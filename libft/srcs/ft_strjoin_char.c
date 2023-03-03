@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 09:26:37 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/03 11:00:35 by fluchten         ###   ########.fr       */
+/*   Created: 2023/03/03 11:04:06 by fluchten          #+#    #+#             */
+/*   Updated: 2023/03/03 11:04:35 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_char(char *str, char c)
 {
 	char	*final;
-	size_t	len;
+	int		size;
 
-	if (!s1)
-		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	final = malloc(sizeof(char) * (len + 1));
+	size = ft_strlen(str);
+	final = ft_calloc(sizeof(char), (size + 2));
 	if (!final)
 		return (NULL);
-	if (s1)
-		ft_strlcpy(final, s1, len + 1);
-	if (s2)
-		ft_strlcat(final, s2, len + 1);
+	size = 0;
+	if (str)
+	{
+		while (str[size])
+		{
+			final[size] = str[size];
+			size++;
+		}	
+	}
+	final[size] = c;
+	final[size + 1] = '\0';
+	if (str)
+		free(str);
 	return (final);
 }
