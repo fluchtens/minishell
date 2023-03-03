@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:48:24 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/23 15:24:27 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/03 18:39:34 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_cmds	*init_cmds(t_parser *parser)
 	{
 		final[i] = ft_strdup(temp->str);
 		lexer_delone(&parser->lexer, temp->i);
-		temp = temp->next;
+		temp = parser->lexer;
 		i++;
 	}
 	return (cmds_new(final, parser->num_redirections, parser->redirections));
