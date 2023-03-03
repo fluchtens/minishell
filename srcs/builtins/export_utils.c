@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:24:28 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/03 17:52:08 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/03 18:00:46 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	is_correct_export_var(t_cmds *cmds)
 	{
 		if (is_valid_export_var_name(cmds->str[i]) == false)
 		{
-			ft_putstr_fd("minishell: unset: `", 2);
+			ft_putstr_fd("minishell: export: `", 2);
 			ft_putstr_fd(cmds->str[i], 2);
 			ft_putendl_fd("': not a valid identifier", 2);
 			return (0);
