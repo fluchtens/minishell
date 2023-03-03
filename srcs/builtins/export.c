@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 20:45:11 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/03 12:01:52 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/03 12:10:30 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,5 @@ int	ft_export(t_data *data, t_cmds *cmds)
 		}
 		i++;
 	}
-	print_envp(data);
 	return (0);
 }
