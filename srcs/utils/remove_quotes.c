@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 11:58:29 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/03 11:14:57 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/03 12:06:31 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,5 @@ char	*ft_remove_quotes(char *str)
 		else
 			final = ft_strjoin_char(final, str[i++]);
 	}
-	// free(str);
 	return (final);
 }

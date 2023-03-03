@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:24:28 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/03 11:30:59 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/03 12:03:35 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ static bool	is_valid_export_var_name(char *str)
 		return (false);
 	while (str[i])
 	{
-		if (!ft_isalpha(str[i]) && !ft_isdigit(str[i]) && str[i] != 95 && str[i] != 61 && !ft_isquote(str[i]))
+		if (!ft_isalpha(str[i]) && !ft_isdigit(str[i]) && !ft_isquote(str[i])
+			&& str[i] != 95 && str[i] != 61)
 			return (false);
 		i++;
 	}
