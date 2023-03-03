@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/03/01 15:01:06 by fluchten         ###   ########.fr        #
+#    Updated: 2023/03/03 07:37:33 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS =	temp/executor/check_redirections.c \
 		temp/executor/handle_cmd.c \
 		temp/executor/heredoc.c \
 		temp/executor/executor_utils.c \
+		temp/executor/executor_init.c \
 		temp/expander/expander.c \
 		temp/expander/expanders_utils.c \
 		temp/expander/expanders_utils2.c \
@@ -42,7 +43,6 @@ SRCS =	temp/executor/check_redirections.c \
 		cmds/cmds_lst_add.c \
 		cmds/cmds_lst_clear.c \
 		cmds/cmds_lst_utils.c \
-		executor/executor_init.c \
 		lexer/lexer_init.c \
 		lexer/lexer_lst_add.c \
 		lexer/lexer_lst_clear.c \
