@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/03 17:52:21 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/03 18:09:38 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,12 @@ int			ft_cd(t_data *data, t_cmds *cmds);
 void		ft_echo(t_data *data, t_cmds *cmds);
 void		ft_env(t_data *data, t_cmds *cmds);
 int			ft_exit(t_data *data, t_cmds *cmds);
-bool		var_have_equal(t_cmds *cmds);
-int			is_correct_export_var(t_cmds *cmds);
 int			equal_pos(char *str);
+bool		export_cmd_have_equal(t_cmds *cmds);
+int			check_export_cmd(t_cmds *cmds);
 int			ft_export(t_data *data, t_cmds *cmds);
 void		ft_pwd(t_data *data, t_cmds *cmds);
-int			is_correct_unset_var(t_cmds *cmds);
+int			check_unset_cmd(t_cmds *cmds);
 int			ft_unset(t_data *data, t_cmds *cmds);
 /* cmds */
 t_cmds		*init_cmds(t_parser *parser);
