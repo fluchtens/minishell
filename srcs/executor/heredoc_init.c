@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:05 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 11:36:42 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:00:45 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*ft_filename(t_data *data)
+static char	*filename(t_data *data)
 {
 	char	*file;
 	char	*index;
@@ -24,7 +24,7 @@ static char	*ft_filename(t_data *data)
 	return (file);
 }
 
-static int	ft_hd_stoplen(char *line, char *stop)
+static int	hd_stoplen(char *line, char *stop)
 {
 	int	linelen;
 	int	stoplen;
@@ -36,7 +36,7 @@ static int	ft_hd_stoplen(char *line, char *stop)
 	return (linelen);
 }
 
-static int	ft_here_doc(t_data *data, char *stop_heredoc, char *file)
+static int	here_doc(t_data *data, char *stop_heredoc, char *file)
 {
 	char	*line;
 	int		fd;
@@ -47,7 +47,7 @@ static int	ft_here_doc(t_data *data, char *stop_heredoc, char *file)
 	{
 		line = readline(MSG_HEREDOC);
 		if (ft_strncmp(line, stop_heredoc, \
-			ft_hd_stoplen(line, stop_heredoc)) == 0 || g_global.stop_heredoc)
+			hd_stoplen(line, stop_heredoc)) == 0 || g_global.stop_heredoc)
 		{
 			free(line);
 			free(stop_heredoc);
@@ -63,7 +63,7 @@ static int	ft_here_doc(t_data *data, char *stop_heredoc, char *file)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
+int	heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
 {
 	char	*stop_heredoc;
 
@@ -73,12 +73,12 @@ int	ft_heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
 		{
 			if (cmd->hd_file_name)
 				free(cmd->hd_file_name);
-			cmd->hd_file_name = ft_filename(data);
+			cmd->hd_file_name = filename(data);
 			stop_heredoc = ft_remove_quotes(redirection->str);
 			g_global.stop_heredoc = 0;
 			g_global.in_heredoc = 1;
 			data->heredoc = true;
-			if (ft_here_doc(data, stop_heredoc, cmd->hd_file_name))
+			if (here_doc(data, stop_heredoc, cmd->hd_file_name))
 			{
 				g_global.error_num = 1;
 				reset_data(data);
@@ -90,7 +90,7 @@ int	ft_heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_heredoc_ver(t_data *data, int pipefd[2], char *filename)
+int	heredoc_ver(t_data *data, int pipefd[2], char *filename)
 {
 	int	fd;
 

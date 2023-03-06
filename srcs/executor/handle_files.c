@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_files.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:40 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 11:05:48 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/06 13:57:16 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	outfile(char *outfile, bool type)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_handle_files(t_lexer *redirections, t_cmds *cmd)
+int	handle_files(t_lexer *redirections, t_cmds *cmd)
 {
 	int	result;
 

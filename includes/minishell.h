@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/06 12:22:31 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:01:54 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@
 # include "libft.h"
 
 # define MSG_READLINE "\033[1;36mminishell$ \033[0m"
+# define MSG_HEREDOC "\033[1;32m> \033[0m"
 # define MSG_MALLOC_ERR "malloc error: allocation failure\n"
 # define MSG_QUOTES_ERR "syntax error: near unexpected token `quote'\n"
 # define MSG_PARSER_ERR "syntax error near unexpected token `newline'\n"
-# define MSG_PIPE_ERR "Failed to create pipe\n"
-# define MSG_FORK_ERR "Failed to fork\n"
-# define MSG_HEREDOC "\033[1;32m> \033[0m"
 
 typedef enum s_tokens
 {
@@ -118,13 +116,13 @@ t_cmds		*cmds_first(t_cmds *cmds);
 t_cmds		*cmds_last(t_cmds *cmds);
 /* executor */
 int			executor_init(t_data *data);
-int			ft_executor(t_data *data);
-int			ft_execution(t_data *data, t_cmds *cmd);
-void		ft_one_cmd(t_data *data, t_cmds *cmd);
-int			ft_process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd);
-int			ft_heredoc_ver(t_data *data, int pipefd[2], char *filename);
-int			ft_heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection);
-int			ft_handle_files(t_lexer *redirections, t_cmds *cmd);
+int			execution(t_data *data, t_cmds *cmd);
+int			executor(t_data *data);
+int			handle_files(t_lexer *redirections, t_cmds *cmd);
+int			heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection);
+int			heredoc_ver(t_data *data, int pipefd[2], char *filename);
+void		one_cmd(t_data *data, t_cmds *cmd);
+int			process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd);
 /* lexer */
 int			init_lexer(t_data *data);
 t_lexer		*lexer_new(char *str, int token);

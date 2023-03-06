@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:20 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 11:28:48 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/06 13:59:39 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	not_cmd(char *str)
 	return (127);
 }
 
-int	ft_execution(t_data *data, t_cmds *cmd)
+int	execution(t_data *data, t_cmds *cmd)
 {
 	char	**paths;
 	char	*path;
@@ -63,7 +63,7 @@ static void	ft_waitpid(int *pid, int pipes)
 	return ;
 }
 
-int	ft_executor(t_data *data)
+int	executor(t_data *data)
 {
 	int		pipefd[2];
 	int		fd_in;
@@ -75,12 +75,12 @@ int	ft_executor(t_data *data)
 	{
 		if (cmds->next)
 			pipe(pipefd);
-		ft_heredoc_init(data, data->cmds, data->cmds->redirections);
-		ft_process(data, pipefd, fd_in, cmds);
+		heredoc_init(data, data->cmds, data->cmds->redirections);
+		process(data, pipefd, fd_in, cmds);
 		close(pipefd[1]);
 		if (data->cmds->prev)
 			close(fd_in);
-		fd_in = ft_heredoc_ver(data, pipefd, cmds->hd_file_name);
+		fd_in = heredoc_ver(data, pipefd, cmds->hd_file_name);
 		if (cmds->next)
 			cmds = cmds->next;
 		else
