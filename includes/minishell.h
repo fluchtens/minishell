@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/03 18:09:38 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:35:08 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define MSG_PARSER_ERR "syntax error near unexpected token `newline'\n"
 # define MSG_PIPE_ERR "Failed to create pipe\n"
 # define MSG_FORK_ERR "Failed to fork\n"
+# define MSG_HEREDOC "\033[1;32m> \033[0m"
 
 typedef enum s_tokens
 {
@@ -60,6 +61,8 @@ typedef struct s_data
 	int						*pid;
 	bool					heredoc;
 	bool					reset;
+	int						pidindex;
+	int						heredocindex;
 }	t_data;
 
 typedef struct s_parser
@@ -114,26 +117,24 @@ void		cmds_clear(t_cmds **lst);
 t_cmds		*cmds_first(t_cmds *cmds);
 t_cmds		*cmds_last(t_cmds *cmds);
 /* executor */
-int			init_executor(t_data *data);
-int			check_redirections(t_cmds *cmd);
-char		*join_split_str(char **split_str, char *new_str);
-char		**resplit_str(char **double_arr);
-t_cmds		*call_expander(t_data *data, t_cmds *cmd);
-int			pipe_wait(int *pid, int amount);
-int			executor(t_data *data);
-int			find_cmd(t_cmds *cmd, t_data *data);
-void		handle_cmd(t_cmds *cmd, t_data *data);
-void		dup_cmd(t_cmds *cmd, t_data *data, int end[2], int fd_in);
-void		single_cmd(t_cmds *cmd, t_data *data);
-int			send_heredoc(t_data *data, t_cmds *cmd);
-/* expender */
-char		**expander(t_data *data, char **str);
-char		*expander_str(t_data *data, char *str);
-size_t		dollar_sign(char *str);
-char		*char_to_str(char c);
-int			after_dol_lenght(char *str, int j);
-char		*delete_quotes(char *str, char c);
-int			question_mark(char **tmp);
+
+int			executor_init(t_data *data);
+int			ft_executor(t_data *data);
+int			ft_execution(t_data *data, t_cmds *cmd);
+void		ft_one_cmd(t_data *data, t_cmds *cmd);
+int			ft_process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd);
+int			ft_heredoc_ver(t_data *data, int pipefd[2], char *filename);
+int			ft_heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection);
+int			ft_handle_files(t_lexer *redirections, t_cmds *cmd);
+
+// /* expender */
+// char		**expander(t_data *data, char **str);
+// char		*expander_str(t_data *data, char *str);
+// size_t		dollar_sign(char *str);
+// char		*char_to_str(char c);
+// int			after_dol_lenght(char *str, int j);
+// char		*delete_quotes(char *str, char c);
+// int			question_mark(char **tmp);
 /* lexer */
 int			init_lexer(t_data *data);
 t_lexer		*lexer_new(char *str, int token);

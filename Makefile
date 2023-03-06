@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
+#    By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/03/03 18:40:30 by fluchten         ###   ########.fr        #
+#    Updated: 2023/03/06 11:21:27 by mgomes-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,16 +21,7 @@ INC_DIR = includes
 SRCS_DIR = srcs
 OBJS_DIR = objs
 
-SRCS =	temp/executor/check_redirections.c \
-		temp/executor/executor.c \
-		temp/executor/handle_cmd.c \
-		temp/executor/heredoc.c \
-		temp/executor/executor_utils.c \
-		temp/executor/executor_init.c \
-		temp/expander/expander.c \
-		temp/expander/expanders_utils.c \
-		temp/expander/expanders_utils2.c \
-		builtins/builtins.c \
+SRCS =	builtins/builtins.c \
 		builtins/cd.c \
 		builtins/echo.c \
 		builtins/env.c \
@@ -44,6 +35,11 @@ SRCS =	temp/executor/check_redirections.c \
 		cmds/cmds_lst_add.c \
 		cmds/cmds_lst_clear.c \
 		cmds/cmds_lst_utils.c \
+		executor/executor_init.c \
+		executor/executor.c \
+		executor/handle_files.c \
+		executor/heredoc_init.c \
+		executor/process.c \
 		lexer/lexer_init.c \
 		lexer/lexer_lst_add.c \
 		lexer/lexer_lst_clear.c \
