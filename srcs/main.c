@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/06 11:32:08 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/06 15:49:11 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	loop(t_data *data)
 		if (!init_lexer(data))
 			print_error(MSG_MALLOC_ERR, data);
 		parser(data);
-		executor_init(data);
+		init_executor(data);
 		reset_data(data);
 	}
 }

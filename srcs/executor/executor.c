@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:20 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 13:59:39 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:27:25 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ int	executor(t_data *data)
 			break ;
 	}
 	ft_waitpid(data->pid, data->pipes_count);
-	return (EXIT_SUCCESS);
+	return (0);
 }

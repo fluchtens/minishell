@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:36:55 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 10:10:46 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:27:57 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,5 @@ int	print_export_error(char *c)
 		ft_putstr_fd("\': is ", 2);
 	}
 	ft_putendl_fd("not a valid identifier", 2);
-	return (EXIT_FAILURE);
+	return (1);
 }

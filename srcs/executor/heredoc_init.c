@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:05 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 14:00:45 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:27:55 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ static int	here_doc(t_data *data, char *stop_heredoc, char *file)
 		free(line);
 	}
 	if (g_global.stop_heredoc)
-		return (EXIT_FAILURE);
+		return (1);
 	close(fd);
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 int	heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
@@ -87,7 +87,7 @@ int	heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
 		}
 		redirection = redirection->next;
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 int	heredoc_ver(t_data *data, int pipefd[2], char *filename)

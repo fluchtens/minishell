@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:40 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 13:57:16 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:27:53 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static int	infile(char *infilename)
 	{
 		ft_putstr_fd("\nici infile \n", 2);
 		perror(infilename);
-		return (EXIT_FAILURE);
+		return (1);
 	}
 	dup2(fd, STDIN_FILENO);
 	close(fd);
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 static int	outfile(char *outfile, bool type)
@@ -40,11 +40,11 @@ static int	outfile(char *outfile, bool type)
 	{
 		ft_putstr_fd("\nici infil10101010e \n", 2);
 		perror(outfile);
-		return (EXIT_FAILURE);
+		return (1);
 	}
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 int	handle_files(t_lexer *redirections, t_cmds *cmd)
@@ -63,8 +63,8 @@ int	handle_files(t_lexer *redirections, t_cmds *cmd)
 		else if (redirections->token == GREAT_GREAT)
 			result = outfile(redirections->str, 1);
 		if (result)
-			return (EXIT_FAILURE);
+			return (1);
 		redirections = redirections->next;
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }
