@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/06 11:35:08 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:22:31 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void		cmds_clear(t_cmds **lst);
 t_cmds		*cmds_first(t_cmds *cmds);
 t_cmds		*cmds_last(t_cmds *cmds);
 /* executor */
-
 int			executor_init(t_data *data);
 int			ft_executor(t_data *data);
 int			ft_execution(t_data *data, t_cmds *cmd);
@@ -126,15 +125,6 @@ int			ft_process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd);
 int			ft_heredoc_ver(t_data *data, int pipefd[2], char *filename);
 int			ft_heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection);
 int			ft_handle_files(t_lexer *redirections, t_cmds *cmd);
-
-// /* expender */
-// char		**expander(t_data *data, char **str);
-// char		*expander_str(t_data *data, char *str);
-// size_t		dollar_sign(char *str);
-// char		*char_to_str(char c);
-// int			after_dol_lenght(char *str, int j);
-// char		*delete_quotes(char *str, char c);
-// int			question_mark(char **tmp);
 /* lexer */
 int			init_lexer(t_data *data);
 t_lexer		*lexer_new(char *str, int token);
