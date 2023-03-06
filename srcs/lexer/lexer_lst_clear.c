@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:52:43 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/23 15:24:18 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/06 08:22:22 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_lexer	*lexer_clear_one(t_lexer **lst)
+static t_lexer	*lexer_clear_one_element(t_lexer **lst)
 {
 	if ((*lst)->str)
 	{
@@ -24,42 +24,42 @@ static t_lexer	*lexer_clear_one(t_lexer **lst)
 	return (NULL);
 }
 
-static void	lexer_clear_first(t_lexer **lst)
+static void	lexer_clear_first_element(t_lexer **lst)
 {
-	t_lexer	*node;
+	t_lexer	*current;
 
-	node = *lst;
-	*lst = node->next;
-	lexer_clear_one(&node);
+	current = *lst;
+	*lst = current->next;
+	lexer_clear_one_element(&current);
 	if (*lst)
 		(*lst)->prev = NULL;
 }
 
-void	lexer_delone(t_lexer **lst, int key)
+void	lexer_delone(t_lexer **lst, int index)
 {
-	t_lexer	*node;
+	t_lexer	*current;
 	t_lexer	*prev;
 	t_lexer	*start;
 
 	start = *lst;
-	node = start;
-	if ((*lst)->i == key)
+	current = start;
+	if (current->i == index)
 	{
-		lexer_clear_first(lst);
+		lexer_clear_first_element(lst);
 		return ;
 	}
-	while (node && node->i != key)
+	while (current && current->i < index)
 	{
-		prev = node;
-		node = node->next;
+		prev = current;
+		current = current->next;
 	}
-	if (node)
-		prev->next = node->next;
+	if (current)
+		prev->next = current->next;
 	else
 		prev->next = NULL;
 	if (prev->next)
 		prev->next->prev = prev;
-	lexer_clear_one(&node);
+	lexer_clear_one_element(&current);
 	*lst = start;
 }
 

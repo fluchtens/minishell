@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:46:53 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 07:24:40 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/06 07:20:53 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	cmds_clear(t_cmds **cmds)
 {
 	t_cmds	*current;
-	t_cmds	*temp;
 	t_lexer	*redirections;
+	t_cmds	*temp;
 
 	if (!*cmds)
 		return ;
