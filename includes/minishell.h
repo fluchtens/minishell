@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/06 16:16:00 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/07 09:57:11 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "libft.h"
+# include <sys/errno.h>
 
 # define MSG_READLINE "\033[1;36mminishell$ \033[0m"
 # define MSG_HEREDOC "\033[1;32m> \033[0m"
@@ -123,6 +124,7 @@ int			handle_files(t_lexer *redirections, t_cmds *cmd);
 int			heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection);
 int			heredoc_ver(t_data *data, int pipefd[2], char *filename);
 void		execute_one_cmd(t_data *data, t_cmds *cmd);
+void		child_process(t_data *data, t_cmds *cmd);
 int			process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd);
 /* lexer */
 int			init_lexer(t_data *data);

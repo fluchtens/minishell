@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_paths.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 09:33:52 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/28 08:05:28 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/07 09:11:44 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	parse_paths(t_data *data)
 	int		i;
 
 	path = find_path(data, "PATH=");
-	if (!path)
-		return (0);
 	data->paths = ft_split(path, ':');
 	free(path);
 	i = 0;

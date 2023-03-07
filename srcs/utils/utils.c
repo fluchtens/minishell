@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 08:47:43 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/06 11:38:00 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/07 09:10:39 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*find_path(t_data *data, char *envp)
 			return (ft_substr(data->envp[i], len, new_len));
 		i++;
 	}
-	return (NULL);
+	return (ft_strdup("\0"));
 }
 
 size_t	equal_sign(char *str)

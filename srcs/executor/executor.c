@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:20 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 16:27:25 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/07 09:57:39 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int	ft_execve(char **cmd, char *path, char **env)
 static int	not_cmd(char *str)
 {
 	ft_putstr_fd("minishell : ", 2);
+	printf("%d\n", errno);
 	perror(str);
 	return (127);
 }
@@ -35,13 +36,16 @@ int	execution(t_data *data, t_cmds *cmd)
 	int		i;
 
 	paths = data->paths;
-	i = -1;
-	while (paths[++i])
+	i = 0;
+	if (paths[0])
 	{
-		path = ft_strjoin(paths[i], cmd->str[0]);
-		if (!access(path, F_OK))
-			ft_execve(cmd->str, path, data->envp);
-		free(path);
+		while (paths[i++])
+		{
+			path = ft_strjoin(paths[i], cmd->str[0]);
+			if (!access(path, F_OK))
+				ft_execve(cmd->str, path, data->envp);
+			free(path);
+		}	
 	}
 	return (not_cmd(cmd->str[0]));
 }

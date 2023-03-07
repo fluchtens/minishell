@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_files.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:40 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 16:27:53 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/07 08:59:00 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int	infile(char *infilename)
 	fd = open(infilename, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("\nici infile \n", 2);
 		perror(infilename);
 		return (1);
 	}

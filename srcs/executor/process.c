@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:43 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 16:27:38 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/07 08:23:22 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	child_process(t_data *data, t_cmds *cmd)
+void	child_process(t_data *data, t_cmds *cmd)
 {
 	int	code;
 
@@ -25,28 +25,6 @@ static void	child_process(t_data *data, t_cmds *cmd)
 	else if (cmd->str[0][0])
 		code = execution(data, cmd);
 	exit(code);
-}
-
-void	execute_one_cmd(t_data *data, t_cmds *cmd)
-{
-	int	pid;
-	int	status;
-
-	if (cmd->builtin == ft_cd || cmd->builtin == ft_exit \
-	|| cmd->builtin == ft_export || cmd->builtin == ft_unset)
-	{
-		g_global.error_num = cmd->builtin(data, cmd);
-		return ;
-	}
-	heredoc_init(data, cmd, cmd->redirections);
-	pid = fork();
-	if (pid == -1)
-		print_error(MSG_FORK_ERR, data);
-	if (pid == 0)
-		child_process(data, cmd);
-	waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		g_global.error_num = WEXITSTATUS(status);
 }
 
 static void	child_init(t_data *data, t_cmds *cmd, int fd_in, int pipefd[2])
