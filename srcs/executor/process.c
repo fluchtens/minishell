@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:43 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/07 08:23:22 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:16:28 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,6 @@ static void	child_init(t_data *data, t_cmds *cmd, int fd_in, int pipefd[2])
 
 int	process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd)
 {
-	if (data->reset == true)
-	{
-		data->pidindex = 0;
-		data->reset = false;
-	}
 	data->pid[data->pidindex] = fork();
 	if (data->pid[data->pidindex] < 0)
 		print_error("Failed to fork\n", data);

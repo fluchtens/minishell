@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:20 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/07 09:57:39 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:28:47 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ static int	ft_execve(char **cmd, char *path, char **env)
 
 static int	not_cmd(char *str)
 {
-	ft_putstr_fd("minishell : ", 2);
-	printf("%d\n", errno);
-	perror(str);
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(str, 2);
+	if (errno == 14)
+		ft_putendl_fd(": command not found", 2);
+	else if (errno == 22)
+		ft_putendl_fd(": No such file or directory", 2);
 	return (127);
 }
 

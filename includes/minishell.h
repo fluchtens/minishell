@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/07 09:57:11 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:15:50 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct s_data
 	int						pipes_count;
 	int						*pid;
 	bool					heredoc;
-	bool					reset;
 	int						pidindex;
 	int						heredocindex;
 }	t_data;

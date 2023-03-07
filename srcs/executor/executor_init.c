@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:04:55 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/06 16:27:21 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:02:14 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ int	init_executor(t_data *data)
 {
 	signal(SIGQUIT, sigquit_handler);
 	g_global.in_cmd = 1;
-	if (!data->pipes_count)
-		execute_one_cmd(data, data->cmds);
-	else
-	{
+	if (data->pipes_count > 0)
+	{	
 		data->pid = ft_calloc(sizeof(int), (data->pipes_count + 2));
 		if (!data->pid)
 			return (print_error(MSG_MALLOC_ERR, data));
 		executor(data);
 	}
+	else
+		execute_one_cmd(data, data->cmds);
 	g_global.in_cmd = 0;
 	return (0);
 }

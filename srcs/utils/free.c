@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:48:34 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/07 09:08:57 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:15:25 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,4 @@ void	reset_data(t_data *data)
 	if (data->pid)
 		free(data->pid);
 	initialization(data);
-	data->reset = true;
 }

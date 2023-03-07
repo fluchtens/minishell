@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 08:47:43 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/07 09:10:39 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:15:31 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	initialization(t_data *data)
 	data->cmds = NULL;
 	data->pid = NULL;
 	data->heredoc = false;
-	data->reset = false;
 	data->pidindex = 0;
 	g_global.stop_heredoc = 0;
 	g_global.in_cmd = 0;
