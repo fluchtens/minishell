@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/03/08 07:48:56 by fluchten         ###   ########.fr        #
+#    Updated: 2023/03/08 10:49:21 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,12 +51,12 @@ SRCS =	builtins/builtins.c \
 		parsing/parse_envp.c \
 		parsing/parse_paths.c \
 		parsing/parse_pwd.c \
-		redirections/redirections.c \
-		signals/signals.c \
 		temp/temp.c \
 		utils/error.c \
 		utils/free.c \
+		utils/redirections.c \
 		utils/remove_quotes.c \
+		utils/signals.c \
 		utils/utils.c \
 		main.c
 
