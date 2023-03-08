@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 07:49:14 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 09:42:41 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,9 +157,9 @@ int			print_unknown_cmd_error(char *str);
 int			print_export_error(char *c);
 void		free_array(char **array);
 void		free_everythings(t_data *data);
+void		exit_loop(t_data *data);
 void		reset_data(t_data *data);
 void		initialization(t_data *data);
-void		exit_loop(t_data *data);
 char		*ft_remove_quotes(char *str);
 char		*find_path(t_data *data, char *envp);
 size_t		equal_sign(char *str);
