@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 08:47:43 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/07 11:15:31 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/08 08:39:39 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	initialization(t_data *data)
 
 void	exit_loop(t_data *data)
 {
-	ft_putstr_fd("exit\n", 0);
+	ft_putstr_fd("exit\n", 1);
 	free_array(data->envp);
 	free_array(data->paths);
 	free(data->pwd);
