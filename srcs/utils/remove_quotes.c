@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 11:58:29 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/03 12:06:31 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:10:15 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*ft_remove_quotes(char *str)
 	char	*final;
 
 	i = 0;
-	final = NULL;
+	final = ft_strdup("\0");
 	if (!str)
 		return (NULL);
 	while (str[i])
