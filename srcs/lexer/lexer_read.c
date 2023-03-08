@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 15:25:44 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 07:40:12 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 07:44:31 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	read_string(char *str, int i, t_lexer **lexer)
 	j = 0;
 	while (str[i + j] && !is_token(str[i + j]))
 	{
-		if (str[i + j] == 34 || str[i + j] == 39)
+		if (ft_isquote(str[i + j]))
 		{
 			j += str_quotes_len(str, i + j, str[i + j]);
 			continue ;
