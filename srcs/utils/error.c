@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:36:55 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/07 08:33:19 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:45:32 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	print_error(char *str, t_data *data)
 {
 	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(str, 2);
+	ft_putendl_fd(str, 2);
 	reset_data(data);
 	loop(data);
 	return (1);
@@ -34,7 +34,7 @@ int	print_token_error(t_data *data, t_lexer *lexer, t_tokens token)
 		ft_putstr_fd("'<<'", 2);
 	else if (token == PIPE)
 		ft_putstr_fd("'|'", 2);
-	ft_putstr_fd("\n", 2);
+	ft_putchar_fd('\n', 2);
 	lexer_clear(&lexer);
 	reset_data(data);
 	loop(data);
@@ -51,7 +51,7 @@ int	print_unknown_cmd_error(char *str)
 {
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(str, 2);
-	ft_putstr_fd(": command not found\n", 2);
+	ft_putendl_fd(": command not found", 2);
 	return (127);
 }
 

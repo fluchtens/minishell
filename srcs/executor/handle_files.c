@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_files.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:40 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/07 08:59:00 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:27:32 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int	outfile(char *outfile, bool type)
 		fd = open(outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{
-		ft_putstr_fd("\nici infil10101010e \n", 2);
 		perror(outfile);
 		return (1);
 	}

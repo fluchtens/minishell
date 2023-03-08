@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 09:42:41 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:46:53 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 
 # define MSG_READLINE "\033[1;36mminishell$ \033[0m"
 # define MSG_HEREDOC "\033[1;32m> \033[0m"
-# define MSG_MALLOC_ERR "malloc error: allocation failure\n"
-# define MSG_QUOTES_ERR "syntax error: near unexpected token `quote'\n"
-# define MSG_PARSER_ERR "syntax error near unexpected token `newline'\n"
-# define MSG_FORK_ERR "fork() failed: pid error\n"
+# define MSG_MALLOC_ERR "malloc error: allocation failure"
+# define MSG_QUOTES_ERR "syntax error: near unexpected token `quote'"
+# define MSG_PARSER_ERR "syntax error near unexpected token `newline'"
+# define MSG_FORK_ERR "fork() failed: pid error"
 
 typedef enum s_tokens
 {

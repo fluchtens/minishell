@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:06:58 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/02 19:18:51 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:44:45 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ int	ft_cd(t_data *data, t_cmds *cmds)
 	if (!cmds->str[1])
 	{
 		path = find_path(data, "HOME=");
-		if (!path)
-			return (ft_print_error("minishell: cd: HOME not set"));
+		if (!path[0])
+			return (print_error("minishell: cd: HOME not set", data));
 	}
 	else if (ft_strncmp(cmds->str[1], "-", 1) == 0)
 	{
 		path = find_path(data, "OLDPWD=");
+		if (!path[0])
+			return (print_error("minishell: cd: OLDPWD not set", data));
 		ft_putendl_fd(path, 1);
-		if (!path)
-			return (ft_print_error("minishell: cd: OLDPWD not set"));
 	}
 	else
 		path = ft_strdup(cmds->str[1]);

@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 09:04:51 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 07:45:13 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:27:58 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	readline_event(void)
 static void	sigint_handler(int sig)
 {
 	if (!g_global.in_heredoc)
-		ft_putstr_fd("\n", 2);
+		ft_putchar_fd('\n', 2);
 	if (g_global.in_cmd)
 	{
 		g_global.stop_heredoc = 1;

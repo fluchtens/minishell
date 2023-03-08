@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:48:34 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 09:42:29 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:31:04 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	free_everythings(t_data *data)
 
 void	exit_loop(t_data *data)
 {
-	ft_putstr_fd("exit\n", 1);
+	ft_putendl_fd("exit", 1);
 	free_array(data->envp);
 	free_array(data->paths);
 	free(data->pwd);

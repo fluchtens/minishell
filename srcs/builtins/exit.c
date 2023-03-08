@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:58:46 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/27 20:37:58 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:24:56 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	exit_code(char **str)
 	{
 		ft_putstr_fd("minishell: exit: ", 2);
 		ft_putstr_fd(str[1], 2);
-		ft_putstr_fd(": numeric argument required\n", 2);
+		ft_putendl_fd(": numeric argument required", 2);
 		code = 255;
 	}
 	return (code);
@@ -40,7 +40,7 @@ int	ft_exit(t_data *data, t_cmds *cmds)
 	ft_putendl_fd("exit", 2);
 	if (args > 2)
 	{
-		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+		ft_putendl_fd("minishell: exit: too many arguments", 2);
 		return (1);
 	}
 	else
