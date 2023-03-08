@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 11:27:20 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:56:59 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,13 +123,15 @@ t_cmds		*cmds_last(t_cmds *cmds);
 /* executor */
 int			init_executor(t_data *data);
 int			execution(t_data *data, t_cmds *cmd);
-int			executor(t_data *data);
+int			execute_multiple_cmd(t_data *data);
 int			handle_files(t_lexer *redirections, t_cmds *cmd);
 int			heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection);
 int			heredoc_ver(t_data *data, int pipefd[2], char *filename);
 void		execute_one_cmd(t_data *data, t_cmds *cmd);
 void		child_process(t_data *data, t_cmds *cmd);
 int			process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd);
+/* expander */
+char		**expander(t_data *data, char **str);
 /* lexer */
 void		init_lexer(t_data *data);
 t_lexer		*lexer_new(char *str, int token);

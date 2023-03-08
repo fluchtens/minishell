@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:20 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/07 11:28:47 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:57:10 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	ft_waitpid(int *pid, int pipes)
 	return ;
 }
 
-int	executor(t_data *data)
+int	execute_multiple_cmd(t_data *data)
 {
 	int		pipefd[2];
 	int		fd_in;
@@ -82,6 +82,7 @@ int	executor(t_data *data)
 	{
 		if (cmds->next)
 			pipe(pipefd);
+		cmds->str = expander(data, cmds->str);
 		heredoc_init(data, data->cmds, data->cmds->redirections);
 		process(data, pipefd, fd_in, cmds);
 		close(pipefd[1]);
