@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 07:35:39 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 07:46:50 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	loop(t_data *data)
 		if (!ft_is_closed_quotes(data->line))
 			print_error(MSG_QUOTES_ERR, data);
 		init_lexer(data);
-		parser(data);
+		init_parser(data);
 		init_executor(data);
 		reset_data(data);
 	}

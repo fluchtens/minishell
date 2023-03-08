@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:11:45 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/06 08:11:58 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 07:46:47 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	init_parser_table(t_data *data, t_lexer *lexer, t_parser *parser)
 	parser->num_redirections = 0;
 }
 
-void	parser(t_data *data)
+void	init_parser(t_data *data)
 {
 	t_cmds		*temp;
 	t_parser	parser;
