@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.c                                         :+:      :+:    :+:   */
+/*   expander_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 09:42:26 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/08 12:08:38 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/08 12:16:12 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*expander_utils(char *str, t_data *data)
 	return (final);
 }
 
-char	**expander(t_data *data, char **str)
+char	**init_expander(t_data *data, char **str)
 {
 	char	*temp;
 	int		i;
