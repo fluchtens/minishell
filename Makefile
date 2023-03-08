@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+         #
+#    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/03/07 08:22:14 by mgomes-d         ###   ########.fr        #
+#    Updated: 2023/03/08 07:38:52 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,12 +54,12 @@ SRCS =	builtins/builtins.c \
 		parsing/parse_paths.c \
 		parsing/parse_pwd.c \
 		signals/signals.c \
+		temp/temp.c \
 		utils/error.c \
 		utils/free.c \
 		utils/remove_quotes.c \
 		utils/utils.c \
-		main.c \
-		temp.c
+		main.c
 
 OBJS = $(addprefix ${OBJS_DIR}/, ${SRCS:%.c=%.o})
 
