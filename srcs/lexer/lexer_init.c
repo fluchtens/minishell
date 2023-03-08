@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:23:52 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 12:35:06 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 07:36:17 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	init_lexer(t_data *data)
+void	init_lexer(t_data *data)
 {
 	int	len;
 	int	i;
@@ -28,8 +28,7 @@ int	init_lexer(t_data *data)
 		else
 			len = read_string(data->line, i, &data->lexer);
 		if (len < 0)
-			return (0);
+			print_error(MSG_MALLOC_ERR, data);
 		i += len;
 	}
-	return (1);
 }
