@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 07:46:54 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 07:49:14 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,11 +140,12 @@ int			lexer_count_pipes(t_lexer *lexer);
 int			lexer_count_args(t_lexer *lexer);
 /* parser */
 void		init_parser(t_data *data);
-void		remove_redirections(t_parser *parser);
 /* parsing */
 int			parse_envp(t_data *data, char **envp);
 int			parse_paths(t_data *data);
 int			parse_pwd(t_data *data);
+/* redirections */
+void		remove_redirections(t_parser *parser);
 /* signals */
 void		init_signals(void);
 void		sigquit_handler(int sig);
