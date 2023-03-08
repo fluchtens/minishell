@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 07:35:22 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 07:40:51 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,9 @@ void		lexer_add_back(t_lexer **lexer, t_lexer *new);
 void		lexer_delone(t_lexer **lst, int i);
 void		lexer_clear(t_lexer **lexer);
 t_lexer		*lexer_last(t_lexer *lexer);
-int			read_string(char *str, int i, t_lexer **lexer);
 t_tokens	is_token(char c);
 int			read_token(char *line, int i, t_lexer **lexer);
+int			read_string(char *str, int i, t_lexer **lexer);
 int			lexer_add_element(char *line, t_tokens token, t_lexer **lexer);
 int			lexer_count_pipes(t_lexer *lexer);
 int			lexer_count_args(t_lexer *lexer);

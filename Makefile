@@ -6,7 +6,7 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/03/08 07:38:52 by fluchten         ###   ########.fr        #
+#    Updated: 2023/03/08 07:41:03 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,7 @@ SRCS =	builtins/builtins.c \
 		lexer/lexer_lst_add.c \
 		lexer/lexer_lst_clear.c \
 		lexer/lexer_lst_utils.c \
-		lexer/lexer_read_string.c \
-		lexer/lexer_read_token.c \
+		lexer/lexer_read.c \
 		lexer/lexer_utils.c \
 		parser/parser_init.c \
 		parser/redirections.c \
