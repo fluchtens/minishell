@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   one_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 08:21:43 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/07 08:21:59 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:24:58 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	execute_one_cmd(t_data *data, t_cmds *cmd)
 	heredoc_init(data, cmd, cmd->redirections);
 	pid = fork();
 	if (pid == -1)
-		print_error(MSG_FORK_ERR, data);
+		print_error(ERR_FORK, data);
 	if (pid == 0)
 		child_process(data, cmd);
 	waitpid(pid, &status, 0);

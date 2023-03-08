@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 10:46:53 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:27:20 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,15 @@
 
 # define MSG_READLINE "\033[1;36mminishell$ \033[0m"
 # define MSG_HEREDOC "\033[1;32m> \033[0m"
-# define MSG_MALLOC_ERR "malloc error: allocation failure"
-# define MSG_QUOTES_ERR "syntax error: near unexpected token `quote'"
-# define MSG_PARSER_ERR "syntax error near unexpected token `newline'"
-# define MSG_FORK_ERR "fork() failed: pid error"
+# define ERR_MALLOC "malloc() failed"
+# define ERR_ENVP "error: envp parsing"
+# define ERR_PWD "error: pwd parsing"
+# define ERR_QUOTES "syntax error: near unexpected token `quote'"
+# define ERR_TOKEN "syntax error near unexpected token `newline'"
+# define ERR_HOME_NOT_SET "minishell: cd: HOME not set"
+# define ERR_OLDPWD_NOT_SET "minishell: cd: OLDPWD not set"
+# define ERR_FORK "fork() failed"
+# define ERR_DUP2 "dup2() failed"
 
 typedef enum s_tokens
 {

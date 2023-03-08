@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:11:45 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 07:46:47 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:14:17 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_parser(t_data *data)
 		init_parser_table(data, data->lexer, &parser);
 		temp = init_cmds(&parser);
 		if (!temp)
-			print_parser_error(MSG_MALLOC_ERR, parser.data, parser.lexer);
+			print_parser_error(ERR_MALLOC, parser.data, parser.lexer);
 		cmds_add_back(&data->cmds, temp);
 		data->lexer = parser.lexer;
 	}

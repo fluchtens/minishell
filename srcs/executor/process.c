@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:43 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/07 11:16:28 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:26:42 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	child_process(t_data *data, t_cmds *cmd)
 static void	child_init(t_data *data, t_cmds *cmd, int fd_in, int pipefd[2])
 {
 	if (cmd->prev && dup2(fd_in, STDIN_FILENO) < 0)
-		print_error("Failed to create pipe\n", data);
+		print_error(ERR_DUP2, data);
 	close(pipefd[0]);
 	if (cmd->next && dup2(pipefd[1], STDOUT_FILENO) < 0)
-		print_error("Failed to create pipe\n", data);
+		print_error(ERR_DUP2, data);
 	close(pipefd[1]);
 	if (cmd->prev)
 		close(fd_in);
@@ -44,7 +44,7 @@ int	process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd)
 {
 	data->pid[data->pidindex] = fork();
 	if (data->pid[data->pidindex] < 0)
-		print_error("Failed to fork\n", data);
+		print_error(ERR_FORK, data);
 	if (data->pid[data->pidindex] == 0)
 		child_init(data, cmd, fd_in, pipefd);
 	data->pidindex++;

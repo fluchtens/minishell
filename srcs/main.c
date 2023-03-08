@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 07:46:50 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:20:42 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	loop(t_data *data)
 		}
 		add_history(data->line);
 		if (!ft_is_closed_quotes(data->line))
-			print_error(MSG_QUOTES_ERR, data);
+			print_error(ERR_QUOTES, data);
 		init_lexer(data);
 		init_parser(data);
 		init_executor(data);
@@ -46,11 +46,11 @@ int	main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 	if (!parse_envp(&data, envp))
-		return (ft_print_error("error: envp parsing error"));
+		return (ft_print_error(ERR_ENVP));
 	if (!parse_pwd(&data))
 	{
 		free_array(data.envp);
-		return (ft_print_error("error: pwd parsing error"));
+		return (ft_print_error(ERR_PWD));
 	}
 	initialization(&data);
 	loop(&data);
