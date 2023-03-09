@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:48:24 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/06 08:09:59 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/09 10:46:09 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ t_cmds	*init_cmds(t_parser *parser)
 		temp = parser->lexer;
 		i++;
 	}
-	return (cmds_new(final, parser->num_redirections, parser->redirections));
+	return (cmds_new(final, parser->redirections));
 }

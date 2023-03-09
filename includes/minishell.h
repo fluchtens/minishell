@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/09 09:40:46 by mgomes-d         ###   ########.fr       */
-=======
-/*   Updated: 2023/03/09 09:26:30 by fluchten         ###   ########.fr       */
->>>>>>> 4f965626cb2f8ddb6b746d8033d843c8d2426408
+/*   Updated: 2023/03/09 10:46:24 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +74,12 @@ typedef struct s_parser
 	t_data	*data;
 	t_lexer	*lexer;
 	t_lexer	*redirections;
-	int		num_redirections;
 }	t_parser;
 
 typedef struct s_cmds
 {
 	char			**str;
 	int				(*builtin)(t_data *, struct s_cmds *);
-	int				num_redirections;
 	char			*hd_file_name;
 	t_lexer			*redirections;
 	struct s_cmds	*next;
@@ -119,7 +113,7 @@ int			check_unset_cmd(t_cmds *cmds);
 int			ft_unset(t_data *data, t_cmds *cmds);
 /* cmds */
 t_cmds		*init_cmds(t_parser *parser);
-t_cmds		*cmds_new(char **str, int num_redirections, t_lexer *redirections);
+t_cmds		*cmds_new(char **str, t_lexer *redirections);
 void		cmds_add_back(t_cmds **lst, t_cmds *new);
 void		cmds_clear(t_cmds **lst);
 t_cmds		*cmds_first(t_cmds *cmds);

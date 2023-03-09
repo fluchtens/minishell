@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 07:33:47 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 11:18:56 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/09 10:45:43 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	redirection_add(t_parser *parser, t_lexer *temp)
 	lexer_add_back(&parser->redirections, new);
 	lexer_delone(&parser->lexer, temp->i);
 	lexer_delone(&parser->lexer, temp->next->i);
-	parser->num_redirections++;
 }
 
 void	remove_redirections(t_parser *parser)
