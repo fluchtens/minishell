@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 15:25:44 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 07:44:31 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:27:14 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	read_token(char *line, int i, t_lexer **lexer)
 	}
 	else if (token)
 		len = 1;
-	if (!lexer_add_element(NULL, token, lexer))
+	if (!lexer_add_element(lexer, NULL, token))
 		return (-1);
 	return (len);
 }
@@ -79,7 +79,7 @@ int	read_string(char *str, int i, t_lexer **lexer)
 			break ;
 		j++;
 	}
-	if (!lexer_add_element(ft_substr(str, i, j), 0, lexer))
+	if (!lexer_add_element(lexer, ft_substr(str, i, j), 0))
 		return (-1);
 	return (j);
 }
