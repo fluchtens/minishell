@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 09:42:26 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/09 10:52:49 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/09 10:56:32 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,5 @@ void	init_expander(t_data *data, t_cmds *cmds)
 		cmds->str[i] = ft_remove_quotes(temp);
 		free(temp);
 	}
-	system("leaks minishell");
 	return ;
 }
