@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   one_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 08:21:43 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/08 12:16:16 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:04:52 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	execute_one_cmd(t_data *data, t_cmds *cmd)
 		g_global.error_num = cmd->builtin(data, cmd);
 		return ;
 	}
-	data->cmds->str = init_expander(data, data->cmds->str);
+	init_expander(data, cmd);
 	heredoc_init(data, cmd, cmd->redirections);
 	pid = fork();
 	if (pid == -1)

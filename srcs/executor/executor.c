@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:20 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/08 12:16:18 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:03:59 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	execute_multiple_cmd(t_data *data)
 	{
 		if (cmds->next)
 			pipe(pipefd);
-		cmds->str = init_expander(data, cmds->str);
+		init_expander(data, cmds);
 		heredoc_init(data, data->cmds, data->cmds->redirections);
 		process(data, pipefd, fd_in, cmds);
 		close(pipefd[1]);

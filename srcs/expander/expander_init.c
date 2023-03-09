@@ -3,30 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   expander_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 09:42:26 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/08 12:16:12 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:42:06 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*get_env_data(char *str, t_data *data)
+void	get_env_data(char **str, t_data *data, char **final)
 {
 	char	*temp;
 	char	*path;
+	char	*temp2;
 
-	temp = ft_strjoin(str, "=");
+	temp = ft_strjoin(*str, "=");
 	path = find_path(data, temp);
-	return (path);
+	temp2 = ft_strdup(*final);
+	if (*final)
+		free(*final);
+	*final = ft_strjoin(temp2, path);
+	free(temp2);
+	free(path);
+	free(temp);
+	free(*str);
+	return ;
 }
 
 static char	*expander_utils(char *str, t_data *data)
 {
 	int		i;
 	int		j;
-	char	*result;
 	char	*temp;
 	char	*final;
 
@@ -34,15 +42,14 @@ static char	*expander_utils(char *str, t_data *data)
 	final = ft_strdup("\0");
 	while (str[i])
 	{
-		if (str[i] && str[i + 1] && str[i] == 36 && str[i + 1] != 36)
+		if (str[i] && str[i] == 36)
 		{
 			j = 0;
-			while (str[i + 1 + j] && !ft_iswhitespace(str[i + j]) \
-			&& str[i] != 39 && str[i] != 34)
+			while (str[i + 1 + j] && !ft_iswhitespace(str[i + 1 + j]) \
+			&& str[i + 1 + j] != 39 && str[i + 1 + j] != 34)
 				j++;
 			temp = ft_substr(str, i + 1, j);
-			result = get_env_data(temp, data);
-			final = ft_strjoin(final, result);
+			get_env_data(&temp, data, &final);
 			i += j + 1;
 		}
 		else
@@ -51,16 +58,18 @@ static char	*expander_utils(char *str, t_data *data)
 	return (final);
 }
 
-char	**init_expander(t_data *data, char **str)
+void	init_expander(t_data *data, t_cmds *cmds)
 {
 	char	*temp;
 	int		i;
 
 	i = -1;
-	while (str[++i])
+	while (cmds->str[++i])
 	{
-		temp = expander_utils(str[i], data);
-		str[i] = ft_remove_quotes(temp);
+		temp = expander_utils(cmds->str[i], data);
+		free(cmds->str[i]);
+		cmds->str[i] = ft_remove_quotes(temp);
+		free(temp);
 	}
-	return (str);
+	return ;
 }
