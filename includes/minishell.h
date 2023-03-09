@@ -6,7 +6,11 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/09 09:40:46 by mgomes-d         ###   ########.fr       */
+=======
+/*   Updated: 2023/03/09 09:26:30 by fluchten         ###   ########.fr       */
+>>>>>>> 4f965626cb2f8ddb6b746d8033d843c8d2426408
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +146,7 @@ t_lexer		*lexer_last(t_lexer *lexer);
 t_tokens	is_token(char c);
 int			read_token(char *line, int i, t_lexer **lexer);
 int			read_string(char *str, int i, t_lexer **lexer);
-int			lexer_add_element(char *line, t_tokens token, t_lexer **lexer);
+int			lexer_add_element(t_lexer **lexer, char *str, t_tokens token);
 int			lexer_count_pipes(t_lexer *lexer);
 int			lexer_count_args(t_lexer *lexer);
 /* parser */

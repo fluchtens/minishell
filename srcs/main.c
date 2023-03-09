@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/09 08:12:54 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/09 08:27:57 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 void	loop(t_data *data)
 {
+	char	*temp;
+
 	while (1)
 	{
 		data->line = readline(MSG_READLINE);
+		temp = ft_strtrim(data->line, " ");
+		free(data->line);
+		data->line = temp;
 		if (!data->line)
 			exit_loop(data);
 		if (!data->line[0])
