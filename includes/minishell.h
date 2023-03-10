@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/09 10:46:24 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/10 10:20:29 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,36 @@ typedef enum s_tokens
 typedef struct s_lexer
 {
 	char			*str;
-	t_tokens		token;
+	enum s_tokens	token;
 	int				i;
 	struct s_lexer	*next;
 	struct s_lexer	*prev;
 }	t_lexer;
 
+typedef struct s_parser
+{
+	struct s_data	*data;
+	struct s_lexer	*lexer;
+	struct s_lexer	*redirections;
+}	t_parser;
+
+typedef struct s_cmds
+{
+	char			**str;
+	int				(*builtin)(struct s_data *, struct s_cmds *);
+	char			*hd_file_name;
+	struct s_lexer	*redirections;
+	struct s_cmds	*next;
+	struct s_cmds	*prev;
+}	t_cmds;
+
 typedef struct s_data
 {
+	struct s_cmds			*cmds;
+	struct s_lexer			*lexer;
 	char					*line;
 	char					**paths;
 	char					**envp;
-	struct s_cmds			*cmds;
-	t_lexer					*lexer;
 	char					*pwd;
 	char					*old_pwd;
 	int						pipes_count;
@@ -68,23 +85,6 @@ typedef struct s_data
 	int						pidindex;
 	int						heredocindex;
 }	t_data;
-
-typedef struct s_parser
-{
-	t_data	*data;
-	t_lexer	*lexer;
-	t_lexer	*redirections;
-}	t_parser;
-
-typedef struct s_cmds
-{
-	char			**str;
-	int				(*builtin)(t_data *, struct s_cmds *);
-	char			*hd_file_name;
-	t_lexer			*redirections;
-	struct s_cmds	*next;
-	struct s_cmds	*prev;
-}	t_cmds;
 
 typedef struct s_global
 {
