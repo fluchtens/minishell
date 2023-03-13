@@ -6,14 +6,14 @@
 #    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/03/10 10:53:38 by fluchten         ###   ########.fr        #
+#    Updated: 2023/03/13 09:27:56 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #${FSANITIZE}
+CFLAGS = -Wall -Wextra -Werror ${FSANITIZE}
 FSANITIZE = -fsanitize=address -g
 RM = rm -rf
 

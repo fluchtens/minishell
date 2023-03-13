@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 09:15:50 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 09:45:54 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/13 09:59:02 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	ft_pwd(t_data *data, t_cmds *cmds)
 {
+	char	*temp;
+
+	(void) data;
 	(void) cmds;
-	ft_putendl_fd(data->pwd, 1);
+	temp = getcwd(NULL, sizeof(NULL));
+	ft_putendl_fd(temp, 1);
+	free(temp);
 }

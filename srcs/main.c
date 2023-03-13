@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/09 08:27:57 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/13 09:30:14 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,7 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 	if (!parse_envp(&data, envp))
 		return (ft_print_error(ERR_ENVP));
-	if (!parse_pwd(&data))
-	{
-		free_array(data.envp);
-		return (ft_print_error(ERR_PWD));
-	}
+	parse_pwd(&data);
 	initialization(&data);
 	loop(&data);
 	return (0);
