@@ -6,16 +6,11 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 09:04:51 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 10:27:58 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/13 08:45:34 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	readline_event(void)
-{
-	return (0);
-}
 
 static void	sigint_handler(int sig)
 {
@@ -37,7 +32,6 @@ static void	sigint_handler(int sig)
 
 void	init_signals(void)
 {
-	rl_event_hook = readline_event;
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 }
