@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 09:02:05 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 09:48:27 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:15:59 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env(t_data *data, t_cmds *cmds)
+int	ft_env(t_data *data, t_cmds *cmds)
 {
 	int		i;
 
@@ -23,4 +23,5 @@ void	ft_env(t_data *data, t_cmds *cmds)
 		ft_putendl_fd(data->envp[i], 1);
 		i++;
 	}
+	return (0);
 }
