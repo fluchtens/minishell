@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:43 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/08 11:26:42 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/13 11:18:57 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	child_process(t_data *data, t_cmds *cmd)
 			exit(1);
 	if (cmd->builtin)
 		code = cmd->builtin(data, cmd);
-	else if (cmd->str[0][0])
+	else if (cmd->str[0])
 		code = execution(data, cmd);
 	exit(code);
 }
