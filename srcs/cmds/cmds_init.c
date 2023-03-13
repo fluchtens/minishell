@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cmds_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:48:24 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/10 11:00:21 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/13 11:12:34 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	redirection_add_element(t_parser *parser, t_lexer **temp)
+static void	add_element(t_parser *parser, t_lexer *temp, int i, int j)
 {
 	t_lexer	*new;
 
-	new = lexer_new(ft_strdup((*temp)->next->str), (*temp)->token);
+	new = lexer_new(ft_strdup(temp->next->str), temp->token);
 	if (!new)
 		print_parser_error(ERR_MALLOC, parser->data, parser->lexer);
 	lexer_add_back(&parser->redirections, new);
-	lexer_delone(&parser->lexer, (*temp)->i);
-	lexer_delone(&parser->lexer, (*temp)->next->i);
-	*temp = (*temp)->next->next;
+	lexer_delone(&parser->lexer, i);
+	lexer_delone(&parser->lexer, j);
 }
 
 static void	remove_redirections(t_parser *parser)
@@ -39,7 +38,7 @@ static void	remove_redirections(t_parser *parser)
 	if (temp->next->token)
 		print_token_error(parser->data, parser->lexer, temp->next->token);
 	if ((temp->token >= GREAT && temp->token <= LESS_LESS))
-		redirection_add_element(parser, &temp);
+		add_element(parser, temp, temp->i, temp->next->i);
 	remove_redirections(parser);
 }
 
