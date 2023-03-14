@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:06:58 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 11:23:54 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/14 08:42:17 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,50 @@ static void	update_pwd(t_data *data)
 	data->pwd = getcwd(NULL, sizeof(NULL));
 }
 
+static void	create_pwd_envp(t_data *data, int *pwd_exist, int *oldpwd_exist)
+{
+	char	*temp;
+
+	if (!*pwd_exist)
+	{
+		temp = ft_strjoin("PWD=", data->pwd);
+		data->envp = add_var_envp(data->envp, temp);
+		free(temp);
+	}
+	if (!*oldpwd_exist)
+	{
+		temp = ft_strjoin("OLDPWD=", data->old_pwd);
+		data->envp = add_var_envp(data->envp, temp);
+		free(temp);
+	}
+}
+
 static void	update_pwd_envp(t_data *data)
 {
+	int	pwd_exist;
+	int	oldpwd_exist;
 	int	i;
 
 	i = 0;
+	oldpwd_exist = 0;
+	pwd_exist = 0;
 	while (data->envp[i])
 	{
 		if (!ft_strncmp(data->envp[i], "PWD=", 4))
 		{
+			pwd_exist = 1;
 			free(data->envp[i]);
 			data->envp[i] = ft_strjoin("PWD=", data->pwd);
 		}
 		if (!ft_strncmp(data->envp[i], "OLDPWD=", 7))
 		{
+			oldpwd_exist = 1;
 			free(data->envp[i]);
 			data->envp[i] = ft_strjoin("OLDPWD=", data->old_pwd);
 		}
 		i++;
 	}
+	create_pwd_envp(data, &pwd_exist, &oldpwd_exist);
 }
 
 static int	path_perror(char *path)

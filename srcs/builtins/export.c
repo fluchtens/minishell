@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 20:45:11 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/13 12:15:41 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/14 08:32:56 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	**fill_export_envp(char **final, char **envp, char *var)
 	return (final);
 }
 
-static char	**add_var_envp(char **envp, char *var)
+char	**add_var_envp(char **envp, char *var)
 {
 	char	**final;
 	int		array_len;
