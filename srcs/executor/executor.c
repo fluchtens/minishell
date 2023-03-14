@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:20 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/09 09:03:59 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/14 09:53:08 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	execution(t_data *data, t_cmds *cmd)
 
 	paths = data->paths;
 	i = 0;
+	if (!access(cmd->str[0], F_OK))
+		execve(cmd->str[0], cmd->str, data->envp);
 	if (paths[0])
 	{
 		while (paths[i++])
