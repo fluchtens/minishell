@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:48:24 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/13 11:12:34 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/14 10:04:03 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	remove_redirections(t_parser *parser)
 	temp = parser->lexer;
 	while (temp && !temp->token)
 		temp = temp->next;
-	if (!temp || temp->token == PIPE)
+	if (!temp || (temp->token == PIPE && temp->next))
 		return ;
 	if (!temp->next)
 		print_parser_error(ERR_TOKEN, parser->data, parser->lexer);
