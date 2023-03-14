@@ -6,19 +6,11 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:06:58 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/14 08:42:17 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/14 09:51:15 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	update_pwd(t_data *data)
-{
-	free(data->old_pwd);
-	data->old_pwd = ft_strdup(data->pwd);
-	free(data->pwd);
-	data->pwd = getcwd(NULL, sizeof(NULL));
-}
 
 static void	create_pwd_envp(t_data *data, int *pwd_exist, int *oldpwd_exist)
 {
@@ -74,28 +66,45 @@ static int	path_perror(char *path)
 	return (1);
 }
 
-int	ft_cd(t_data *data, t_cmds *cmds)
+static char	*path_cd_args(t_data *data, t_cmds *cmds, int *path_exist)
 {
 	char	*path;
-	int		ret;
 
 	if (!cmds->str[1])
 	{
 		path = find_path(data, "HOME=");
 		if (!path[0])
-			return (print_error(ERR_HOME_NOT_SET, data));
+		{
+			ft_putendl_fd(ERR_HOME_NOT_SET, 2);
+			*path_exist = 0;
+		}
 	}
 	else if (ft_strncmp(cmds->str[1], "-", 1) == 0)
 	{
 		path = find_path(data, "OLDPWD=");
 		if (!path[0])
-			return (print_error(ERR_OLDPWD_NOT_SET, data));
-		ft_putendl_fd(path, 1);
+		{
+			ft_putendl_fd(ERR_OLDPWD_NOT_SET, 2);
+			*path_exist = 0;
+		}
+		if (*path_exist)
+			ft_putendl_fd(path, 1);
 	}
 	else
 		path = ft_strdup(cmds->str[1]);
-	ret = chdir(path);
-	if (ret == -1)
+	return (path);
+}
+
+int	ft_cd(t_data *data, t_cmds *cmds)
+{
+	char	*path;
+	int		path_exist;
+
+	path_exist = 1;
+	path = path_cd_args(data, cmds, &path_exist);
+	if (!path_exist)
+		return (1);
+	if (chdir(path) == -1)
 		return (path_perror(path));
 	free(path);
 	update_pwd(data);
