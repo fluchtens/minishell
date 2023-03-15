@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:16:34 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/28 20:50:16 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/15 07:26:23 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	is_valid_command(char *builtin, char *str)
+{
+	int	builtinlen;
+	int	strlen;
+	int	len;
+
+	builtinlen = ft_strlen(builtin);
+	strlen = ft_strlen(str);
+	if (strlen < builtinlen)
+		len = builtinlen;
+	else
+		len = strlen;
+	if (ft_strncmp(str, builtin, len) == 0)
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
+}
 
 int	(*builtin_arr(char *str))(t_data *data, t_cmds *cmds)
 {
@@ -30,7 +47,7 @@ int	(*builtin_arr(char *str))(t_data *data, t_cmds *cmds)
 	{
 		if (str)
 		{
-			if (!ft_strncmp(builtins[i][0], str, ft_strlen((builtins[i][0]))))
+			if (!is_valid_command(builtins[i][0], str))
 				return (builtins[i][1]);
 		}
 		i++;
