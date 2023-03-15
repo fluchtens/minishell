@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/15 11:34:47 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:03:03 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define ERR_FORK "fork() failed"
 # define ERR_DUP2 "dup2() failed"
 
-typedef enum s_tokens
+typedef enum e_tokens
 {
 	PIPE = 1,
 	GREAT,
@@ -47,7 +47,7 @@ typedef enum s_tokens
 typedef struct s_lexer
 {
 	char			*str;
-	enum s_tokens	token;
+	enum e_tokens	token;
 	int				i;
 	struct s_lexer	*next;
 	struct s_lexer	*prev;
