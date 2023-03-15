@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/14 09:51:46 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:34:47 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,8 +152,7 @@ int			parse_envp(t_data *data, char **envp);
 int			parse_paths(t_data *data);
 int			parse_pwd(t_data *data);
 /* signals */
-void		init_signals(void);
-void		sigquit_handler(int sig);
+void		init_signals(int value);
 /* utils */
 int			print_error(char *str, t_data *data);
 int			print_token_error(t_data *data, t_lexer *lexer, t_tokens token);

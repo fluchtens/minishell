@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 08:47:43 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/09 07:55:14 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:35:48 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	initialization(t_data *data)
 	g_global.in_cmd = 0;
 	g_global.in_heredoc = 0;
 	parse_paths(data);
-	init_signals();
+	init_signals(0);
 }
 
 char	*find_path(t_data *data, char *envp)
