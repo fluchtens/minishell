@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:05 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/07 10:42:58 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/15 07:14:44 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,24 @@ static char	*filename(t_data *data)
 	return (file);
 }
 
-static int	hd_stoplen(char *line, char *stop)
+static int	stop_here_doc(char *line, char *stop)
 {
 	int	linelen;
 	int	stoplen;
+	int	len;
 
+	if (g_global.stop_heredoc || !stop || !line)
+		return (1);
 	linelen = ft_strlen(line);
 	stoplen = ft_strlen(stop);
 	if (linelen < stoplen)
-		return (stoplen);
-	return (linelen);
+		len = stoplen;
+	else
+		len = linelen;
+	if (ft_strncmp(line, stop, len) == 0)
+		return (EXIT_FAILURE);
+	else
+		return (EXIT_SUCCESS);
 }
 
 static int	here_doc(t_data *data, char *stop_heredoc, char *file)
@@ -43,24 +51,22 @@ static int	here_doc(t_data *data, char *stop_heredoc, char *file)
 
 	(void)data;
 	fd = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	while (true)
+	while (!g_global.stop_heredoc)
 	{
 		line = readline(MSG_HEREDOC);
-		if (ft_strncmp(line, stop_heredoc, \
-			hd_stoplen(line, stop_heredoc)) == 0 || g_global.stop_heredoc)
-		{
-			free(line);
-			free(stop_heredoc);
+		if (stop_here_doc(line, stop_heredoc))
 			break ;
-		}
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
 		free(line);
 	}
+	if (line)
+		free(line);
+	free(stop_heredoc);
 	if (g_global.stop_heredoc)
-		return (1);
+		return (EXIT_FAILURE);
 	close(fd);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
@@ -82,12 +88,12 @@ int	heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
 			{
 				g_global.error_num = 1;
 				reset_data(data);
-				return (1);
+				return (EXIT_FAILURE);
 			}
 		}
 		redirection = redirection->next;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	heredoc_ver(t_data *data, int pipefd[2], char *filename)
