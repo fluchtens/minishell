@@ -6,13 +6,13 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:16:34 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/15 07:26:23 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/15 08:30:41 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_valid_command(char *builtin, char *str)
+static int	is_valid_command(char *builtin, char *str)
 {
 	int	builtinlen;
 	int	strlen;
