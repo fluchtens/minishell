@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_closed_quotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:30:17 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/01 13:36:10 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/16 08:09:27 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,29 @@
 
 bool	ft_is_closed_quotes(char *str)
 {
-	int	s_quotes_count;
-	int	d_quotes_count;
-	int	i;
+	int		len;
+	int		top;
+	bool	result;
+	char	*stack;
+	int		i;
 
-	s_quotes_count = 0;
-	d_quotes_count = 0;
+	len = ft_strlen(str);
+	stack = malloc(sizeof(char) * len);
+	if (!stack)
+		return (0);
 	i = 0;
-	while (str[i])
+	top = -1;
+	while (i++ < len)
 	{
-		if (str[i] == 39)
-			s_quotes_count++;
-		if (str[i] == 34)
-			d_quotes_count++;
-		i++;
+		if (str[i] == '\'' || str[i] == '"')
+		{
+			if (top >= 0 && stack[top] == str[i])
+				top--;
+			else
+				stack[++top] = str[i];
+		}
 	}
-	return ((s_quotes_count % 2 == 0) && (d_quotes_count % 2 == 0));
+	result = (top == -1);
+	free(stack);
+	return (result);
 }
