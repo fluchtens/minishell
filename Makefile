@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
+#    By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/03/13 09:27:56 by fluchten         ###   ########.fr        #
+#    Updated: 2023/03/16 07:24:48 by mgomes-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS =	builtins/builtins.c \
 		executor/one_cmd.c \
 		executor/process.c \
 		expander/expander_init.c \
+		expander/expander_utils.c \
 		lexer/lexer_init.c \
 		lexer/lexer_lst_add.c \
 		lexer/lexer_lst_clear.c \

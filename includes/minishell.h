@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/15 14:03:03 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/16 07:25:15 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ void		child_process(t_data *data, t_cmds *cmd);
 int			process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd);
 /* expander */
 void		init_expander(t_data *data, t_cmds *cmds);
+int			ft_check_dollar(char *str, int check);
+int			ft_expander_check(char c);
 /* lexer */
 void		init_lexer(t_data *data);
 t_lexer		*lexer_new(char *str, int token);
