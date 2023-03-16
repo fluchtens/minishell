@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:05 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/16 11:05:13 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/16 11:14:12 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
 			data->heredoc = true;
 			if (here_doc(data, stop_heredoc, cmd->hd_file_name))
 			{
-				g_error_num = 1;
+				g_ret_value = 1;
 				reset_data(data);
 				return (EXIT_FAILURE);
 			}

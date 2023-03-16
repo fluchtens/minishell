@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 09:42:26 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/16 10:17:24 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 11:14:12 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_return_value(char **final, char **temp)
 		free(*temp);
 	if (*final)
 		free(*final);
-	num = ft_itoa(g_error_num);
+	num = ft_itoa(g_ret_value);
 	*final = ft_strjoin(finaltemp, num);
 	free(finaltemp);
 	free(num);
