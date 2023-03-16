@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:05 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/16 10:22:12 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 11:05:13 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
 {
 	char	*stop_heredoc;
 
+	init_signals(0);
 	while (redirection)
 	{
 		if (redirection->token == LESS_LESS)
@@ -88,6 +89,7 @@ int	heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
 		}
 		redirection = redirection->next;
 	}
+	init_signals(1);
 	return (EXIT_SUCCESS);
 }
 
