@@ -3,50 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 08:09:45 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/16 06:36:49 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/16 15:36:42 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	stop_while(char *str)
+static int	echo_flags_size(char **str, int *is_n_flag)
 {
 	int	i;
+	int	j;
 
-	i = 0;
-	if (!str)
-		return (EXIT_SUCCESS);
-	if (str[i] != '-')
-		return (EXIT_FAILURE);
-	i++;
-	while (str[i] == 'n')
-		i++;
-	if (!str[i])
-		return (EXIT_SUCCESS);
-	else
-		return (EXIT_FAILURE);
-}
-
-static int	echo_nb_flags(char **str, int i, int *is_n_flag)
-{
+	i = 1;
 	while (str[i] && str[i][0] == '-')
 	{
-		if (stop_while(str[i]))
-			break ;
-		else
+		j = 1;
+		while (str[i][j])
 		{
-			(*is_n_flag) = 1;
-			i++;
+			if (str[i][j] == 'n')
+			{
+				(*is_n_flag) = 1;
+				j++;
+			}
+			else
+				return (i);
 		}
-		while (str[i])
-		{
-			if (!ft_iswhitespace(str[i][0]) && str[i][0])
-				break ;
-			i++;
-		}
+		i++;
 	}
 	return (i);
 }
@@ -58,15 +43,7 @@ int	ft_echo(t_data *data, t_cmds *cmds)
 
 	(void) data;
 	is_n_flag = 0;
-	i = 1;
-	while (cmds->str[i])
-	{
-		if (!ft_iswhitespace(cmds->str[i][0]) && cmds->str[i][0])
-			break ;
-		i++;
-	}
-	if (ft_array_len(cmds->str) > 2)
-		i = echo_nb_flags(cmds->str, i, &is_n_flag);
+	i = echo_flags_size(cmds->str, &is_n_flag);
 	while (cmds->str[i])
 	{
 		ft_putstr_fd(cmds->str[i], 1);
