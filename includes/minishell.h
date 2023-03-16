@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/16 11:20:13 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/16 11:30:55 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,20 +148,23 @@ void		init_parser(t_data *data);
 int			parse_envp(t_data *data, char **envp);
 int			parse_paths(t_data *data);
 int			parse_pwd(t_data *data);
-/* signals */
-void		init_signals(int value);
-/* utils */
+/* error */
 int			print_error(char *str, t_data *data);
 int			print_token_error(t_data *data, t_lexer *lexer, t_tokens token);
 int			print_parser_error(char *str, t_data *data, t_lexer *lexer);
 int			print_unknown_cmd_error(char *str);
 int			print_export_error(char *c);
+/* free */
 void		free_array(char **array);
 void		free_everythings(t_data *data);
 void		exit_loop(t_data *data);
 void		reset_data(t_data *data);
-void		initialization(t_data *data);
+/* removes quotes */
 char		*ft_remove_quotes(char *str);
+/* signals */
+void		init_signals(int value);
+/* utils */
+void		initialization(t_data *data);
 char		*find_path(t_data *data, char *envp);
 
 #endif
