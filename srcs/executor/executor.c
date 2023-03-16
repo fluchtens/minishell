@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:20 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/16 09:49:09 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:17:14 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	ft_waitpid(int *pid, int pipes)
 	}
 	waitpid(pid[i], &status, 0);
 	if (WIFEXITED(status))
-		g_global.error_num = WEXITSTATUS(status);
+		g_error_num = WEXITSTATUS(status);
 	return ;
 }
 

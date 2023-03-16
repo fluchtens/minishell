@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/16 09:09:57 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:17:06 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,7 @@ typedef struct s_data
 	int						heredocindex;
 }	t_data;
 
-typedef struct s_global
-{
-	int	error_num;
-	int	stop_heredoc;
-	int	in_cmd;
-	int	in_heredoc;
-}	t_global;
-
-t_global	g_global;
+int	g_error_num;
 
 /* main */
 void		loop(t_data *data);
@@ -127,6 +119,7 @@ int			execution(t_data *data, t_cmds *cmd);
 int			execute_multiple_cmd(t_data *data);
 int			handle_files(t_lexer *redirections, t_cmds *cmd);
 int			heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection);
+char		*ft_expander_heredoc(char **line, t_data *data);
 int			heredoc_ver(t_data *data, int pipefd[2], char *filename);
 void		execute_one_cmd(t_data *data, t_cmds *cmd);
 void		child_process(t_data *data, t_cmds *cmd);
@@ -135,6 +128,7 @@ int			process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd);
 void		init_expander(t_data *data, t_cmds *cmds);
 int			ft_check_dollar(char *str, int check);
 int			ft_expander_check(char c);
+char		*expander_utils(char *str, t_data *data);
 /* lexer */
 void		init_lexer(t_data *data);
 t_lexer		*lexer_new(char *str, int token);
