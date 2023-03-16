@@ -6,44 +6,52 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 09:04:51 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/15 11:56:47 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/16 09:06:59 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	sigint_handler(int sig)
+static void	reset_handler(int sig)
 {
 	(void) sig;
-	if (!g_global.in_heredoc)
-		ft_putchar_fd('\n', 2);
-	if (g_global.in_cmd)
-	{
-		g_global.stop_heredoc = 1;
-		rl_replace_line("", 0);
-		rl_redisplay();
-		rl_done = 1;
-		return ;
-	}
+	g_global.error_num = 1;
+	ft_putchar_fd('\n', 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
 }
 
-static void	sigquit_handler(int sig)
+static void	ctrl_c_handler(int sig)
 {
-	ft_putstr_fd("Quit: ", 2);
-	ft_putnbr_fd(sig, 2);
-	ft_putchar_fd('\n', 2);
+	(void) sig;
+	g_global.error_num = 130;
+	ft_putchar_fd('\n', 1);
+}
+
+static void	back_slash_handler(int sig)
+{
+	g_global.error_num = 131;
+	ft_putstr_fd("Quit: ", 1);
+	ft_putnbr_fd(sig, 1);
+	ft_putchar_fd('\n', 1);
 }
 
 void	init_signals(int value)
 {
+	struct termios	term;
+
 	if (value == 0)
 	{
-		signal(SIGINT, sigint_handler);
+		signal(SIGINT, reset_handler);
 		signal(SIGQUIT, SIG_IGN);
 	}
 	if (value == 1)
-		signal(SIGQUIT, sigquit_handler);
+	{
+		signal(SIGINT, ctrl_c_handler);
+		signal(SIGQUIT, back_slash_handler);
+	}
+	tcgetattr(0, &term);
+	term.c_lflag &= ~ECHOCTL;
+	tcsetattr(0, TCSANOW, &term);
 }
