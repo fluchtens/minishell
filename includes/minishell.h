@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/16 11:14:12 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/16 11:20:13 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,18 @@ typedef struct s_cmds
 
 typedef struct s_data
 {
-	struct s_cmds			*cmds;
-	struct s_lexer			*lexer;
-	char					*line;
-	char					**paths;
-	char					**envp;
-	char					*pwd;
-	char					*old_pwd;
-	int						pipes_count;
-	int						*pid;
-	bool					heredoc;
-	int						pidindex;
-	int						heredocindex;
+	struct s_cmds	*cmds;
+	struct s_lexer	*lexer;
+	char			*line;
+	char			**paths;
+	char			**envp;
+	char			*pwd;
+	char			*old_pwd;
+	int				pipes_count;
+	int				*pid;
+	bool			heredoc;
+	int				pidindex;
+	int				heredocindex;
 }	t_data;
 
 int	g_ret_value;
