@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+         #
+#    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/03/16 07:24:48 by mgomes-d         ###   ########.fr        #
+#    Updated: 2023/03/16 09:11:41 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,6 @@ SRCS =	builtins/builtins.c \
 		parsing/parse_envp.c \
 		parsing/parse_paths.c \
 		parsing/parse_pwd.c \
-		temp/temp.c \
 		utils/errors.c \
 		utils/free.c \
 		utils/remove_quotes.c \
