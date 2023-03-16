@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 09:04:51 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/16 09:06:59 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/16 09:39:02 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ctrl_c_handler(int sig)
 {
 	(void) sig;
 	g_global.error_num = 130;
-	ft_putchar_fd('\n', 1);
+	ft_putendl_fd("^C", 1);
 }
 
 static void	back_slash_handler(int sig)
