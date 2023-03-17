@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:43 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/13 11:18:57 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/17 06:58:25 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	child_init(t_data *data, t_cmds *cmd, int fd_in, int pipefd[2])
 	child_process(data, cmd);
 }
 
-int	process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd)
+void	process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd)
 {
 	data->pid[data->pidindex] = fork();
 	if (data->pid[data->pidindex] < 0)
@@ -48,5 +48,5 @@ int	process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd)
 	if (data->pid[data->pidindex] == 0)
 		child_init(data, cmd, fd_in, pipefd);
 	data->pidindex++;
-	return (0);
+	return ;
 }

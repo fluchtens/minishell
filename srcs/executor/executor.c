@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:20 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/16 11:14:12 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/17 07:06:25 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static int	ft_execve(char **cmd, char *path, char **env)
 {
 	if (!access(cmd[0], X_OK))
-		return (1);
+		return (EXIT_FAILURE);
 	if (execve(path, cmd, env) == -1)
-		return (1);
-	return (0);
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 static int	not_cmd(char *str)
@@ -72,7 +72,7 @@ static void	ft_waitpid(int *pid, int pipes)
 	return ;
 }
 
-int	execute_multiple_cmd(t_data *data)
+void	execute_multiple_cmd(t_data *data)
 {
 	int		pipefd[2];
 	int		fd_in;
@@ -82,13 +82,13 @@ int	execute_multiple_cmd(t_data *data)
 	cmds = data->cmds;
 	while (cmds)
 	{
+		init_expander(data, cmds);
 		if (cmds->next)
 			pipe(pipefd);
-		init_expander(data, cmds);
 		heredoc_init(data, data->cmds, data->cmds->redirections);
 		process(data, pipefd, fd_in, cmds);
 		close(pipefd[1]);
-		if (data->cmds->prev)
+		if (cmds->prev)
 			close(fd_in);
 		fd_in = heredoc_ver(data, pipefd, cmds->hd_file_name);
 		if (cmds->next)
@@ -97,5 +97,5 @@ int	execute_multiple_cmd(t_data *data)
 			break ;
 	}
 	ft_waitpid(data->pid, data->pipes_count);
-	return (0);
+	return ;
 }

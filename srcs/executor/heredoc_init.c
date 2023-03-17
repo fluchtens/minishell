@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:05 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/16 11:14:12 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/17 07:37:56 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	stop_here_doc(char *line, char *stop)
 		return (EXIT_SUCCESS);
 }
 
-static int	here_doc(t_data *data, char *stop_heredoc, char *file)
+static int	here_doc(t_data *data, char *stop_hd, char *file, char *hd_str)
 {
 	char	*line;
 	int		fd;
@@ -53,9 +53,10 @@ static int	here_doc(t_data *data, char *stop_heredoc, char *file)
 	while (true)
 	{
 		line = readline(MSG_HEREDOC);
-		if (stop_here_doc(line, stop_heredoc))
+		if (stop_here_doc(line, stop_hd))
 			break ;
-		line = ft_expander_heredoc(&line, data);
+		if (ft_have_quotes(hd_str))
+			line = ft_expander_heredoc(&line, data);
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
 		free(line);
@@ -66,7 +67,7 @@ static int	here_doc(t_data *data, char *stop_heredoc, char *file)
 	return (EXIT_SUCCESS);
 }
 
-int	heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
+void	heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
 {
 	char	*stop_heredoc;
 
@@ -80,17 +81,18 @@ int	heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
 			cmd->hd_file_name = filename(data);
 			stop_heredoc = ft_remove_quotes(redirection->str);
 			data->heredoc = true;
-			if (here_doc(data, stop_heredoc, cmd->hd_file_name))
+			if (here_doc(data, stop_heredoc, cmd->hd_file_name,\
+			 redirection->str))
 			{
 				g_ret_value = 1;
 				reset_data(data);
-				return (EXIT_FAILURE);
+				return ;
 			}
 		}
 		redirection = redirection->next;
 	}
 	init_signals(1);
-	return (EXIT_SUCCESS);
+	return ;
 }
 
 int	heredoc_ver(t_data *data, int pipefd[2], char *filename)

@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:38:08 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/16 10:12:48 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/17 07:13:20 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,18 @@ char	*ft_expander_heredoc(char **line, t_data *data)
 	str = expander_utils(temp, data);
 	free(temp);
 	return (str);
+}
+
+int	ft_have_quotes(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == 34 || str[i] == 39)
+			return (EXIT_SUCCESS);
+		i++;
+	}
+	return (EXIT_FAILURE);
 }
