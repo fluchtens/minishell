@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:32:01 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/03 11:04:33 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:17:21 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <limits.h>
 
 typedef struct s_list {
 	void			*content;
@@ -71,6 +72,7 @@ int		ft_lstsize(t_list *lst);
 /* Extra Part */
 char	**ft_array_dup(char **array);
 int		ft_array_len(char **array);
+long	ft_atol(const char *str, int *invalid);
 bool	ft_is_closed_quotes(char *str);
 int		ft_isquote(int c);
 bool	ft_iswhitespace(char c);
