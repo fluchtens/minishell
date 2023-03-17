@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:05 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/17 08:39:44 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/17 09:07:52 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static int	here_doc(t_data *data, char *stop_hd, char *file, char *hd_str)
 	}
 	if (line)
 		free(line);
+	free(stop_hd);
 	close(fd);
 	return (EXIT_SUCCESS);
 }
