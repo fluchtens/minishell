@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:54:01 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/09 10:46:19 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/17 07:40:10 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_cmds	*cmds_new(char **str, t_lexer *redirections)
 	if (!element)
 		return (NULL);
 	element->str = str;
-	element->builtin = builtin_arr(str[0]);
+	element->builtin = get_builtin(str[0]);
 	element->hd_file_name = NULL;
 	element->redirections = redirections;
 	element->next = NULL;
