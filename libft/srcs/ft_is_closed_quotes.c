@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:30:17 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/16 08:09:27 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/17 10:32:12 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,28 @@
 
 bool	ft_is_closed_quotes(char *str)
 {
-	int		len;
-	int		top;
-	bool	result;
-	char	*stack;
-	int		i;
+	int	i;
 
-	len = ft_strlen(str);
-	stack = malloc(sizeof(char) * len);
-	if (!stack)
-		return (0);
 	i = 0;
-	top = -1;
-	while (i++ < len)
+	while (str[i])
 	{
-		if (str[i] == '\'' || str[i] == '"')
+		if (str[i] == '"')
 		{
-			if (top >= 0 && stack[top] == str[i])
-				top--;
-			else
-				stack[++top] = str[i];
+			i++;
+			while (str[i] && str[i] != '"')
+				i++;
+			if (str[i] != '"')
+				return (0);
 		}
+		else if (str[i] == '\'')
+		{
+			i++;
+			while (str[i] && str[i] != '\'')
+				i++;
+			if (str[i] != '\'')
+				return (0);
+		}
+		i++;
 	}
-	result = (top == -1);
-	free(stack);
-	return (result);
+	return (1);
 }
