@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 20:45:11 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/14 08:32:56 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:39:00 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,7 @@ int	ft_export(t_data *data, t_cmds *cmds)
 
 	if (!cmds->str[1])
 		return (ft_env(data, cmds));
-	if (!export_cmd_have_equal(cmds))
-		return (0);
-	if (!check_export_cmd(cmds))
+	if (!check_export_cmd(cmds->str))
 		return (1);
 	i = 1;
 	while (cmds->str[i])

@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:24:28 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/03 18:12:19 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:46:37 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,56 +26,36 @@ int	equal_pos(char *str)
 	return (0);
 }
 
-bool	export_cmd_have_equal(t_cmds *cmds)
+static int	is_valid_export_cmd(char *str)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	if (!cmds->str)
-		return (false);
-	while (cmds->str[i])
+	if ((!ft_isalpha(str[0]) && str[0] != '_'))
+		return (0);
+	while (str[i] && str[i] != '=')
 	{
-		j = 0;
-		while (cmds->str[i][j])
-		{
-			if (cmds->str[i][j] == '=')
-				return (true);
-			j++;
-		}
+		if (!ft_isalpha(str[i]) && !ft_isdigit(str[i])
+			&& str[i] != '_' && str[i] != '=' && str[i] != ' ')
+			return (0);
 		i++;
 	}
-	return (false);
+	if (!equal_pos(str))
+		return (0);
+	return (1);
 }
 
-static bool	is_valid_export_cmd(char *str)
+int	check_export_cmd(char **str)
 {
 	int	i;
 
 	i = 1;
-	if ((!ft_isalpha(str[0]) && str[0] != '_'))
-		return (false);
 	while (str[i])
 	{
-		if (!ft_isalpha(str[i]) && !ft_isdigit(str[i]) && !ft_isquote(str[i])
-			&& str[i] != '_' && str[i] != '=' && str[i] != ' ')
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-int	check_export_cmd(t_cmds *cmds)
-{
-	int	i;
-
-	i = 1;
-	while (cmds->str[i])
-	{
-		if (is_valid_export_cmd(cmds->str[i]) == false)
+		if (!is_valid_export_cmd(str[i]))
 		{
 			ft_putstr_fd("minishell: export: `", 2);
-			ft_putstr_fd(cmds->str[i], 2);
+			ft_putstr_fd(str[i], 2);
 			ft_putendl_fd("': not a valid identifier", 2);
 			return (0);
 		}
