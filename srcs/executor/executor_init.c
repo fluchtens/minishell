@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:04:55 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/16 10:11:40 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/17 08:06:41 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	init_executor(t_data *data)
 	init_signals(1);
 	if (data->pipes_count > 0)
 	{	
-		data->pid = ft_calloc(sizeof(int), (data->pipes_count + 2));
+		data->pid = ft_calloc(sizeof(int), (data->pipes_count + 1));
 		if (!data->pid)
 			return (print_error(ERR_MALLOC, data));
 		execute_multiple_cmd(data);

@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:05 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/17 07:37:56 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/17 08:39:44 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
 			cmd->hd_file_name = filename(data);
 			stop_heredoc = ft_remove_quotes(redirection->str);
 			data->heredoc = true;
-			if (here_doc(data, stop_heredoc, cmd->hd_file_name,\
-			 redirection->str))
+			if (here_doc(data, stop_heredoc, cmd->hd_file_name, \
+			redirection->str))
 			{
 				g_ret_value = 1;
 				reset_data(data);
