@@ -6,7 +6,11 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/17 07:21:26 by mgomes-d         ###   ########.fr       */
+=======
+/*   Updated: 2023/03/17 07:40:10 by fluchten         ###   ########.fr       */
+>>>>>>> 77bc32cf33f209a3aca5cc26ca3236f4a529a461
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +96,7 @@ int	g_ret_value;
 /* main */
 void		loop(t_data *data);
 /* builtins */
-int			(*builtin_arr(char *str))(t_data *data, t_cmds *cmds);
+int			(*get_builtin(char *str))(t_data *data, t_cmds *cmds);
 int			ft_cd(t_data *data, t_cmds *cmds);
 int			ft_echo(t_data *data, t_cmds *cmds);
 int			ft_env(t_data *data, t_cmds *cmds);

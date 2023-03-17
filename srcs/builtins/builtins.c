@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:16:34 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/15 08:30:41 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/17 07:40:10 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	is_valid_command(char *builtin, char *str)
 	return (EXIT_FAILURE);
 }
 
-int	(*builtin_arr(char *str))(t_data *data, t_cmds *cmds)
+int	(*get_builtin(char *str))(t_data *data, t_cmds *cmds)
 {
 	static void	*builtins[7][2] = {
 	{"echo", ft_echo},
