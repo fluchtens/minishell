@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 20:45:11 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/18 19:43:31 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/18 20:16:23 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ static int	is_exist_var(char **envp, char *var)
 
 int	ft_export(t_data *data, t_cmds *cmds)
 {
-	char	*temp;
-	int		i;
+	int	i;
 
 	if (!cmds->str[1])
 	{
@@ -90,11 +89,7 @@ int	ft_export(t_data *data, t_cmds *cmds)
 	while (cmds->str[i])
 	{
 		if (!is_exist_var(data->envp, cmds->str[i]))
-		{
-			temp = ft_remove_quotes(cmds->str[i]);
-			data->envp = add_var_envp(data->envp, temp);
-			free(temp);
-		}
+			data->envp = add_var_envp(data->envp, cmds->str[i]);
 		i++;
 	}
 	return (0);
