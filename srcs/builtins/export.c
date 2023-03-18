@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 20:45:11 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/18 19:05:21 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:43:31 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,19 @@ char	**add_var_envp(char **envp, char *var)
 	return (final);
 }
 
-static int	is_exist_var(t_data *data, char *var)
+static int	is_exist_var(char **envp, char *var)
 {
 	int	len;
 	int	i;
 
 	i = 0;
-	while (data->envp[i])
+	while (envp[i])
 	{
-		len = equal_pos(data->envp[i]) + 1;
-		if (ft_strncmp(data->envp[i], var, len) == 0)
+		len = equal_pos(envp[i]) + 1;
+		if (ft_strncmp(envp[i], var, len) == 0)
 		{
-			free(data->envp[i]);
-			data->envp[i] = ft_strdup(var);
+			free(envp[i]);
+			envp[i] = ft_strdup(var);
 			return (1);
 		}
 		i++;
@@ -89,7 +89,7 @@ int	ft_export(t_data *data, t_cmds *cmds)
 	i = 1;
 	while (cmds->str[i])
 	{
-		if (!is_exist_var(data, cmds->str[i]))
+		if (!is_exist_var(data->envp, cmds->str[i]))
 		{
 			temp = ft_remove_quotes(cmds->str[i]);
 			data->envp = add_var_envp(data->envp, temp);
