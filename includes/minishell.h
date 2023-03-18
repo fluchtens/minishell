@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/18 19:28:52 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/18 20:23:52 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,10 +145,6 @@ int			lexer_count_pipes(t_lexer *lexer);
 int			lexer_count_args(t_lexer *lexer);
 /* parser */
 void		init_parser(t_data *data);
-/* parsing */
-int			parse_envp(t_data *data, char **envp);
-int			parse_paths(t_data *data);
-int			parse_pwd(t_data *data);
 /* envp */
 void		print_envp(char **envp, int is_sorted);
 void		sort_export_envp(t_data *data);
@@ -163,6 +159,10 @@ void		free_array(char **array);
 void		free_everythings(t_data *data);
 void		exit_loop(t_data *data);
 void		reset_data(t_data *data);
+/* parse */
+int			parse_envp(t_data *data, char **envp);
+int			parse_pwd(t_data *data);
+int			parse_paths(t_data *data);
 /* removes quotes */
 char		*ft_remove_quotes(char *str);
 /* signals */
