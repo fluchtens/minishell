@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 09:02:05 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/17 17:41:19 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:05:29 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,9 @@
 
 int	ft_env(t_data *data, t_cmds *cmds)
 {
-	int		i;
-
 	(void) cmds;
 	if (!data->envp)
 		return (1);
-	i = 0;
-	while (data->envp[i])
-	{
-		ft_putendl_fd(data->envp[i], 1);
-		i++;
-	}
+	print_envp(data->envp, 0);
 	return (0);
 }

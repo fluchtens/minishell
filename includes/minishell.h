@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/17 12:46:57 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:05:13 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,16 @@ typedef struct s_cmds
 
 typedef struct s_data
 {
-	struct s_cmds	*cmds;
-	struct s_lexer	*lexer;
 	char			*line;
-	char			**paths;
 	char			**envp;
+	char			**envp_sorted;
+	char			**paths;
 	char			*pwd;
 	char			*old_pwd;
-	int				pipes_count;
+	struct s_lexer	*lexer;
+	struct s_cmds	*cmds;
 	int				*pid;
+	int				pipes_count;
 	bool			heredoc;
 	int				pidindex;
 	int				heredocindex;
@@ -148,6 +149,9 @@ void		init_parser(t_data *data);
 int			parse_envp(t_data *data, char **envp);
 int			parse_paths(t_data *data);
 int			parse_pwd(t_data *data);
+/* envp */
+void		print_envp(char **envp, int is_sorted);
+void		sort_export_envp(t_data *data);
 /* error */
 int			print_error(char *str, t_data *data);
 int			print_token_error(t_data *data, t_lexer *lexer, t_tokens token);
