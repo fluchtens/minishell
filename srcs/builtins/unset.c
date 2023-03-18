@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 13:18:22 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/03 18:04:46 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:31:14 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_unset(t_data *data, t_cmds *cmds)
 
 	if (!cmds->str[1])
 		return (0);
-	if (!check_unset_cmd(cmds))
+	if (!check_unset_cmd(cmds->str))
 		return (1);
 	i = 1;
 	while (cmds->str[i])
