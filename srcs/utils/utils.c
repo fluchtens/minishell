@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 08:47:43 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/19 14:02:07 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:28:52 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	increment_shlvl(t_data *data)
 	char	*temp;
 	int		shlvl;
 
-	temp = find_path(data, "SHLVL=");
+	temp = find_path(data->envp, "SHLVL=");
 	shlvl = ft_atoi(temp);
 	if (shlvl < 0)
 		shlvl = 0;
@@ -41,19 +41,19 @@ void	increment_shlvl(t_data *data)
 	free(temp);
 }
 
-char	*find_path(t_data *data, char *envp)
+char	*find_path(char **envp, char *var)
 {
 	int	len;
 	int	new_len;
 	int	i;
 
 	i = 0;
-	while (data->envp[i])
+	while (var[i])
 	{
-		len = ft_strlen(envp);
-		new_len = ft_strlen(data->envp[i]) - len;
-		if (!ft_strncmp(data->envp[i], envp, len))
-			return (ft_substr(data->envp[i], len, new_len));
+		len = ft_strlen(var);
+		new_len = ft_strlen(envp[i]) - len;
+		if (!ft_strncmp(envp[i], var, len))
+			return (ft_substr(envp[i], len, new_len));
 		i++;
 	}
 	return (ft_strdup("\0"));

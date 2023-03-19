@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 09:49:35 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/19 14:08:28 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:27:58 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	parse_paths(t_data *data)
 	int		last;
 	int		i;
 
-	path = find_path(data, "PATH=");
+	path = find_path(data->envp, "PATH=");
 	data->paths = ft_split(path, ':');
 	free(path);
 	i = 0;

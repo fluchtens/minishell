@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/19 14:20:07 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:28:57 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,6 @@ void		init_signals(int value);
 /* utils */
 void		initialization(t_data *data);
 void		increment_shlvl(t_data *data);
-char		*find_path(t_data *data, char *envp);
+char		*find_path(char **envp, char *var);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:06:58 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/14 09:51:15 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:27:54 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static char	*path_cd_args(t_data *data, t_cmds *cmds, int *path_exist)
 
 	if (!cmds->str[1])
 	{
-		path = find_path(data, "HOME=");
+		path = find_path(data->envp, "HOME=");
 		if (!path[0])
 		{
 			ft_putendl_fd(ERR_HOME_NOT_SET, 2);
@@ -81,7 +81,7 @@ static char	*path_cd_args(t_data *data, t_cmds *cmds, int *path_exist)
 	}
 	else if (ft_strncmp(cmds->str[1], "-", 1) == 0)
 	{
-		path = find_path(data, "OLDPWD=");
+		path = find_path(data->envp, "OLDPWD=");
 		if (!path[0])
 		{
 			ft_putendl_fd(ERR_OLDPWD_NOT_SET, 2);

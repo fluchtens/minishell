@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 09:42:26 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/16 11:14:12 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:27:56 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	get_env_data(char **str, t_data *data, char **final, int j)
 	char	*temp2;
 
 	temp = ft_strjoin(*str, "=");
-	path = find_path(data, temp);
+	path = find_path(data->envp, temp);
 	temp2 = ft_strdup(*final);
 	if (*final)
 		free(*final);
