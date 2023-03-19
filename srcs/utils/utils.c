@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 08:47:43 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/19 14:28:52 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:37:52 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*find_path(char **envp, char *var)
 	int	i;
 
 	i = 0;
-	while (var[i])
+	while (envp[i])
 	{
 		len = ft_strlen(var);
 		new_len = ft_strlen(envp[i]) - len;
