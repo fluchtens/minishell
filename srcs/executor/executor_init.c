@@ -6,13 +6,13 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:04:55 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/19 14:16:32 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:39:29 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	init_executor(t_data *data)
+void	init_executor(t_data *data)
 {
 	init_signals(1);
 	if (data->pipes_count > 0)
@@ -24,5 +24,4 @@ int	init_executor(t_data *data)
 	}
 	else
 		execute_one_cmd(data, data->cmds);
-	return (0);
 }
