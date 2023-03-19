@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/19 14:17:14 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:19:27 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,6 @@ void		sort_export_envp(t_data *data);
 void		print_error(char *str, t_data *data);
 void		print_token_error(t_data *data, t_lexer *lexer, t_tokens token);
 void		print_parser_error(char *str, t_data *data, t_lexer *lexer);
-int			print_unknown_cmd_error(char *str);
-int			print_export_error(char *c);
 /* free */
 void		free_array(char **array);
 void		free_everythings(t_data *data);
