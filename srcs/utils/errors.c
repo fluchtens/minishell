@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:36:55 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/08 10:45:32 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:17:20 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	print_error(char *str, t_data *data)
+void	print_error(char *str, t_data *data)
 {
 	ft_putstr_fd("minishell: ", 2);
 	ft_putendl_fd(str, 2);
 	reset_data(data);
 	loop(data);
-	return (1);
 }
 
-int	print_token_error(t_data *data, t_lexer *lexer, t_tokens token)
+void	print_token_error(t_data *data, t_lexer *lexer, t_tokens token)
 {
 	ft_putstr_fd("minishell: syntax error near unexpected token ", 2);
 	if (token == GREAT)
@@ -38,13 +37,12 @@ int	print_token_error(t_data *data, t_lexer *lexer, t_tokens token)
 	lexer_clear(&lexer);
 	reset_data(data);
 	loop(data);
-	return (1);
 }
 
-int	print_parser_error(char *str, t_data *data, t_lexer *lexer)
+void	print_parser_error(char *str, t_data *data, t_lexer *lexer)
 {
 	lexer_clear(&lexer);
-	return (print_error(str, data));
+	print_error(str, data);
 }
 
 int	print_unknown_cmd_error(char *str)

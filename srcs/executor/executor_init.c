@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:04:55 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/17 08:06:41 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:16:32 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	init_executor(t_data *data)
 	{	
 		data->pid = ft_calloc(sizeof(int), (data->pipes_count + 1));
 		if (!data->pid)
-			return (print_error(ERR_MALLOC, data));
+			print_error(ERR_MALLOC, data);
 		execute_multiple_cmd(data);
 	}
 	else
