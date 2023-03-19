@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 20:45:11 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/18 20:16:23 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/19 13:38:09 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**add_var_envp(char **envp, char *var)
 	return (final);
 }
 
-static int	is_exist_var(char **envp, char *var)
+int	is_exist_var(char **envp, char *var)
 {
 	int	len;
 	int	i;

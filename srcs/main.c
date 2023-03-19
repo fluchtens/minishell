@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:00:23 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/15 06:32:26 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:07:36 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ int	main(int ac, char **av, char **envp)
 
 	(void)ac;
 	(void)av;
-	if (!parse_envp(&data, envp))
-		return (ft_print_error(ERR_ENVP));
+	data.envp = ft_array_dup(envp);
 	parse_pwd(&data);
 	initialization(&data);
+	increment_shlvl(&data);
 	loop(&data);
 	return (0);
 }

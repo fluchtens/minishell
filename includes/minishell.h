@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/18 20:23:52 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/19 14:09:09 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
 # define MSG_READLINE "\033[1;36mminishell$ \033[0m"
 # define MSG_HEREDOC "\033[1;32m> \033[0m"
 # define ERR_MALLOC "malloc() failed"
-# define ERR_ENVP "error: envp parsing"
-# define ERR_PWD "error: pwd parsing"
 # define ERR_QUOTES "syntax error: near unexpected token `quote'"
 # define ERR_TOKEN "syntax error near unexpected token `newline'"
 # define ERR_HOME_NOT_SET "minishell: cd: HOME not set"
@@ -101,6 +99,7 @@ int			ft_exit(t_data *data, t_cmds *cmds);
 int			equal_pos(char *str);
 int			check_export_cmd(char **str);
 char		**add_var_envp(char **envp, char *var);
+int			is_exist_var(char **envp, char *var);
 int			ft_export(t_data *data, t_cmds *cmds);
 void		update_pwd(t_data *data);
 int			ft_pwd(t_data *data, t_cmds *cmds);
@@ -160,7 +159,6 @@ void		free_everythings(t_data *data);
 void		exit_loop(t_data *data);
 void		reset_data(t_data *data);
 /* parse */
-int			parse_envp(t_data *data, char **envp);
 int			parse_pwd(t_data *data);
 int			parse_paths(t_data *data);
 /* removes quotes */
@@ -169,6 +167,7 @@ char		*ft_remove_quotes(char *str);
 void		init_signals(int value);
 /* utils */
 void		initialization(t_data *data);
+void		increment_shlvl(t_data *data);
 char		*find_path(t_data *data, char *envp);
 
 #endif
