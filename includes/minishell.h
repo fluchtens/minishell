@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/19 14:39:22 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/19 22:18:41 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,9 @@ int			ft_cd(t_data *data, t_cmds *cmds);
 int			ft_echo(t_data *data, t_cmds *cmds);
 int			ft_env(t_data *data, t_cmds *cmds);
 int			ft_exit(t_data *data, t_cmds *cmds);
-int			equal_pos(char *str);
 int			check_export_cmd(char **str);
-char		**add_var_envp(char **envp, char *var);
 int			is_exist_var(char **envp, char *var);
+char		**add_var_envp(char **envp, char *var);
 int			ft_export(t_data *data, t_cmds *cmds);
 void		update_pwd(t_data *data);
 int			ft_pwd(t_data *data, t_cmds *cmds);
@@ -167,5 +166,7 @@ void		init_signals(int value);
 void		initialization(t_data *data);
 void		increment_shlvl(t_data *data);
 char		*find_path(char **envp, char *var);
+int			equal_pos(char *str);
+int			more_pos(char *str);
 
 #endif

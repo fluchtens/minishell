@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 20:45:11 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/19 13:38:09 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/19 23:08:39 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,30 +52,24 @@ char	**add_var_envp(char **envp, char *var)
 	return (final);
 }
 
-int	is_exist_var(char **envp, char *var)
+static char	*rename_more_equal_var(char *var)
 {
-	int	len;
-	int	i;
+	char	*var_name;
+	char	*var_name_equal;
+	char	*var_final;
+	int		var_len;
 
-	i = 0;
-	while (envp[i])
-	{
-		len = equal_pos(envp[i]) + 1;
-		if (ft_strncmp(envp[i], var, len) == 0)
-		{
-			free(envp[i]);
-			envp[i] = ft_strdup(var);
-			return (1);
-		}
-		i++;
-	}
-	return (0);
+	var_name = ft_substr(var, 0, more_pos(var));
+	var_name_equal = ft_strjoin(var_name, "=");
+	var_len = equal_pos(var_name_equal) + 1;
+	var_final = ft_strjoin(var_name_equal, var + (var_len + 1));
+	free(var_name);
+	free(var_name_equal);
+	return (var_final);
 }
 
-int	ft_export(t_data *data, t_cmds *cmds)
+static int	export_have_args(t_data *data, t_cmds *cmds)
 {
-	int	i;
-
 	if (!cmds->str[1])
 	{
 		sort_export_envp(data);
@@ -83,13 +77,32 @@ int	ft_export(t_data *data, t_cmds *cmds)
 		free_array(data->envp_sorted);
 		return (0);
 	}
+	return (1);
+}
+
+int	ft_export(t_data *data, t_cmds *cmds)
+{
+	char	*temp;
+	int		i;
+
+	if (!export_have_args(data, cmds))
+		return (0);
 	if (!check_export_cmd(cmds->str))
 		return (1);
 	i = 1;
 	while (cmds->str[i])
 	{
 		if (!is_exist_var(data->envp, cmds->str[i]))
-			data->envp = add_var_envp(data->envp, cmds->str[i]);
+		{
+			if (cmds->str[i][equal_pos(cmds->str[i]) - 1] == '+')
+			{
+				temp = rename_more_equal_var(cmds->str[i]);
+				data->envp = add_var_envp(data->envp, temp);
+				free(temp);
+			}
+			else
+				data->envp = add_var_envp(data->envp, cmds->str[i]);
+		}
 		i++;
 	}
 	return (0);
