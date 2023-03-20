@@ -6,7 +6,7 @@
 /*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 08:09:45 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/20 10:53:21 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/20 11:16:22 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_echo(t_data *data, t_cmds *cmds)
 	i = echo_flags_size(cmds->str, &is_n_flag);
 	while (cmds->str[i])
 	{
-		if (cmds->str[i + 1] && echo_skip_spaces(cmds->str[i]))
+		while (cmds->str[i + 1] && echo_skip_spaces(cmds->str[i]))
 			i++;
 		ft_putstr_fd(cmds->str[i], 1);
 		if (cmds->str[i + 1])
