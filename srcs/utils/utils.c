@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 08:47:43 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/19 22:15:55 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/20 07:23:34 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	initialization(t_data *data)
 void	increment_shlvl(t_data *data)
 {
 	char	*temp;
+	char	*temp_itoa;
 	int		shlvl;
 
 	temp = find_path(data->envp, "SHLVL=");
@@ -35,7 +36,9 @@ void	increment_shlvl(t_data *data)
 	else
 		shlvl++;
 	free(temp);
-	temp = ft_strjoin("SHLVL=", ft_itoa(shlvl));
+	temp_itoa = ft_itoa(shlvl);
+	temp = ft_strjoin("SHLVL=", temp_itoa);
+	free(temp_itoa);
 	if (!is_exist_var(data->envp, temp))
 		data->envp = add_var_envp(data->envp, temp);
 	free(temp);
