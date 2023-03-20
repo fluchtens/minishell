@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:06:05 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/17 09:07:52 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/20 11:09:27 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static char	*filename(t_data *data)
 	char	*file;
 	char	*index;
 
-	data->heredocindex = 0;
 	index = ft_itoa(data->heredocindex++);
 	file = ft_strjoin("/tmp/.tempfile.", index);
 	free(index);
@@ -96,14 +95,16 @@ void	heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection)
 	return ;
 }
 
-int	heredoc_ver(t_data *data, int pipefd[2], char *filename)
+int	heredoc_ver(t_data *data, int pipefd[2], t_cmds *cmds)
 {
 	int	fd;
 
 	if (data->heredoc)
 	{
+		if (!cmds->hd_file_name)
+			ft_get_filename(data, cmds);
 		close(pipefd[0]);
-		fd = open(filename, O_RDONLY);
+		fd = open(cmds->hd_file_name, O_RDONLY);
 	}
 	else
 		fd = pipefd[0];

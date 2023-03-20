@@ -6,7 +6,7 @@
 /*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:20 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/19 16:12:56 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2023/03/20 11:07:31 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	execute_multiple_cmd(t_data *data)
 
 	fd_in = STDIN_FILENO;
 	cmds = data->cmds;
+	data->heredocindex = 0;
 	while (cmds)
 	{
 		init_expander(data, cmds);
@@ -97,7 +98,7 @@ void	execute_multiple_cmd(t_data *data)
 		close(pipefd[1]);
 		if (cmds->prev)
 			close(fd_in);
-		fd_in = heredoc_ver(data, pipefd, cmds->hd_file_name);
+		fd_in = heredoc_ver(data, pipefd, cmds);
 		if (cmds->next)
 			cmds = cmds->next;
 		else

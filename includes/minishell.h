@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:59:18 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/19 22:18:41 by fluchten         ###   ########.fr       */
+/*   Updated: 2023/03/20 11:09:39 by mgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ int			handle_files(t_lexer *redirections, t_cmds *cmd);
 void		heredoc_init(t_data *data, t_cmds *cmd, t_lexer *redirection);
 char		*ft_expander_heredoc(char **line, t_data *data);
 int			ft_have_quotes(const char *str);
-int			heredoc_ver(t_data *data, int pipefd[2], char *filename);
+int			heredoc_ver(t_data *data, int pipefd[2], t_cmds *cmds);
+void		ft_get_filename(t_data *data, t_cmds *cmds);
 void		execute_one_cmd(t_data *data, t_cmds *cmd);
 void		child_process(t_data *data, t_cmds *cmd);
 void		process(t_data *data, int pipefd[2], int fd_in, t_cmds *cmd);
