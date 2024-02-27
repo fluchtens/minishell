@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmds_lst_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 07:33:28 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/24 07:34:00 by fluchten         ###   ########.fr       */
+/*   Updated: 2024/02/27 19:14:17 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,13 @@
 t_cmds	*cmds_first(t_cmds *cmds)
 {
 	t_cmds	*temp;
-	int		i;
 
-	i = 0;
 	if (!cmds)
 		return (NULL);
 	temp = cmds;
 	while (temp->prev)
 	{
 		temp = temp->prev;
-		i++;
 	}
 	return (temp);
 }
