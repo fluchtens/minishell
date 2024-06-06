@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgomes-d <mgomes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:05:20 by mgomes-d          #+#    #+#             */
-/*   Updated: 2023/03/20 11:07:31 by mgomes-d         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:14:40 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	execution(t_data *data, t_cmds *cmd)
 			if (!access(path, F_OK))
 				ft_execve(cmd->str, path, data->envp);
 			free(path);
-		}	
+		}
 	}
 	return (not_cmd(cmd->str[0]));
 }

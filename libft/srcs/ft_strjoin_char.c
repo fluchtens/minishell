@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:04:06 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/03 11:04:35 by fluchten         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:16:58 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strjoin_char(char *str, char c)
 		{
 			final[size] = str[size];
 			size++;
-		}	
+		}
 	}
 	final[size] = c;
 	final[size + 1] = '\0';

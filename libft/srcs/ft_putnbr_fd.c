@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:26:57 by fluchten          #+#    #+#             */
-/*   Updated: 2023/02/18 15:42:12 by fluchten         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:17:14 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_putnbr_fd(int n, int fd)
 	{
 		ft_putchar_fd('-', fd);
 		ft_putnbr_fd(-nb, fd);
-	}	
+	}
 	else if (nb > 9)
 	{
 		ft_putnbr_fd(nb / 10, fd);

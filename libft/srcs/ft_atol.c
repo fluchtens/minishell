@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fluchten <fluchten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:16:07 by fluchten          #+#    #+#             */
-/*   Updated: 2023/03/17 17:16:36 by fluchten         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:17:37 by fluchten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ long	ft_atol(const char *str, int *invalid)
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 		if (str[i++] == '-')
-				sign = -1;
+			sign = -1;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = res * 10 + (str[i++] - 48);
