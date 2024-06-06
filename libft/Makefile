@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fluchten <fluchten@student.42.fr>          +#+  +:+       +#+         #
+#    By: fluchten <fluchten@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 15:03:07 by fluchten          #+#    #+#              #
-#    Updated: 2023/03/17 17:17:02 by fluchten         ###   ########.fr        #
+#    Updated: 2024/06/06 09:26:41 by fluchten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRCS =	ft_printf/ft_printf_utils1.c \
 		ft_str_isdigits.c \
 		ft_split.c \
 		ft_strchr.c \
+		ft_strcmp.c \
 		ft_strdup.c \
 		ft_striteri.c \
 		ft_strjoin_char.c \
